@@ -33,18 +33,21 @@
             line-height: 1.6;
             color: #a9a9a9;
         }
-        .mockup-placeholder {
-            width: 250px;
-            height: 500px;
-            background-color: #333;
-            border: 3px solid #555;
-            border-radius: 30px;
-            margin: 40px auto;
+        /* NEU: Container für ein oder mehrere Bilder */
+        .mockups-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            font-size: 1.2em;
-            color: #888;
+            gap: 25px; /* Abstand zwischen den Bildern */
+            flex-wrap: wrap;
+            margin: 40px auto;
+        }
+        /* NEU: Styling für die Bilder selbst */
+        .mockup-image {
+            max-width: 280px; /* Maximale Breite eines Bildes */
+            height: auto; /* Höhe passt sich automatisch an */
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            border: 2px solid #555;
         }
         .cta-buttons a {
             display: inline-block;
@@ -117,7 +120,12 @@
             <h1>Die Zukunft deines Grappling-Trainings ist da.</h1>
             <p>Die weltweit erste intelligente App für Kampfsportler, die dein Training mit KI-gestützten Plänen und interaktivem Feedback auf ein neues Level hebt.</p>
             
-            <img src="images/4.jpeg" alt="Screenshot der Grappling Intelligence App" class="mockup-image">
+            <!-- ANPASSUNG: Hier ist jetzt der neue Container für deine Bilder -->
+            <div class="mockups-container">
+                <img src="images/4.jpeg" alt="Screenshot der Grappling Intelligence App" class="mockup-image">
+                <!-- Um ein zweites Bild hinzuzufügen, entferne die Kommentarzeichen und passe den Dateinamen an: -->
+                <!-- <img src="images/dein-zweites-bild.png" alt="Weiterer Screenshot der App" class="mockup-image"> -->
+            </div>
 
             <div class="cta-buttons">
                 <a href="#" class="app-store-button">Laden im App Store</a>
@@ -176,4 +184,3 @@
 
 </body>
 </html>
-
