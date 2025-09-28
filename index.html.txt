@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grappling Intelligence - Die Zukunft deines Trainings</title>
+    <style>
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        .hero {
+            background-color: #1c1c1e;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            line-height: 1.6;
+            color: #a9a9a9;
+        }
+        .mockup-placeholder {
+            width: 250px;
+            height: 500px;
+            background-color: #333;
+            border: 3px solid #555;
+            border-radius: 30px;
+            margin: 40px auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            color: #888;
+        }
+        .cta-buttons a {
+            display: inline-block;
+            background-color: #007AFF;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 10px;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+        .cta-buttons a:hover {
+            background-color: #0056b3;
+        }
+        .features {
+            padding: 60px 0;
+        }
+        .features h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        .feature-item {
+            text-align: center;
+        }
+        .feature-item h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .feature-item p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #555;
+        }
+        .section {
+            background-color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        footer {
+            background-color: #1c1c1e;
+            color: #a9a9a9;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        footer .cta-buttons {
+            margin-bottom: 30px;
+        }
+        footer .footer-links a {
+            color: #a9a9a9;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        footer .footer-links a:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <div class="container">
+            <h1>Die Zukunft deines Grappling-Trainings ist da.</h1>
+            <p>Die weltweit erste intelligente App für Kampfsportler, die dein Training mit KI-gestützten Plänen und interaktivem Feedback auf ein neues Level hebt.</p>
+            
+            <div class="mockup-placeholder">Dein App-Bild</div>
+
+            <div class="cta-buttons">
+                <a href="#" class="app-store-button">Laden im App Store</a>
+                <a href="#" class="google-play-button">Jetzt bei Google Play</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="features container">
+        <h2>Kern-Features</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>Intelligente Trainingspläne</h3>
+                <p>Schluss mit 08/15-Training! Unser KI-Algorithmus erstellt dynamische Pläne, die perfekt auf dich und deine Gruppe zugeschnitten sind.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Gestalte dein Training mit</h3>
+                <p>Dein Wort zählt! Reiche Technikwünsche ein und stelle Fragen direkt in der App, die dein Trainer auf der Matte beantwortet.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Fortschritt, der motiviert</h3>
+                <p>Verfolge deine Entwicklung, sammle Trophäen für deine Erfolge und sieh auf einen Blick, wie du besser wirst.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Dein Gym in der Tasche</h3>
+                <p>Buche Kurse, verwalte deine Mitgliedschaft und checke mit einem Scan ein. So einfach war Organisation noch nie.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <h2>Für wen ist diese App?</h2>
+            <p>Egal ob ambitionierter Wettkämpfer oder leidenschaftlicher Hobby-Sportler – Grappling Intelligence ist der perfekte Partner für jeden, der sein Training liebt.</p>
+        </div>
+    </div>
+
+    <div class="section" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2>Sie sind Studiobesitzer?</h2>
+            <p>Sie möchten Grappling Intelligence für Ihr Gym nutzen? <a href="mailto:info@grappling-intelligence.com">Kontaktieren Sie uns für eine Demo</a>.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="cta-buttons">
+            <a href="#" class="app-store-button">Laden im App Store</a>
+            <a href="#" class="google-play-button">Jetzt bei Google Play</a>
+        </div>
+        <div class="footer-links">
+            <a href="support.html">Support</a> | 
+            <a href="impressum.html">Impressum</a> | 
+            <a href="datenschutz.html">Datenschutz</a>
+        </div>
+    </footer>
+
+</body>
+</html>
