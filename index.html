@@ -1,188 +1,394 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grappling Intelligence - Die Zukunft deines Trainings</title>
+    <meta name="description" content="Grappling Intelligence - Das modernste Ökosystem für BJJ- und Kampfsportakademien.">
+    <title>Grappling Intelligence | Das Operating System für Kampfsport</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+        :root {
+            --bg-color: #000000;
+            --surface-color: #111111;
+            --surface-light: #1a1a1a;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --accent-blue: #2997ff;
+            --accent-blue-hover: #147ce5;
+            --border-color: #333336;
+        }
+
+        * {
             margin: 0;
-            color: #333;
-            background-color: #f8f9fa;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-font-smoothing: antialiased;
         }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation (Glassmorphism) --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 64px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- Layout Container --- */
         .container {
-            max-width: 960px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 24px;
         }
+
+        /* --- Hero Section --- */
         .hero {
-            background-color: #1c1c1e;
-            color: white;
+            padding-top: 180px;
+            padding-bottom: 100px;
             text-align: center;
-            padding: 80px 20px;
+            position: relative;
         }
+
         .hero h1 {
-            font-size: 3em;
-            margin-bottom: 0.5em;
+            font-size: clamp(48px, 6vw, 80px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #fff 0%, #a9a9a9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .hero p {
-            font-size: 1.3em;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            line-height: 1.6;
-            color: #a9a9a9;
+            font-size: clamp(18px, 2vw, 24px);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 48px auto;
+            letter-spacing: -0.3px;
         }
-        /* NEU: Container für ein oder mehrere Bilder */
-        .mockups-container {
+
+        .cta-group {
             display: flex;
             justify-content: center;
-            gap: 25px; /* Abstand zwischen den Bildern */
+            gap: 16px;
             flex-wrap: wrap;
-            margin: 40px auto;
         }
-        /* NEU: Styling für die Bilder selbst */
-        .mockup-image {
-            max-width: 280px; /* Maximale Breite eines Bildes */
-            height: auto; /* Höhe passt sich automatisch an */
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            border: 2px solid #555;
-        }
-        .cta-buttons a {
-            display: inline-block;
-            background-color: #007AFF;
-            color: white;
-            padding: 15px 30px;
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-size: 17px;
+            font-weight: 500;
             text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            margin: 10px;
-            font-size: 1.1em;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
-        .cta-buttons a:hover {
-            background-color: #0056b3;
+
+        .btn-primary {
+            background-color: var(--text-main);
+            color: var(--bg-color);
         }
-        .features {
-            padding: 60px 0;
+
+        .btn-primary:hover {
+            background-color: #e0e0e0;
+            transform: scale(1.02);
         }
-        .features h2 {
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--surface-color);
+        }
+
+        /* --- Mockup Showcase --- */
+        .mockup-wrapper {
+            margin-top: 80px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .mockup-image {
+            max-width: 320px;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            border: 8px solid var(--surface-light);
+            z-index: 2;
+        }
+
+        /* Ambient Glow behind mockup */
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(41,151,255,0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: 1;
+        }
+
+        /* --- Abstract Features (B2C & B2B) --- */
+        .section {
+            padding: 120px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 50px;
+            margin-bottom: 80px;
         }
-        .feature-grid {
+
+        .section-header h2 {
+            font-size: 40px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 16px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            color: var(--text-muted);
+        }
+
+        .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
         }
-        .feature-item {
-            text-align: center;
+
+        .card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            transition: transform 0.4s ease, border-color 0.4s ease;
         }
-        .feature-item h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #555;
         }
-        .feature-item p {
-            font-size: 1.1em;
+
+        .card h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            font-size: 16px;
+            color: var(--text-muted);
             line-height: 1.6;
-            color: #555;
         }
-        .section {
-            background-color: white;
-            padding: 60px 0;
+
+        /* --- B2B Focus Section (Studio Inhaber) --- */
+        .b2b-section {
+            background-color: var(--surface-light);
+            padding: 120px 0;
             text-align: center;
         }
+
+        .b2b-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .b2b-content h2 {
+            font-size: 48px;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        /* --- Footer --- */
         footer {
-            background-color: #1c1c1e;
-            color: #a9a9a9;
+            padding: 60px 0;
+            border-top: 1px solid var(--border-color);
             text-align: center;
-            padding: 40px 20px;
         }
-        footer .cta-buttons {
-            margin-bottom: 30px;
+
+        .footer-links {
+            margin-bottom: 24px;
         }
-        footer .footer-links a {
-            color: #a9a9a9;
-            margin: 0 15px;
+
+        .footer-links a {
+            color: var(--text-muted);
             text-decoration: none;
+            margin: 0 16px;
+            font-size: 14px;
+            transition: color 0.3s;
         }
-        footer .footer-links a:hover {
-            color: white;
+
+        .footer-links a:hover {
+            color: var(--text-main);
+        }
+
+        .copyright {
+            color: var(--border-color);
+            font-size: 12px;
+        }
+
+        /* --- Animationsklassen --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <div class="container">
-            <h1>Die Zukunft deines Grappling-Trainings ist da.</h1>
-            <p>Die weltweit erste intelligente App für Kampfsportler, die dein Training mit KI-gestützten Plänen und interaktivem Feedback auf ein neues Level hebt.</p>
-            
-            <!-- ANPASSUNG: Hier ist jetzt der neue Container für deine Bilder -->
-            <div class="mockups-container">
-                <img src="images/4.jpeg" alt="Screenshot der Grappling Intelligence App" class="mockup-image">
-                <!-- Um ein zweites Bild hinzuzufügen, entferne die Kommentarzeichen und passe den Dateinamen an: -->
-                <!-- <img src="images/dein-zweites-bild.png" alt="Weiterer Screenshot der App" class="mockup-image"> -->
-            </div>
-
-            <div class="cta-buttons">
-                <a href="https://apps.apple.com/de/app/grappling-intelligence/id6751597788" class="app-store-button">Laden im App Store</a>
-                <a href="https://play.google.com/store/apps/details?id=com.yasincelik.grapplingintelligence&hl=de" class="google-play-button">Jetzt bei Google Play</a>
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo">Grappling Intelligence</a>
+            <div class="nav-links">
+                <a href="#features">Ökosystem</a>
+                <a href="#partner">Für Akademien</a>
             </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="features container">
-        <h2>Kern-Features</h2>
-        <div class="feature-grid">
-            <div class="feature-item">
-                <h3>Intelligente Trainingspläne</h3>
-                <p>Schluss mit 08/15-Training! Unser KI-Algorithmus erstellt dynamische Pläne, die perfekt auf dich und deine Gruppe zugeschnitten sind.</p>
+    <header class="hero container reveal">
+        <h1>Die DNA deines<br>Trainings. Entschlüsselt.</h1>
+        <p>Ein intelligentes Ökosystem, das Athleten leitet und Akademien skaliert. Präzision auf der Matte, Kontrolle im Management.</p>
+        
+        <div class="cta-group">
+            <a href="https://apps.apple.com/de/app/grappling-intelligence/id6751597788" class="btn btn-primary" target="_blank" rel="noopener">App Store</a>
+            <a href="https://play.google.com/store/apps/details?id=com.yasincelik.grapplingintelligence" class="btn btn-secondary" target="_blank" rel="noopener">Google Play</a>
+        </div>
+
+        <div class="mockup-wrapper reveal">
+            <div class="glow"></div>
+            <img src="images/4.jpeg" alt="Grappling Intelligence Interface" class="mockup-image">
+        </div>
+    </header>
+
+    <section id="features" class="section container">
+        <div class="section-header reveal">
+            <h2>Technologie trifft auf Intuition.</h2>
+            <p>Konzipiert für messbaren Fortschritt und nahtlose Integration in den Trainingsalltag.</p>
+        </div>
+
+        <div class="grid-3">
+            <div class="card reveal">
+                <h3>Dynamische Progression</h3>
+                <p>Abstrahierte Lernkurven werden in sichtbaren Fortschritt übersetzt. Das System analysiert Metriken im Hintergrund und synchronisiert deine Ziele in Echtzeit.</p>
             </div>
-            <div class="feature-item">
-                <h3>Gestalte dein Training mit</h3>
-                <p>Dein Wort zählt! Reiche Technikwünsche ein und stelle Fragen direkt in der App, die dein Trainer auf der Matte beantwortet.</p>
+            <div class="card reveal">
+                <h3>Interaktives Curriculum</h3>
+                <p>Direkte Rückkopplung zwischen Athlet und Coach. Formuliere Schwerpunkte digital und erlebe die Umsetzung physisch auf der Matte.</p>
             </div>
-            <div class="feature-item">
-                <h3>Fortschritt, der motiviert</h3>
-                <p>Verfolge deine Entwicklung, sammle Trophäen für deine Erfolge und sieh auf einen Blick, wie du besser wirst.</p>
-            </div>
-            <div class="feature-item">
-                <h3>Dein Gym in der Tasche</h3>
-                <p>Buche Kurse, verwalte deine Mitgliedschaft und checke mit einem Scan ein. So einfach war Organisation noch nie.</p>
+            <div class="card reveal">
+                <h3>Reibungslose Logistik</h3>
+                <p>Von der digitalen Identität bis zum kontaktlosen Zutritt. Ein holistisches System, das administrative Hürden eliminiert, damit der Fokus beim Sport bleibt.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section">
-        <div class="container">
-            <h2>Für wen ist diese App?</h2>
-            <p>Egal ob ambitionierter Wettkämpfer oder leidenschaftlicher Hobby-Sportler – Grappling Intelligence ist der perfekte Partner für jeden, der sein Training liebt.</p>
+    <section id="partner" class="b2b-section">
+        <div class="container b2b-content reveal">
+            <h2>Die Kommandozentrale für Ihre Akademie.</h2>
+            <p style="color: var(--text-muted); font-size: 20px; margin-bottom: 40px;">Grappling Intelligence ist nicht nur eine App. Es ist das Operating System für zukunftsorientierte Kampfsportclubs. Automatisierte Lead-Pipelines, rollenbasierte Zugriffe und datengetriebene Auswertungen zur Skalierung Ihres Geschäfts.</p>
+            <a href="mailto:info@grappling-intelligence.com?subject=B2B%20Anfrage%20Grappling%20Intelligence" class="btn btn-primary">Partnerschaft anfragen</a>
         </div>
-    </div>
-
-    <div class="section" style="background-color: #f8f9fa;">
-        <div class="container">
-            <h2>Sie sind Studiobesitzer?</h2>
-            <p>Sie möchten Grappling Intelligence für Ihr Gym nutzen? <a href="mailto:info@grappling-intelligence.com">Kontaktieren Sie uns für eine Demo</a>.</p>
-        </div>
-    </div>
+    </section>
 
     <footer>
-        <div class="cta-buttons">
-            <a href="https://apps.apple.com/de/app/grappling-intelligence/id6751597788" class="app-store-button">Laden im App Store</a>
-            <a href="#" class="google-play-button">Jetzt bei Google Play</a>
-        </div>
-        <div class="footer-links">
-            <a href="support.html">Support</a> | 
-            <a href="impressum.html">Impressum</a> | 
-            <a href="datenschutz.html">Datenschutz</a>
+        <div class="container">
+            <div class="footer-links">
+                <a href="support.html">Support</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="datenschutz.html">Datenschutz</a>
+            </div>
+            <div class="copyright">
+                &copy; <script>document.write(new Date().getFullYear())</script> Grappling Intelligence. Alle Rechte vorbehalten.
+            </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const reveals = document.querySelectorAll('.reveal');
+
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        // Optional: observer.unobserve(entry.target) wenn Animation nur einmalig sein soll
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.1, // Feuert, wenn 10% des Elements sichtbar sind
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
 </body>
 </html>
-
-
