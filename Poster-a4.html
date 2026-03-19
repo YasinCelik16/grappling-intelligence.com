@@ -39,30 +39,23 @@
             width: 210mm;
             height: 297mm;
             background: #ffffff;
-            padding: 15mm 20mm 15mm 20mm; /* Etwas weniger Padding oben/unten */
+            padding: 15mm 20mm; 
             display: flex;
             flex-direction: column;
             text-align: center;
             position: relative;
         }
 
-        /* Header / Logo Bereich (Verkleinerter Gap) */
+        /* Header Bereich (ohne Logo) */
         .header {
-            margin-bottom: 5mm; /* Gap drastisch reduziert */
+            margin-bottom: 2mm; 
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .gym-logo {
-            width: 110px; /* Leicht verkleinert, um oben Platz zu sparen */
-            height: 110px;
-            object-fit: contain;
-            margin-bottom: 8px;
-        }
-
         .gym-name {
-            font-size: 42px; /* Leicht verkleinert */
+            font-size: 52px; /* Etwas vergrößert, da das Logo weg ist */
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -1px;
@@ -70,46 +63,46 @@
             margin-bottom: 12px;
         }
 
-        /* Neuer, cooler Titel (Invertiert) */
+        /* Titel */
         .alert-box {
             background-color: #000000;
             color: #ffffff;
             padding: 14px 25px;
             display: inline-block;
-            font-size: 26px; /* Etwas größer und fetter */
+            font-size: 26px; 
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8mm; /* Abstand zum QR-Bereich */
+            margin-bottom: 8mm; 
             border-radius: 6px;
         }
 
-        /* QR Code Fokus (Verschoben nach oben und massiv vergrößert) */
+        /* QR Code Fokus */
         .qr-section {
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 15mm; /* Abstand zum Warn-Text */
-            flex: 1; /* Nimmt verfügbaren Platz ein, um QR-Box zu zentrieren */
-            justify-content: center; /* Zentriert QR-Inhalt vertikal im Bereich */
+            margin-bottom: 10mm; 
+            flex: 1; 
+            justify-content: center; 
         }
 
         .qr-call-to-action {
-            font-size: 36px; /* Noch größerer CTA */
+            font-size: 36px; 
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             line-height: 1.1;
         }
 
         .qr-code-box {
-            width: 280px; /* Massive Vergrößerung */
-            height: 280px; /* Massive Vergrößerung */
-            border: 8px solid #000000; /* Dickerer Rand für mehr Fokus */
+            width: 260px; /* Leicht angepasst für perfekte Proportion auf A4 */
+            height: 260px; 
+            border: 8px solid #000000; 
             padding: 15px;
             border-radius: 16px;
             background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Print-optimierter Schatten */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
         }
 
         .qr-code-box img {
@@ -118,43 +111,43 @@
             display: block;
         }
 
-        /* Dringlichkeit & Pflicht (Verschoben nach unten) */
+        /* Dringlichkeit & Pflicht */
         .mandatory-text {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 10mm;
+            margin-bottom: 8mm;
             border: 3px solid #000000;
             padding: 15px;
             border-radius: 8px;
-            background-color: #f9f9f9; /* Ganz leichter Kontrast-BG für Print */
+            background-color: #f9f9f9; 
         }
 
-        /* Todo Liste (Verschoben nach unten) */
+        /* Todo Liste */
         .todo-section {
             display: flex;
             justify-content: center;
-            margin-bottom: 15mm;
+            margin-bottom: 5mm;
         }
 
         .todo-list {
             list-style: none;
             text-align: left;
-            font-size: 19px; /* Leicht angepasst */
+            font-size: 19px; 
             font-weight: 600;
-            line-height: 1.7;
+            line-height: 1.6;
         }
 
         .todo-list li {
             position: relative;
             padding-left: 42px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .todo-list li::before {
             content: "✓";
             position: absolute;
             left: 0;
-            top: 1px;
+            top: 0;
             width: 26px;
             height: 26px;
             background: #000000;
@@ -167,9 +160,9 @@
             font-weight: bold;
         }
 
-        /* Footer (Bereinigt) */
+        /* Footer */
         .footer {
-            margin-top: auto; /* Pusht Footer nach ganz unten */
+            margin-top: auto; 
             border-top: 2px solid #000000;
             padding-top: 15px;
             font-size: 18px;
@@ -184,7 +177,6 @@
     <div class="a4-poster">
         
         <div class="header">
-            <img src="images/bjj-dachau-logo.png" alt="BJJ Dachau Logo" class="gym-logo" onerror="this.style.display='none'">
             <div class="gym-name">BJJ DACHAU</div>
             <div class="alert-box">UNSERE NEUE GYM-APP</div>
         </div>
