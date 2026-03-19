@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BJJ Dachau | Digitales Setup Poster</title>
+    <title>BJJ Dachau | Final Setup Poster</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,61 +39,97 @@
             width: 210mm;
             height: 297mm;
             background: #ffffff;
-            padding: 20mm;
+            padding: 15mm 20mm 15mm 20mm; /* Etwas weniger Padding oben/unten */
             display: flex;
             flex-direction: column;
             text-align: center;
             position: relative;
         }
 
-        /* Header / Logo Bereich */
+        /* Header / Logo Bereich (Verkleinerter Gap) */
         .header {
-            margin-bottom: 15mm;
+            margin-bottom: 5mm; /* Gap drastisch reduziert */
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .gym-logo {
-            width: 120px;
-            height: 120px;
+            width: 110px; /* Leicht verkleinert, um oben Platz zu sparen */
+            height: 110px;
             object-fit: contain;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .gym-name {
-            font-size: 48px;
+            font-size: 42px; /* Leicht verkleinert */
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -1px;
             line-height: 1;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
-        /* Dringlichkeit & Pflicht */
+        /* Neuer, cooler Titel (Invertiert) */
         .alert-box {
             background-color: #000000;
             color: #ffffff;
-            padding: 12px 20px;
+            padding: 14px 25px;
             display: inline-block;
-            font-size: 22px;
-            font-weight: 800;
+            font-size: 26px; /* Etwas größer und fetter */
+            font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 15mm;
-            border-radius: 4px;
+            margin-bottom: 8mm; /* Abstand zum QR-Bereich */
+            border-radius: 6px;
         }
 
+        /* QR Code Fokus (Verschoben nach oben und massiv vergrößert) */
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15mm; /* Abstand zum Warn-Text */
+            flex: 1; /* Nimmt verfügbaren Platz ein, um QR-Box zu zentrieren */
+            justify-content: center; /* Zentriert QR-Inhalt vertikal im Bereich */
+        }
+
+        .qr-call-to-action {
+            font-size: 36px; /* Noch größerer CTA */
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .qr-code-box {
+            width: 280px; /* Massive Vergrößerung */
+            height: 280px; /* Massive Vergrößerung */
+            border: 8px solid #000000; /* Dickerer Rand für mehr Fokus */
+            padding: 15px;
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); /* Print-optimierter Schatten */
+        }
+
+        .qr-code-box img {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Dringlichkeit & Pflicht (Verschoben nach unten) */
         .mandatory-text {
             font-size: 20px;
             font-weight: 700;
-            margin-bottom: 15mm;
+            margin-bottom: 10mm;
             border: 3px solid #000000;
             padding: 15px;
             border-radius: 8px;
+            background-color: #f9f9f9; /* Ganz leichter Kontrast-BG für Print */
         }
 
-        /* Todo Liste */
+        /* Todo Liste (Verschoben nach unten) */
         .todo-section {
             display: flex;
             justify-content: center;
@@ -103,79 +139,43 @@
         .todo-list {
             list-style: none;
             text-align: left;
-            font-size: 20px;
+            font-size: 19px; /* Leicht angepasst */
             font-weight: 600;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         .todo-list li {
             position: relative;
-            padding-left: 45px;
-            margin-bottom: 12px;
+            padding-left: 42px;
+            margin-bottom: 10px;
         }
 
         .todo-list li::before {
             content: "✓";
             position: absolute;
             left: 0;
-            top: 2px;
-            width: 28px;
-            height: 28px;
+            top: 1px;
+            width: 26px;
+            height: 26px;
             background: #000000;
             color: #ffffff;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
         }
 
-        /* QR Code Fokus */
-        .qr-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: auto;
-            margin-bottom: 15mm;
-        }
-
-        .qr-call-to-action {
-            font-size: 32px;
-            font-weight: 900;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .qr-code-box {
-            width: 200px;
-            height: 200px;
-            border: 6px solid #000000;
-            padding: 10px;
-            border-radius: 12px;
-        }
-
-        .qr-code-box img {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        /* Footer */
+        /* Footer (Bereinigt) */
         .footer {
-            margin-top: auto;
+            margin-top: auto; /* Pusht Footer nach ganz unten */
             border-top: 2px solid #000000;
             padding-top: 15px;
             font-size: 18px;
             font-weight: 700;
             display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .footer span {
-            font-weight: 800;
-            font-size: 20px;
+            justify-content: center;
         }
     </style>
 </head>
@@ -186,7 +186,14 @@
         <div class="header">
             <img src="images/bjj-dachau-logo.png" alt="BJJ Dachau Logo" class="gym-logo" onerror="this.style.display='none'">
             <div class="gym-name">BJJ DACHAU</div>
-            <div class="alert-box">Digitales System-Setup</div>
+            <div class="alert-box">UNSERE NEUE GYM-APP</div>
+        </div>
+
+        <div class="qr-section">
+            <div class="qr-call-to-action">↓ HIER SCANNEN ↓<br>ZUM DOWNLOAD</div>
+            <div class="qr-code-box">
+                <img src="images/qr-code-grappling-intelligence.com-highres.png" alt="QR Code zum Download" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'280\' height=\'280\' viewBox=\'0 0 280 280\'><rect width=\'280\' height=\'280\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23000000\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\'>QR CODE FEHLT ODER PFAD FALSCH</text></svg>'">
+            </div>
         </div>
 
         <div class="mandatory-text">
@@ -204,15 +211,7 @@
             </ul>
         </div>
 
-        <div class="qr-section">
-            <div class="qr-call-to-action">↓ HIER SCANNEN ↓</div>
-            <div class="qr-code-box">
-                <img src="images/qr-code-grappling-intelligence.com-highres.png" alt="QR Code zum Download" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'><rect width=\'200\' height=\'200\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23000000\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\'>FEHLER: BILD FEHLT</text></svg>'">
-            </div>
-        </div>
-
         <div class="footer">
-            <span>bjj-dachau.de</span>
             <div>Für alle Fragen stehen die Trainer zur Verfügung.</div>
         </div>
 
