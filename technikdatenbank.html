@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grappling Intelligence — Technique Redesign v2</title>
+<style>
+  :root{
+    --bg:#F2F2F7;
+    --surface:#FFFFFF;
+    --surface-2:#F8F8FA;
+    --ink:#000000;
+    --ink-2:rgba(0,0,0,.85);
+    --ink-3:rgba(60,60,67,.78);
+    --ink-4:rgba(60,60,67,.6);
+    --ink-5:rgba(60,60,67,.3);
+    --line:rgba(60,60,67,.12);
+    --line-soft:rgba(60,60,67,.08);
+    --blue:#007AFF;
+    --blue-tint:rgba(0,122,255,.10);
+    --blue-tint-2:rgba(0,122,255,.06);
+    --orange:#FD7E14;
+    --orange-tint:rgba(253,126,20,.12);
+    --red:#FF3B30;
+    --red-tint:rgba(255,59,48,.10);
+    --green:#34C759;
+    --green-tint:rgba(52,199,89,.12);
+    --indigo:#5856D6;
+    --indigo-tint:rgba(88,86,214,.10);
+    --font:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','system-ui','Segoe UI',Roboto,sans-serif;
+    --mono:ui-monospace,'SF Mono','Monaco','Menlo',monospace;
+    --shadow-sm:0 0 0 .5px rgba(0,0,0,.05);
+    --shadow-md:0 0 0 .5px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);
+    --shadow-lg:0 24px 60px rgba(0,0,0,.10),0 4px 16px rgba(0,0,0,.05),0 0 0 .5px rgba(0,0,0,.04);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+  html,body{background:#E8E8ED;font-family:var(--font);color:var(--ink);min-height:100vh}
+  body{padding:56px 24px 96px;background-image:radial-gradient(ellipse 600px 400px at 50% 0%,#EEEEF3 0%,#E8E8ED 60%)}
+
+  .stage{max-width:920px;margin:0 auto}
+  .stage-head{margin-bottom:48px;text-align:center;max-width:680px;margin-left:auto;margin-right:auto}
+  .stage-kicker{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  .stage-title{font-size:38px;font-weight:700;letter-spacing:-.022em;line-height:1.1;color:var(--ink);margin-bottom:14px}
+  .stage-lede{font-size:16px;line-height:1.55;color:var(--ink-3);font-weight:400}
+
+  /* Side-by-side comparison: PHONE + ARCHITECTURE */
+  .layout{display:grid;grid-template-columns:380px 1fr;gap:48px;align-items:start;max-width:920px;margin:0 auto}
+  @media(max-width:880px){.layout{grid-template-columns:1fr;justify-items:center}}
+
+  /* PHONE FRAME */
+  .phone{width:380px;background:#0B0B0A;border-radius:52px;padding:13px;box-shadow:var(--shadow-lg);position:sticky;top:24px}
+  .phone-screen{background:var(--bg);border-radius:40px;overflow:hidden;position:relative;height:780px;overflow-y:auto;scrollbar-width:none}
+  .phone-screen::-webkit-scrollbar{display:none}
+
+  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:16px 28px 0;font-size:15px;font-weight:600;color:var(--ink);height:54px}
+  .sb-right{display:flex;gap:6px;align-items:center}
+  .sb-icon{width:16px;height:11px;background:var(--ink);border-radius:2px}
+  .sb-batt{width:24px;height:11px;border:1px solid var(--ink);border-radius:3px;position:relative;padding:1.5px}
+  .sb-batt::after{content:"";position:absolute;right:-3px;top:3.5px;width:2px;height:5px;background:var(--ink);border-radius:0 1px 1px 0}
+  .sb-batt-fill{width:85%;height:100%;background:var(--ink);border-radius:1px}
+
+  /* nav bar with backdrop blur effect */
+  .navbar{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:6px 16px 12px;background:linear-gradient(180deg,var(--bg) 60%,rgba(242,242,247,0));backdrop-filter:blur(20px)}
+  .nav-btn{width:36px;height:36px;border-radius:50%;background:rgba(118,118,128,.16);display:flex;align-items:center;justify-content:center;color:var(--ink);cursor:pointer}
+  .nav-btn svg{width:17px;height:17px;stroke:currentColor;stroke-width:2.2;fill:none}
+
+  /* HERO */
+  .hero{margin:0 16px 16px;height:204px;border-radius:18px;overflow:hidden;position:relative;background:#0B0B0A;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.14)}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 40%,rgba(0,122,255,.20) 0%,transparent 55%),radial-gradient(circle at 70% 60%,rgba(88,86,214,.18) 0%,transparent 55%);pointer-events:none}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.55) 100%);pointer-events:none}
+  .play{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.94);display:flex;align-items:center;justify-content:center;position:relative;z-index:2;box-shadow:0 8px 24px rgba(0,0,0,.35);backdrop-filter:blur(8px)}
+  .play-tri{width:0;height:0;border-left:18px solid var(--ink);border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+  .hero-meta{position:absolute;bottom:14px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+  .hero-tag{color:#fff;font-size:11px;letter-spacing:.06em;font-weight:600;text-transform:uppercase;display:flex;align-items:center;gap:6px;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+  .hero-tag-dot{width:6px;height:6px;background:#FF3B30;border-radius:50%}
+  .hero-dur{background:rgba(0,0,0,.45);color:#fff;font-size:11px;font-weight:600;padding:4px 8px;border-radius:6px;backdrop-filter:blur(8px)}
+
+  /* IDENTITY CARD */
+  .identity{margin:0 16px 12px;padding:18px 18px 16px;background:var(--surface);border-radius:14px;box-shadow:var(--shadow-sm)}
+  .eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+  .tech-name{font-size:30px;font-weight:700;letter-spacing:-.022em;line-height:1.08;color:var(--ink);margin-bottom:6px}
+  .tech-desc{font-size:15px;line-height:1.42;color:var(--ink-3);margin-bottom:14px;font-weight:400}
+  .pills{display:flex;gap:6px;flex-wrap:wrap}
+  .pill{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:-.005em}
+  .pill svg{width:11px;height:11px;stroke:currentColor;stroke-width:2.4;fill:none}
+  .pill-orange{background:var(--orange-tint);color:var(--orange)}
+  .pill-blue{background:var(--blue-tint);color:var(--blue)}
+  .pill-gray{background:rgba(118,118,128,.12);color:var(--ink-3)}
+
+  /* POSITION FLOW CARD */
+  .pflow{margin:0 16px 12px;background:var(--surface);border-radius:14px;padding:16px;box-shadow:var(--shadow-sm)}
+  .pflow-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .pflow-lab{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+  .pflow-link{font-size:13px;color:var(--blue);font-weight:500;display:flex;align-items:center;gap:2px}
+  .pflow-link svg{width:10px;height:10px;stroke:currentColor;stroke-width:2.4;fill:none}
+  .pflow-row{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:center}
+  .pnode{padding:12px 10px;background:var(--surface-2);border-radius:11px;cursor:pointer;text-align:center;border:.5px solid var(--line);transition:all .2s}
+  .pnode:hover{background:#fff;border-color:var(--blue);transform:translateY(-1px)}
+  .pnode-lab{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin-bottom:6px;display:flex;align-items:center;justify-content:center;gap:5px}
+  .pnode-lab-dot{width:4px;height:4px;background:var(--ink-4);border-radius:50%}
+  .pnode-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.2}
+  .pnode-name svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none;display:inline;vertical-align:-2px;color:var(--blue);margin-left:3px}
+  .pnode.finish .pnode-lab{color:var(--red)}
+  .pnode.finish .pnode-lab-dot{background:var(--red)}
+  .pnode.finish .pnode-name{color:var(--red)}
+  .pnode.finish{background:var(--red-tint);border-color:rgba(255,59,48,.18)}
+  .pflow-arr{display:flex;align-items:center;color:var(--ink-5);padding:0 2px}
+  .pflow-arr svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+
+  /* tags inline */
+  .tags-inline{margin:0 16px 16px;display:flex;flex-wrap:wrap;gap:5px;padding:0 4px}
+  .tag-mini{font-size:11px;color:var(--ink-4);padding:3px 9px;background:rgba(118,118,128,.08);border-radius:100px;font-weight:500}
+  .tag-mini::before{content:"#";opacity:.5;margin-right:1px}
+
+  /* ACCORDION GROUP */
+  .acc-group{margin:8px 16px 0;background:var(--surface);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm)}
+  .acc-group:not(:last-of-type){margin-bottom:10px}
+
+  .acc-row{padding:16px 18px;display:flex;align-items:center;gap:14px;cursor:pointer;position:relative;background:var(--surface);transition:background .2s}
+  .acc-row:active{background:var(--surface-2)}
+  .acc-row.open{border-bottom:.5px solid var(--line-soft)}
+
+  .acc-num{font-size:13px;font-weight:600;color:var(--ink-5);font-variant-numeric:tabular-nums;width:14px;text-align:center}
+  .acc-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .acc-icon svg{width:18px;height:18px;stroke:currentColor;stroke-width:1.8;fill:none}
+  .acc-icon-blue{background:var(--blue-tint);color:var(--blue)}
+  .acc-icon-orange{background:var(--orange-tint);color:var(--orange)}
+  .acc-icon-red{background:var(--red-tint);color:var(--red)}
+  .acc-icon-green{background:var(--green-tint);color:#1A8B3D}
+  .acc-icon-indigo{background:var(--indigo-tint);color:var(--indigo)}
+  .acc-body{flex:1;min-width:0}
+  .acc-title{font-size:15px;font-weight:600;letter-spacing:-.012em;color:var(--ink);line-height:1.2}
+  .acc-meta{font-size:13px;color:var(--ink-4);margin-top:2px;font-weight:400}
+  .acc-chev{color:var(--ink-5);transition:transform .25s cubic-bezier(.4,0,.2,1)}
+  .acc-chev.open{transform:rotate(90deg)}
+  .acc-chev svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.2;fill:none}
+
+  .acc-content{padding:6px 18px 18px;animation:slideD .3s ease}
+  @keyframes slideD{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+
+  /* INTERNAL SUB-HEADINGS */
+  .sub-h{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);margin:18px 0 10px;display:flex;align-items:center;gap:7px}
+  .sub-h:first-child{margin-top:8px}
+  .sub-h-dot{width:4px;height:4px;background:var(--ink-5);border-radius:50%}
+
+  .prose{font-size:15px;line-height:1.55;color:var(--ink-2);font-weight:400}
+  .prose-2{font-size:14px;line-height:1.5;color:var(--ink-3)}
+  .read-more{color:var(--blue);font-size:14px;font-weight:500;margin-top:10px;display:inline-flex;align-items:center;gap:3px;cursor:pointer}
+
+  .entry-list{list-style:none;padding:0;margin:0}
+  .entry-item{display:flex;gap:10px;padding:10px 0;border-bottom:.5px solid var(--line-soft);font-size:14px;line-height:1.45;color:var(--ink-2)}
+  .entry-item:first-child{padding-top:2px}
+  .entry-item:last-child{border-bottom:none;padding-bottom:0}
+  .entry-bullet{flex-shrink:0;width:6px;height:6px;border-radius:50%;background:var(--blue);margin-top:7px}
+  .entry-content strong{color:var(--ink);font-weight:600}
+
+  /* STEPS */
+  .steps{display:flex;flex-direction:column;gap:0}
+  .step{padding:14px 0;display:grid;grid-template-columns:36px 1fr;gap:14px;border-bottom:.5px solid var(--line-soft)}
+  .step:first-child{padding-top:6px}
+  .step:last-child{border-bottom:none;padding-bottom:6px}
+  .step-num{font-size:13px;font-weight:600;color:#fff;background:var(--ink);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;letter-spacing:-.01em;font-variant-numeric:tabular-nums;margin-top:1px}
+  .step-content{flex:1;min-width:0}
+  .step-title{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.25;margin-bottom:5px}
+  .step-desc{font-size:13.5px;line-height:1.5;color:var(--ink-3);margin-bottom:8px}
+  .step-keyd{display:flex;gap:8px;padding:9px 10px;background:var(--orange-tint);border-radius:8px;align-items:flex-start}
+  .step-keyd-icon{width:14px;height:14px;color:var(--orange);flex-shrink:0;margin-top:2px}
+  .step-keyd-icon svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+  .step-keyd-text{font-size:12.5px;line-height:1.45;color:#7C3F02;font-weight:500}
+  .step-keyd-text strong{display:block;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange);font-weight:700;margin-bottom:3px}
+
+  /* PLAYER CTA */
+  .player-cta{margin-top:14px;padding:14px;background:var(--ink);border-radius:12px;display:flex;align-items:center;gap:12px;cursor:pointer;color:#fff}
+  .player-cta-icon{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;backdrop-filter:blur(8px)}
+  .player-cta-icon svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+  .player-cta-text{flex:1}
+  .player-cta-title{font-size:14px;font-weight:600;letter-spacing:-.01em;margin-bottom:1px}
+  .player-cta-sub{font-size:12px;color:rgba(255,255,255,.65);font-weight:400}
+  .player-cta-arrow{color:#fff;opacity:.7}
+  .player-cta-arrow svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.2;fill:none}
+
+  /* CHECKLIST (key points) */
+  .check-list{list-style:none;padding:0;margin:0}
+  .check-item{display:flex;gap:11px;padding:9px 0;border-bottom:.5px solid var(--line-soft);font-size:14px;line-height:1.5;color:var(--ink-2)}
+  .check-item:first-child{padding-top:2px}
+  .check-item:last-child{border-bottom:none;padding-bottom:0}
+  .check-icon{width:18px;height:18px;border-radius:50%;background:var(--green-tint);color:#1A8B3D;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .check-icon svg{width:11px;height:11px;stroke:currentColor;stroke-width:2.8;fill:none}
+
+  /* MISTAKE LIST */
+  .mistake-list{list-style:none;padding:0;margin:0}
+  .mistake-item{display:flex;gap:11px;padding:9px 0;border-bottom:.5px solid var(--line-soft);font-size:14px;line-height:1.5;color:var(--ink-2)}
+  .mistake-item:first-child{padding-top:2px}
+  .mistake-item:last-child{border-bottom:none;padding-bottom:0}
+  .mistake-icon{width:18px;height:18px;border-radius:50%;background:var(--red-tint);color:var(--red);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:11px;font-weight:700}
+
+  /* COUNTER LIST */
+  .counter-list{list-style:none;padding:0;margin:0}
+  .counter-item{display:flex;gap:12px;padding:11px 0;border-bottom:.5px solid var(--line-soft);font-size:14px;line-height:1.5;color:var(--ink-2)}
+  .counter-item:first-child{padding-top:2px}
+  .counter-item:last-child{border-bottom:none;padding-bottom:0}
+  .counter-icon{width:24px;height:24px;border-radius:6px;background:var(--indigo-tint);color:var(--indigo);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:-1px}
+  .counter-icon svg{width:13px;height:13px;stroke:currentColor;stroke-width:2;fill:none}
+  .counter-text{flex:1}
+  .counter-text strong{color:var(--ink);font-weight:600;display:block;margin-bottom:2px;font-size:14px;letter-spacing:-.012em}
+  .counter-text span{color:var(--ink-3);font-size:13px;line-height:1.45}
+
+  /* FOLLOWUPS */
+  .fu-list{display:flex;flex-direction:column;gap:8px}
+  .fu-row{display:flex;align-items:center;gap:12px;padding:12px;background:var(--surface-2);border-radius:11px;cursor:pointer;transition:all .2s}
+  .fu-row:hover{background:var(--blue-tint-2)}
+  .fu-thumb{width:38px;height:38px;border-radius:9px;background:linear-gradient(135deg,#0B0B0A,#2C2C2E);display:flex;align-items:center;justify-content:center;color:#fff;flex-shrink:0}
+  .fu-thumb svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.8;fill:none}
+  .fu-content{flex:1;min-width:0}
+  .fu-title{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.012em;line-height:1.2;margin-bottom:2px}
+  .fu-desc{font-size:12.5px;color:var(--ink-4);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .fu-chev{color:var(--ink-5);flex-shrink:0}
+  .fu-chev svg{width:14px;height:14px;stroke:currentColor;stroke-width:2.2;fill:none}
+
+  /* BOTTOM BAR */
+  .bot{position:sticky;bottom:0;padding:14px 16px 24px;background:linear-gradient(180deg,transparent 0%,var(--bg) 30%);display:flex;gap:8px;z-index:5}
+  .bot-btn{flex:1;height:50px;border-radius:14px;font-size:15px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:7px;cursor:pointer;letter-spacing:-.01em}
+  .bot-btn svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+  .bot-btn-sec{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm)}
+  .bot-btn-prim{background:var(--blue);color:#fff}
+
+  /* RIGHT PANEL — Architecture notes */
+  .notes{display:flex;flex-direction:column;gap:18px;padding-top:8px}
+  .note-block{background:rgba(255,255,255,.65);border:.5px solid rgba(0,0,0,.06);border-radius:14px;padding:22px 24px;backdrop-filter:blur(20px)}
+  .note-block:first-child{background:var(--ink);color:#fff;border-color:transparent}
+  .note-block:first-child .note-kicker{color:#fff;opacity:.55}
+  .note-block:first-child .note-title{color:#fff}
+  .note-block:first-child .note-text{color:rgba(255,255,255,.78)}
+  .note-block:first-child code{background:rgba(255,255,255,.12);color:#fff}
+  .note-kicker{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+  .note-title{font-size:18px;font-weight:700;letter-spacing:-.018em;color:var(--ink);margin-bottom:12px;line-height:1.2}
+  .note-text{font-size:13.5px;line-height:1.6;color:var(--ink-3)}
+  .note-text strong{color:var(--ink-2);font-weight:600}
+  .note-text code{font-family:var(--mono);font-size:12px;background:rgba(0,122,255,.08);color:var(--blue);padding:1px 5px;border-radius:3px;font-weight:500}
+  .note-rows{display:flex;flex-direction:column;gap:10px}
+  .note-row{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:flex-start}
+  .note-row-i{width:28px;height:28px;border-radius:8px;background:var(--blue-tint);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .note-row-i svg{width:14px;height:14px;stroke:currentColor;stroke-width:2;fill:none}
+  .note-row-c{font-size:13px;line-height:1.5;color:var(--ink-3)}
+  .note-row-c strong{display:block;color:var(--ink);font-weight:600;font-size:13.5px;letter-spacing:-.008em;margin-bottom:2px}
+
+  .pkg-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px}
+  .pkg-chip{display:flex;align-items:center;gap:8px;padding:9px 11px;background:rgba(0,122,255,.07);border-radius:9px;font-family:var(--mono);font-size:11.5px;color:var(--blue);font-weight:500}
+  .pkg-chip svg{width:12px;height:12px;stroke:currentColor;stroke-width:2;fill:none;flex-shrink:0}
+</style>
+</head>
+<body>
+<div class="stage">
+
+  <div class="stage-head">
+    <div class="stage-kicker">Grappling Intelligence · Technique Detail · V2</div>
+    <h1 class="stage-title">Eine Bibliothek, die geübt werden will.</h1>
+    <p class="stage-lede">5 Akkordeon-Sektionen, iOS-Designsprache, Daten direkt aus Firestore. Premium durch Interaktion, nicht durch Verzierung.</p>
+  </div>
+
+  <div class="layout">
+
+    <!-- LEFT: PHONE -->
+    <div class="phone">
+      <div class="phone-screen">
+
+        <div class="statusbar">
+          <span>9:41</span>
+          <div class="sb-right">
+            <span class="sb-icon"></span>
+            <div class="sb-batt"><div class="sb-batt-fill"></div></div>
+          </div>
+        </div>
+
+        <div class="navbar">
+          <div class="nav-btn">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+          </div>
+          <div class="nav-btn">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+          </div>
+        </div>
+
+        <div class="hero">
+          <div class="play"><div class="play-tri"></div></div>
+          <div class="hero-meta">
+            <span class="hero-tag"><span class="hero-tag-dot"></span>YouTube</span>
+            <span class="hero-dur">4:18</span>
+          </div>
+        </div>
+
+        <div class="identity">
+          <div class="eyebrow">Submission · Choke</div>
+          <h2 class="tech-name">Arm Triangle</h2>
+          <p class="tech-desc">Head & Arm Choke.</p>
+          <div class="pills">
+            <span class="pill pill-orange">
+              <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Fortgeschritten
+            </span>
+            <span class="pill pill-blue">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M9 14l-2 8 5-3 5 3-2-8"/></svg>
+              Blaugurt
+            </span>
+            <span class="pill pill-gray">
+              <svg viewBox="0 0 24 24"><path d="M20 6h-3l-1-2H8L7 6H4l-1 4 2 0v8a2 2 0 002 2h10a2 2 0 002-2v-8l2 0z"/></svg>
+              Gi & No-Gi
+            </span>
+          </div>
+        </div>
+
+        <div class="pflow">
+          <div class="pflow-head">
+            <span class="pflow-lab">Positionsverlauf</span>
+          </div>
+          <div class="pflow-row">
+            <div class="pnode">
+              <div class="pnode-lab"><span class="pnode-lab-dot"></span>Start</div>
+              <div class="pnode-name">Kesa Gatame
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+            </div>
+            <div class="pflow-arr">
+              <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </div>
+            <div class="pnode finish">
+              <div class="pnode-lab"><span class="pnode-lab-dot"></span>Finish</div>
+              <div class="pnode-name">Submission</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tags-inline">
+          <span class="tag-mini">submission</span>
+          <span class="tag-mini">choke</span>
+          <span class="tag-mini">side-control</span>
+          <span class="tag-mini">high-percentage</span>
+        </div>
+
+        <!-- 1. ÜBERSICHT (OPEN) -->
+        <div class="acc-group">
+          <div class="acc-row open">
+            <span class="acc-num">1</span>
+            <div class="acc-icon acc-icon-blue">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            </div>
+            <div class="acc-body">
+              <div class="acc-title">Übersicht</div>
+              <div class="acc-meta">Erklärung · Wann · Einstieg</div>
+            </div>
+            <div class="acc-chev open">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+          <div class="acc-content">
+            <p class="prose">Eine extrem effektive und vielseitige Submission. Du bildest mit Arm und Schulter ein Dreieck um Hals und einen Arm des Gegners, um die Halsschlagadern zu komprimieren.</p>
+            <p class="prose prose-2" style="margin-top:8px">Anders als der klassische Triangle Choke nutzt der Arm Triangle die Kraft deines Oberkörpers und die Enge deiner eigenen Gliedmaßen…</p>
+            <span class="read-more">Weiterlesen →</span>
+
+            <div class="sub-h"><span class="sub-h-dot"></span>Wann anwenden</div>
+            <p class="prose-2">Eine exzellente Option aus Top-Positionen wie Side Control, North-South oder Mount. Besonders stark, wenn der Gegner Underhooks etablieren will oder seine Arme hochhält.</p>
+
+            <div class="sub-h"><span class="sub-h-dot"></span>Einstiegspunkte · 4</div>
+            <ul class="entry-list">
+              <li class="entry-item">
+                <span class="entry-bullet"></span>
+                <span class="entry-content"><strong>Side Control Top.</strong> Standard-Einstieg, wenn der Gegner einen Underhook will.</span>
+              </li>
+              <li class="entry-item">
+                <span class="entry-bullet"></span>
+                <span class="entry-content"><strong>North-South.</strong> Kopf zur Seite drehen und Choke anziehen.</span>
+              </li>
+              <li class="entry-item">
+                <span class="entry-bullet"></span>
+                <span class="entry-content"><strong>Mount Top.</strong> Wenn Gegner Arme hochdrückt → Arm isolieren.</span>
+              </li>
+              <li class="entry-item">
+                <span class="entry-bullet"></span>
+                <span class="entry-content"><strong>Reaktion auf Underhook-Versuch.</strong> Arm abfangen und in Choke übergehen.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 2. AUSFÜHRUNG (OPEN) -->
+        <div class="acc-group">
+          <div class="acc-row open">
+            <span class="acc-num">2</span>
+            <div class="acc-icon acc-icon-green">
+              <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div class="acc-body">
+              <div class="acc-title">Ausführung</div>
+              <div class="acc-meta">5 Schritte · 6 Kernpunkte</div>
+            </div>
+            <div class="acc-chev open">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+          <div class="acc-content">
+            <div class="sub-h"><span class="sub-h-dot"></span>Schritt für Schritt</div>
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                  <div class="step-title">Tiefe Underhook-Kontrolle</div>
+                  <div class="step-desc">Arm tief unter den Nacken schieben, Hand landet auf gegenüberliegender Schulter. Bizeps fest am Hals.</div>
+                  <div class="step-keyd">
+                    <div class="step-keyd-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+                    <div class="step-keyd-text"><strong>Key Detail</strong>Dein Bizeps muss SEINEN Hals berühren. Kein Raum dazwischen.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                  <div class="step-title">Kopf auf die andere Seite</div>
+                  <div class="step-desc">Ohr auf seine Brust oder Schulter — auf der „freien" Seite, wo der Arm NICHT eingeklemmt ist.</div>
+                  <div class="step-keyd">
+                    <div class="step-keyd-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2z"/><line x1="12" y1="10" x2="12" y2="14"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
+                    <div class="step-keyd-text"><strong>Key Detail</strong>Schafft den Winkel und bricht seine Posture.</div>
+                  </div>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                  <div class="step-title">Zweiter Arm um den Kopf</div>
+                  <div class="step-desc">Freier Arm geht über seinen Kopf, greift deinen eigenen Bizeps. Hand greift deine Schulter — Dreieck geschlossen.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="player-cta">
+              <div class="player-cta-icon">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <div class="player-cta-text">
+                <div class="player-cta-title">Im Player-Modus durchgehen</div>
+                <div class="player-cta-sub">Alle 5 Schritte · geführter Fokus</div>
+              </div>
+              <div class="player-cta-arrow">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+              </div>
+            </div>
+
+            <div class="sub-h"><span class="sub-h-dot"></span>Kernpunkte · 6</div>
+            <ul class="check-list">
+              <li class="check-item">
+                <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span><strong style="color:var(--ink);font-weight:600">Tiefer Underhook.</strong> <span style="color:var(--ink-3)">Bizeps am Hals, nicht am Arm.</span></span>
+              </li>
+              <li class="check-item">
+                <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span><strong style="color:var(--ink);font-weight:600">Kopf auf der „freien" Seite.</strong> <span style="color:var(--ink-3)">Sonst kein Choke-Winkel.</span></span>
+              </li>
+              <li class="check-item">
+                <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span><strong style="color:var(--ink);font-weight:600">Fester Griff.</strong> <span style="color:var(--ink-3)">Hand greift eigenen Bizeps oder Schulter.</span></span>
+              </li>
+              <li class="check-item">
+                <span class="check-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span><strong style="color:var(--ink);font-weight:600">90° wegdrehen.</strong> <span style="color:var(--ink-3)">Maximaler Druck auf Halsschlagadern.</span></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. HÄUFIGE FEHLER (CLOSED) -->
+        <div class="acc-group">
+          <div class="acc-row">
+            <span class="acc-num">3</span>
+            <div class="acc-icon acc-icon-red">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            </div>
+            <div class="acc-body">
+              <div class="acc-title">Häufige Fehler</div>
+              <div class="acc-meta">6 Stolperfallen, die den Choke ruinieren</div>
+            </div>
+            <div class="acc-chev">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. WENN DER GEGNER REAGIERT (OPEN to show pattern) -->
+        <div class="acc-group">
+          <div class="acc-row open">
+            <span class="acc-num">4</span>
+            <div class="acc-icon acc-icon-indigo">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="acc-body">
+              <div class="acc-title">Wenn der Gegner reagiert</div>
+              <div class="acc-meta">6 Verteidigungen · so konterst du</div>
+            </div>
+            <div class="acc-chev open">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+          <div class="acc-content">
+            <ul class="counter-list">
+              <li class="counter-item">
+                <div class="counter-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></div>
+                <div class="counter-text">
+                  <strong>Posture aufrichten</strong>
+                  <span>Der Gegner zieht seinen Kopf aus dem Choke und richtet sich auf.</span>
+                </div>
+              </li>
+              <li class="counter-item">
+                <div class="counter-icon"><svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 5 12 12 19"/></svg></div>
+                <div class="counter-text">
+                  <strong>Arm rausziehen</strong>
+                  <span>Der Gegner befreit seinen eingeklemmten Arm.</span>
+                </div>
+              </li>
+              <li class="counter-item">
+                <div class="counter-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>
+                <div class="counter-text">
+                  <strong>In die Choke-Seite drehen</strong>
+                  <span>Druck entlasten, Raum schaffen.</span>
+                </div>
+              </li>
+              <li class="counter-item">
+                <div class="counter-icon"><svg viewBox="0 0 24 24"><path d="M3 12c0-4 3-8 9-8s9 4 9 8-3 8-9 8c-2 0-3-1-4-2"/><polyline points="3 17 3 12 8 12"/></svg></div>
+                <div class="counter-text">
+                  <strong>Bridge und Roll</strong>
+                  <span>Mit einer Brücke kippt der Gegner dich, um zu entkommen.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 5. ANSCHLUSS (CLOSED) -->
+        <div class="acc-group" style="margin-bottom:8px">
+          <div class="acc-row">
+            <span class="acc-num">5</span>
+            <div class="acc-icon acc-icon-orange">
+              <svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="9 7 17 7 17 15"/></svg>
+            </div>
+            <div class="acc-body">
+              <div class="acc-title">Anschluss-Techniken</div>
+              <div class="acc-meta">4 Folgemöglichkeiten</div>
+            </div>
+            <div class="acc-chev">
+              <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="bot">
+          <div class="bot-btn bot-btn-sec">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Wunsch
+          </div>
+          <div class="bot-btn bot-btn-prim">
+            <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+            Als geübt markieren
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: NOTES / ARCHITECTURE -->
+    <div class="notes">
+
+      <div class="note-block">
+        <div class="note-kicker">Was sich gegenüber V1 ändert</div>
+        <div class="note-title">5 Sektionen statt 10. Stärkere Hierarchie.</div>
+        <div class="note-text">Reihenfolge folgt dem mentalen Modell des Schülers: <strong>Verstehen → Üben → Optimieren → Reagieren → Erweitern</strong>. „Übersicht" und „Ausführung" haben innere Unter-Überschriften, um Tiefe ohne weitere Top-Level-Sektionen zu schaffen.</div>
+      </div>
+
+      <div class="note-block">
+        <div class="note-kicker">Sektionen-Map</div>
+        <div class="note-title">Wo welches Datenfeld lebt</div>
+        <div class="note-rows" style="margin-top:14px">
+          <div class="note-row">
+            <div class="note-row-i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+            <div class="note-row-c"><strong>1 · Übersicht</strong><code>detailedDescription</code>, <code>whenToUse</code>, <code>entryFrom</code></div>
+          </div>
+          <div class="note-row">
+            <div class="note-row-i" style="background:var(--green-tint);color:#1A8B3D"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+            <div class="note-row-c"><strong>2 · Ausführung</strong><code>stepByStep</code> + Player + <code>keyPoints</code></div>
+          </div>
+          <div class="note-row">
+            <div class="note-row-i" style="background:var(--red-tint);color:var(--red)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div>
+            <div class="note-row-c"><strong>3 · Häufige Fehler</strong><code>commonMistakesList</code></div>
+          </div>
+          <div class="note-row">
+            <div class="note-row-i" style="background:var(--indigo-tint);color:var(--indigo)"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="note-row-c"><strong>4 · Wenn der Gegner reagiert</strong><code>counters</code></div>
+          </div>
+          <div class="note-row">
+            <div class="note-row-i" style="background:var(--orange-tint);color:var(--orange)"><svg viewBox="0 0 24 24"><polyline points="7 17 17 7"/><polyline points="9 7 17 7 17 15"/></svg></div>
+            <div class="note-row-c"><strong>5 · Anschluss</strong><code>followUps</code></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note-block">
+        <div class="note-kicker">Über dem Akkordeon</div>
+        <div class="note-title">Identity + Positionsverlauf · immer sichtbar</div>
+        <div class="note-text">Eyebrow (<code>type · subType</code>), Name, <code>description</code> als Tagline, 3 Pills (<code>difficulty</code>, <code>recommendedBelt</code>, <code>attire</code>). Der Positionsverlauf hat eine Sonderbehandlung: bei <code>endPositionId === null</code> wird das Ende als roter „Submission"-Knoten gerendert — visuelle Klarheit, dass dies ein Finisher ist und keine Transition.</div>
+      </div>
+
+      <div class="note-block">
+        <div class="note-kicker">Premium = bessere Interaktion</div>
+        <div class="note-title">Pakete, die wir nutzen werden</div>
+        <div class="note-text" style="margin-bottom:10px">Keine fremden Fonts oder Farben — System-Schrift (SF Pro / Roboto) und iOS-Blau bleiben. Premium-Feeling kommt aus diesen Bibliotheken (alle Expo-SDK-kompatibel):</div>
+        <div class="pkg-grid">
+          <div class="pkg-chip"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>reanimated</div>
+          <div class="pkg-chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>expo-blur</div>
+          <div class="pkg-chip"><svg viewBox="0 0 24 24"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24"/></svg>expo-haptics</div>
+          <div class="pkg-chip"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>gesture-handler</div>
+          <div class="pkg-chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>expo-linear-gradient</div>
+          <div class="pkg-chip"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>expo-image</div>
+        </div>
+        <div class="note-text" style="margin-top:14px">Akkordeons öffnen mit Spring-Easing, Sticky-Header bekommt echtes Backdrop-Blur, jede Interaktion hat leichten Haptic-Tap. Step-Player ist swipeable per Gesture-Handler. YouTube-Thumbnails werden via <code>expo-image</code> gecached.</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.acc-row').forEach(row=>{
+    row.addEventListener('click',()=>{
+      const content=row.nextElementSibling;
+      const chev=row.querySelector('.acc-chev');
+      const isOpen=row.classList.contains('open');
+      if(isOpen){
+        row.classList.remove('open');
+        chev.classList.remove('open');
+        if(content && content.classList.contains('acc-content')){content.style.display='none'}
+      } else {
+        row.classList.add('open');
+        chev.classList.add('open');
+        if(content && content.classList.contains('acc-content')){content.style.display='block'}
+      }
+    });
+  });
+</script>
+</body>
+</html>
