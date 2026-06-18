@@ -43,6 +43,10 @@
         .page-header h1 { font-size: 40px; font-weight: 900; letter-spacing: -1px; margin-bottom: 15px; }
         .page-header p { color: var(--text-secondary); font-size: 18px; }
 
+        /* Section Label */
+        .section-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); margin: 40px 0 4px 4px; }
+        .section-label:first-of-type { margin-top: 0; }
+
         /* FAQ Accordion */
         .faq-container { display: flex; flex-direction: column; gap: 16px; }
         details {
@@ -53,16 +57,18 @@
             transition: all 0.3s ease;
         }
         details[open] { border-color: rgba(0, 112, 243, 0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        details.highlight { border-color: rgba(0, 112, 243, 0.35); }
         summary {
             padding: 24px; cursor: pointer; font-size: 18px; font-weight: 700; color: #fff;
-            list-style: none; display: flex; justify-content: space-between; align-items: center; outline: none;
+            list-style: none; display: flex; justify-content: space-between; align-items: center; outline: none; gap: 16px;
         }
         summary::-webkit-details-marker { display: none; }
         summary::after {
-            content: '+'; font-size: 24px; color: var(--ai-blue); transition: transform 0.3s ease;
+            content: '+'; font-size: 24px; color: var(--ai-blue); transition: transform 0.3s ease; flex-shrink: 0;
         }
         details[open] summary::after { transform: rotate(45deg); }
         .faq-content { padding: 0 24px 24px 24px; color: var(--text-secondary); font-size: 16px; line-height: 1.7; }
+        .faq-content strong { color: var(--text-primary); font-weight: 600; }
 
         /* Footer */
         footer { padding: 40px 0; border-top: 1px solid var(--surface-border); text-align: center; background: rgba(3, 3, 5, 0.9); }
@@ -93,11 +99,53 @@
         </header>
 
         <div class="faq-container">
-            
+
+            <p class="section-label">Anmeldung & Check-in</p>
+
+            <details class="highlight" open>
+                <summary>Reicht es, wenn ich mich nur anmelde – oder muss ich auch einchecken?</summary>
+                <div class="faq-content">
+                    Für <strong>alle Mitglieder gilt: Anmeldung UND Check-in sind Pflicht.</strong> Du musst dich vorab über den Stundenplan für eine Einheit anmelden (buchen) <strong>und</strong> am Trainingstag vor Ort am Tablet einchecken.
+                    <br><br>
+                    Nur anmelden reicht nicht – ohne Check-in zählt dein Training nicht in deinen Fortschritt. Und einchecken ohne vorherige Anmeldung funktioniert ebenfalls nicht: Das Tablet meldet dir dann, dass du für diesen Kurs nicht angemeldet bist.
+                    <br><br>
+                    <strong>Ausnahme – Minis & Kids:</strong> Diese sind über ihren festen Kurs automatisch angemeldet. Sie müssen sich also nicht jede Woche selbst anmelden, sondern nur noch am Tablet einchecken.
+                </div>
+            </details>
+
             <details>
                 <summary>Wie funktioniert der Check-in vor dem Training?</summary>
                 <div class="faq-content">
                     Um lästige Warteschlangen am Empfang zu eliminieren, nutzt unsere App einen digitalen QR-Code. Auf deinem Dashboard findest du den Button "Check-in Code". Du hältst diesen Code einfach vor das Tablet im Gym. Das System registriert deine Anwesenheit in Sekundenbruchteilen, was vollautomatisch in deinen persönlichen Trainingsfortschritt einfließt.
+                    <br><br>
+                    Wichtig: Du musst für den jeweiligen Kurs <strong>vorher angemeldet</strong> sein (Ausnahme: Minis & Kids, siehe oben). Bist du an einem Tag für mehrere aufeinanderfolgende Kurse angemeldet, checkt dich ein einziger Scan automatisch auch in die weiteren Einheiten des Tages ein.
+                </div>
+            </details>
+
+            <details>
+                <summary>Wie melde ich mich von einem gebuchten Training wieder ab?</summary>
+                <div class="faq-content">
+                    Im Stundenplan tippst du bei der gebuchten Einheit einfach auf "Abmelden". Dein Platz wird sofort wieder freigegeben. Bitte melde dich rechtzeitig ab, wenn du nicht kommen kannst – so können andere Mitglieder von der Warteliste nachrücken.
+                    <br><br>
+                    Für Kinder gibt es zusätzlich den schnelleren Weg über den roten "Kind krank / abwesend melden"-Button auf dem Dashboard.
+                </div>
+            </details>
+
+            <p class="section-label">Account & Geräte</p>
+
+            <details>
+                <summary>Wie melde ich mich in der App an?</summary>
+                <div class="faq-content">
+                    Die Anmeldung erfolgt über deinen persönlichen <strong>Zugangs-Key</strong> – ein klassisches Passwort gibt es nicht. Beim ersten Mal forderst du den Key über die Login-Seite mit deiner bei uns hinterlegten E-Mail-Adresse an. Du bekommst ihn dann automatisch per E-Mail zugeschickt.
+                    <br><br>
+                    Danach bleibst du auf dem Gerät dauerhaft eingeloggt. Solltest du deinen Key einmal verlieren, fordere ihn einfach erneut über deine E-Mail-Adresse an.
+                </div>
+            </details>
+
+            <details>
+                <summary>Kann ich denselben Account auf mehreren Geräten nutzen?</summary>
+                <div class="faq-content">
+                    <strong>Ja.</strong> Du kannst dich mit deinem Zugangs-Key auf beliebig vielen Geräten gleichzeitig anmelden – zum Beispiel auf deinem Handy und dem deines Partners, um die Profile der Kinder zu verwalten. Alle Daten sind dabei jederzeit synchron.
                 </div>
             </details>
 
@@ -107,6 +155,8 @@
                     Nein, wir haben die App speziell für Familien entwickelt. Als Elternteil loggst du dich einmalig ein. Oben rechts findest du einen Profil-Umschalter, mit dem du nahtlos zwischen den Profilen deiner Kinder hin- und herspringen kannst. Du buchst Kurse oder reichst Krankmeldungen ein, ohne dich jemals neu einloggen zu müssen.
                 </div>
             </details>
+
+            <p class="section-label">Fortschritt & Training</p>
 
             <details>
                 <summary>Wo sehe ich meinen Fortschritt oder den Gürtel meiner Kinder?</summary>
@@ -136,6 +186,8 @@
                 </div>
             </details>
 
+            <p class="section-label">Sicherheit & Notfall</p>
+
             <details>
                 <summary>Wie melde ich mich oder mein Kind krank?</summary>
                 <div class="faq-content">
@@ -147,6 +199,24 @@
                 <summary>Wie sehen Trainer meine Allergien/Notfalldaten?</summary>
                 <div class="faq-content">
                     Auf deinem Dashboard findest du den Button "Notfall-Info". Dort kannst du Allergien und Notfallkontakte hinterlegen. Diese essenziellen Informationen werden dem Trainer während des Unterrichts auf seinem Matten-Cockpit prominent angezeigt, was für maximale Sicherheit im Gym sorgt.
+                </div>
+            </details>
+
+            <p class="section-label">Profil & Rechtliches</p>
+
+            <details>
+                <summary>Wie kann ich meinen Account löschen?</summary>
+                <div class="faq-content">
+                    Im Bereich "Profil" findest du die Möglichkeit, deinen Account unwiderruflich zu löschen. Bitte beachte, dass dabei deine Zugangsdaten und dein Profil dauerhaft entfernt werden.
+                    <br><br>
+                    Wichtig: Das Löschen des App-Accounts beendet nicht automatisch deine Mitgliedschaft bzw. deinen Vertrag. Für eine Kündigung wende dich bitte zusätzlich an dein Team vor Ort.
+                </div>
+            </details>
+
+            <details>
+                <summary>Ich habe einen Fehler gefunden oder eine Idee – wie sage ich euch Bescheid?</summary>
+                <div class="faq-content">
+                    Sofern dein Gym diese Funktion aktiviert hat, findest du im Bereich "Profil" ein Feedback-Formular. Dort kannst du Fehler melden oder Verbesserungsvorschläge einreichen – auf Wunsch auch anonym. Andernfalls sprich uns einfach beim nächsten Training an.
                 </div>
             </details>
 
