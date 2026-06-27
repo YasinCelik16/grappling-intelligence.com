@@ -26,19 +26,23 @@
         }
 
         body {
-            background-color: #ffffff;
+            background-color: #e5e5e5;
             color: #000000;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             min-height: 100vh;
+            padding: 16px;
         }
 
-        /* DIN A4 Container – äußeres Padding = Sicherheitsabstand zum Blattrand,
-           damit der rote Rahmen beim Drucken NICHT abgeschnitten wird */
+        /* DIN A4 Container
+           SCREEN: max. Viewport-Breite, Höhe wächst mit Inhalt -> Rahmen umschließt immer alles.
+           PRINT:  feste A4-Maße (siehe @media print). */
         .a4-poster {
             width: 210mm;
-            height: 297mm;
+            max-width: 100%;
+            min-height: 297mm;
+            height: auto;
             background: #ffffff;
             padding: 9mm;
             display: flex;
@@ -186,6 +190,22 @@
             font-weight: 700;
             display: flex;
             justify-content: center;
+        }
+
+        /* ===== DRUCK: feste A4-Seite, exakt eine Seite ===== */
+        @media print {
+            body {
+                display: block;
+                background: #ffffff;
+                padding: 0;
+                min-height: 0;
+            }
+            .a4-poster {
+                width: 210mm;
+                height: 297mm;
+                min-height: 297mm;
+                max-width: none;
+            }
         }
     </style>
 </head>
