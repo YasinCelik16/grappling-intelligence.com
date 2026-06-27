@@ -10,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* Reset & Print-Optimierung */
         * {
             margin: 0;
             padding: 0;
@@ -20,9 +19,10 @@
             print-color-adjust: exact !important;
         }
 
+        /* Druckrand kommt vom Drucker selbst -> der rote Rahmen wird nie abgeschnitten */
         @page {
             size: A4;
-            margin: 0;
+            margin: 12mm;
         }
 
         body {
@@ -32,98 +32,74 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            padding: 16px;
+            padding: 20px;
         }
 
-        /* DIN A4 Container
-           SCREEN: max. Viewport-Breite, Höhe wächst mit Inhalt -> Rahmen umschließt immer alles.
-           PRINT:  feste A4-Maße (siehe @media print). */
+        /* Kein erzwungenes height/min-height -> Container wächst IMMER mit dem Inhalt */
         .a4-poster {
             width: 210mm;
             max-width: 100%;
-            min-height: 297mm;
-            height: auto;
             background: #ffffff;
-            padding: 9mm;
-            display: flex;
         }
 
-        /* Roter Signal-Rahmen */
+        /* Roter Signal-Rahmen – umschließt durch natürlichen Fluss garantiert allen Inhalt */
         .poster-inner {
-            flex: 1;
             border: 11px solid #E30613;
             border-radius: 14px;
-            padding: 12mm 16mm;
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Header Bereich mit Logo */
-        .header {
-            margin-bottom: 4mm;
+            padding: 16mm 16mm 14mm;
             display: flex;
             flex-direction: column;
             align-items: center;
+            text-align: center;
         }
 
+        /* Header */
         .logo {
-            height: 80px;
+            height: 70px;
             width: auto;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             display: block;
         }
 
         .gym-name {
-            font-size: 42px;
+            font-size: 38px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -1px;
             line-height: 1;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
-        /* Titel */
         .alert-box {
             background-color: #E30613;
             color: #ffffff;
-            padding: 13px 25px;
-            display: inline-block;
-            font-size: 25px;
+            padding: 12px 24px;
+            font-size: 23px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 6mm;
             border-radius: 6px;
+            margin-bottom: 26px;
         }
 
-        /* QR Code Fokus */
-        .qr-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 7mm;
-            flex: 1;
-            justify-content: center;
-        }
-
+        /* QR */
         .qr-call-to-action {
-            font-size: 34px;
+            font-size: 31px;
             font-weight: 900;
             text-transform: uppercase;
-            margin-bottom: 15px;
             line-height: 1.1;
+            margin-bottom: 16px;
         }
 
         .qr-code-box {
-            width: 240px;
-            height: 240px;
+            width: 210px;
+            height: 210px;
             border: 8px solid #000000;
-            padding: 15px;
+            padding: 14px;
             border-radius: 16px;
             background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            margin-bottom: 26px;
         }
 
         .qr-code-box img {
@@ -132,43 +108,44 @@
             display: block;
         }
 
-        /* Dringlichkeit & Pflicht */
+        /* Pflicht-Hinweis */
         .mandatory-text {
-            font-size: 19px;
+            width: 100%;
+            font-size: 18px;
             font-weight: 700;
-            margin-bottom: 6mm;
+            line-height: 1.4;
             border: 3px solid #E30613;
             padding: 14px;
             border-radius: 8px;
             background-color: #fff5f5;
+            margin-bottom: 22px;
         }
 
         /* Todo Liste */
-        .todo-section {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 5mm;
-        }
-
         .todo-list {
             list-style: none;
             text-align: left;
             font-size: 18px;
             font-weight: 600;
-            line-height: 1.55;
+            line-height: 1.5;
+            margin-bottom: 22px;
         }
 
         .todo-list li {
             position: relative;
             padding-left: 42px;
-            margin-bottom: 7px;
+            margin-bottom: 9px;
+        }
+
+        .todo-list li:last-child {
+            margin-bottom: 0;
         }
 
         .todo-list li::before {
             content: "✓";
             position: absolute;
             left: 0;
-            top: 0;
+            top: 1px;
             width: 26px;
             height: 26px;
             background: #000000;
@@ -183,16 +160,14 @@
 
         /* Footer */
         .footer {
-            margin-top: auto;
+            width: 100%;
             border-top: 2px solid #000000;
-            padding-top: 14px;
+            padding-top: 16px;
             font-size: 18px;
             font-weight: 700;
-            display: flex;
-            justify-content: center;
         }
 
-        /* ===== DRUCK: feste A4-Seite, exakt eine Seite ===== */
+        /* ===== DRUCK ===== */
         @media print {
             body {
                 display: block;
@@ -201,11 +176,11 @@
                 min-height: 0;
             }
             .a4-poster {
-                width: 210mm;
-                height: 295mm;          /* 2mm Sicherheitspuffer gegen Überlauf auf Seite 2 */
-                min-height: 0;
+                width: 100%;
                 max-width: none;
-                overflow: hidden;
+            }
+            /* nichts darf auf eine zweite Seite umbrechen */
+            .poster-inner {
                 page-break-inside: avoid;
                 break-inside: avoid;
             }
@@ -217,37 +192,29 @@
     <div class="a4-poster">
         <div class="poster-inner">
 
-            <div class="header">
-                <img src="images/hutton-academy.png" alt="Hutton Academy Logo" class="logo" onerror="this.style.display='none'">
-                <div class="gym-name">Hutton Academy</div>
-                <div class="alert-box">UNSERE NEUE GYM-APP</div>
-            </div>
+            <img src="images/hutton-academy.png" alt="Hutton Academy Logo" class="logo" onerror="this.style.display='none'">
+            <div class="gym-name">Hutton Academy</div>
+            <div class="alert-box">UNSERE NEUE GYM-APP</div>
 
-            <div class="qr-section">
-                <div class="qr-call-to-action">↓ HIER SCANNEN ↓<br>ZUM DOWNLOAD</div>
-                <div class="qr-code-box">
-                    <img src="images/qr-code-grappling-intelligence.com-highres.png" alt="QR Code zum Download" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'280\' height=\'280\' viewBox=\'0 0 280 280\'><rect width=\'280\' height=\'280\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23000000\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\'>QR CODE FEHLT ODER PFAD FALSCH</text></svg>'">
-                </div>
+            <div class="qr-call-to-action">↓ HIER SCANNEN ↓<br>ZUM DOWNLOAD</div>
+            <div class="qr-code-box">
+                <img src="images/qr-code-grappling-intelligence.com-highres.png" alt="QR Code zum Download" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'280\' height=\'280\' viewBox=\'0 0 280 280\'><rect width=\'280\' height=\'280\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23000000\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\'>QR CODE FEHLT ODER PFAD FALSCH</text></svg>'">
             </div>
 
             <div class="mandatory-text">
                 OHNE APP KEIN TRAINING: Die Registrierung ist ab sofort für alle Mitglieder verpflichtend.
             </div>
 
-            <div class="todo-section">
-                <ul class="todo-list">
-                    <li>Betriebssystem wählen (iOS / Android)</li>
-                    <li>App herunterladen</li>
-                    <li>Key anfordern (mit der hinterlegten E-Mail Adresse)</li>
-                    <li>Sicher anmelden</li>
-                    <li>Aktuelle Graduierung eintragen</li>
-                    <li>Sauberes Profilbild hochladen</li>
-                </ul>
-            </div>
+            <ul class="todo-list">
+                <li>Betriebssystem wählen (iOS / Android)</li>
+                <li>App herunterladen</li>
+                <li>Key anfordern (mit der hinterlegten E-Mail Adresse)</li>
+                <li>Sicher anmelden</li>
+                <li>Aktuelle Graduierung eintragen</li>
+                <li>Sauberes Profilbild hochladen</li>
+            </ul>
 
-            <div class="footer">
-                <div>Für alle Fragen stehen die Trainer zur Verfügung.</div>
-            </div>
+            <div class="footer">Für alle Fragen stehen die Trainer zur Verfügung.</div>
 
         </div>
     </div>
