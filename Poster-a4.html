@@ -202,9 +202,12 @@
             }
             .a4-poster {
                 width: 210mm;
-                height: 297mm;
-                min-height: 297mm;
+                height: 295mm;          /* 2mm Sicherheitspuffer gegen Überlauf auf Seite 2 */
+                min-height: 0;
                 max-width: none;
+                overflow: hidden;
+                page-break-inside: avoid;
+                break-inside: avoid;
             }
         }
     </style>
