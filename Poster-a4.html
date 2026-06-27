@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hutton Academy | Final Setup Poster</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
@@ -34,28 +34,45 @@
             min-height: 100vh;
         }
 
-        /* DIN A4 Container */
+        /* DIN A4 Container – äußeres Padding = Sicherheitsabstand zum Blattrand,
+           damit der rote Rahmen beim Drucken NICHT abgeschnitten wird */
         .a4-poster {
             width: 210mm;
             height: 297mm;
             background: #ffffff;
-            padding: 15mm 20mm; 
+            padding: 9mm;
+            display: flex;
+        }
+
+        /* Roter Signal-Rahmen */
+        .poster-inner {
+            flex: 1;
+            border: 11px solid #E30613;
+            border-radius: 14px;
+            padding: 12mm 16mm;
             display: flex;
             flex-direction: column;
             text-align: center;
             position: relative;
         }
 
-        /* Header Bereich (ohne Logo) */
+        /* Header Bereich mit Logo */
         .header {
-            margin-bottom: 2mm; 
+            margin-bottom: 4mm;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
+        .logo {
+            height: 80px;
+            width: auto;
+            margin-bottom: 12px;
+            display: block;
+        }
+
         .gym-name {
-            font-size: 52px; /* Etwas vergrößert, da das Logo weg ist */
+            font-size: 42px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -1px;
@@ -65,15 +82,15 @@
 
         /* Titel */
         .alert-box {
-            background-color: #000000;
+            background-color: #E30613;
             color: #ffffff;
-            padding: 14px 25px;
+            padding: 13px 25px;
             display: inline-block;
-            font-size: 26px; 
+            font-size: 25px;
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 8mm; 
+            margin-bottom: 6mm;
             border-radius: 6px;
         }
 
@@ -82,13 +99,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-bottom: 10mm; 
-            flex: 1; 
-            justify-content: center; 
+            margin-bottom: 7mm;
+            flex: 1;
+            justify-content: center;
         }
 
         .qr-call-to-action {
-            font-size: 36px; 
+            font-size: 34px;
             font-weight: 900;
             text-transform: uppercase;
             margin-bottom: 15px;
@@ -96,13 +113,13 @@
         }
 
         .qr-code-box {
-            width: 260px; /* Leicht angepasst für perfekte Proportion auf A4 */
-            height: 260px; 
-            border: 8px solid #000000; 
+            width: 240px;
+            height: 240px;
+            border: 8px solid #000000;
             padding: 15px;
             border-radius: 16px;
             background: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .qr-code-box img {
@@ -113,13 +130,13 @@
 
         /* Dringlichkeit & Pflicht */
         .mandatory-text {
-            font-size: 20px;
+            font-size: 19px;
             font-weight: 700;
-            margin-bottom: 8mm;
-            border: 3px solid #000000;
-            padding: 15px;
+            margin-bottom: 6mm;
+            border: 3px solid #E30613;
+            padding: 14px;
             border-radius: 8px;
-            background-color: #f9f9f9; 
+            background-color: #fff5f5;
         }
 
         /* Todo Liste */
@@ -132,15 +149,15 @@
         .todo-list {
             list-style: none;
             text-align: left;
-            font-size: 19px; 
+            font-size: 18px;
             font-weight: 600;
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
         .todo-list li {
             position: relative;
             padding-left: 42px;
-            margin-bottom: 8px;
+            margin-bottom: 7px;
         }
 
         .todo-list li::before {
@@ -162,9 +179,9 @@
 
         /* Footer */
         .footer {
-            margin-top: auto; 
+            margin-top: auto;
             border-top: 2px solid #000000;
-            padding-top: 15px;
+            padding-top: 14px;
             font-size: 18px;
             font-weight: 700;
             display: flex;
@@ -175,38 +192,41 @@
 <body>
 
     <div class="a4-poster">
-        
-        <div class="header">
-            <div class="gym-name">Hutton Academy</div>
-            <div class="alert-box">UNSERE NEUE GYM-APP</div>
-        </div>
+        <div class="poster-inner">
 
-        <div class="qr-section">
-            <div class="qr-call-to-action">↓ HIER SCANNEN ↓<br>ZUM DOWNLOAD</div>
-            <div class="qr-code-box">
-                <img src="images/qr-code-grappling-intelligence.com-highres.png" alt="QR Code zum Download" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'280\' height=\'280\' viewBox=\'0 0 280 280\'><rect width=\'280\' height=\'280\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23000000\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\'>QR CODE FEHLT ODER PFAD FALSCH</text></svg>'">
+            <div class="header">
+                <img src="images/hutton-academy.png" alt="Hutton Academy Logo" class="logo" onerror="this.style.display='none'">
+                <div class="gym-name">Hutton Academy</div>
+                <div class="alert-box">UNSERE NEUE GYM-APP</div>
             </div>
-        </div>
 
-        <div class="mandatory-text">
-            OHNE APP KEIN TRAINING: Die Registrierung ist ab sofort für alle Mitglieder verpflichtend.
-        </div>
+            <div class="qr-section">
+                <div class="qr-call-to-action">↓ HIER SCANNEN ↓<br>ZUM DOWNLOAD</div>
+                <div class="qr-code-box">
+                    <img src="images/qr-code-grappling-intelligence.com-highres.png" alt="QR Code zum Download" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'280\' height=\'280\' viewBox=\'0 0 280 280\'><rect width=\'280\' height=\'280\' fill=\'%23f3f4f6\'/><text x=\'50%\' y=\'50%\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23000000\' font-family=\'sans-serif\' font-size=\'16\' font-weight=\'bold\'>QR CODE FEHLT ODER PFAD FALSCH</text></svg>'">
+                </div>
+            </div>
 
-        <div class="todo-section">
-            <ul class="todo-list">
-                <li>Betriebssystem wählen (iOS / Android)</li>
-                <li>App herunterladen</li>
-                <li>Key anfordern (mit der hinterlegten E-Mail Adresse)</li>
-                <li>Sicher anmelden</li>
-                <li>Aktuelle Graduierung eintragen</li>
-                <li>Sauberes Profilbild hochladen</li>
-            </ul>
-        </div>
+            <div class="mandatory-text">
+                OHNE APP KEIN TRAINING: Die Registrierung ist ab sofort für alle Mitglieder verpflichtend.
+            </div>
 
-        <div class="footer">
-            <div>Für alle Fragen stehen die Trainer zur Verfügung.</div>
-        </div>
+            <div class="todo-section">
+                <ul class="todo-list">
+                    <li>Betriebssystem wählen (iOS / Android)</li>
+                    <li>App herunterladen</li>
+                    <li>Key anfordern (mit der hinterlegten E-Mail Adresse)</li>
+                    <li>Sicher anmelden</li>
+                    <li>Aktuelle Graduierung eintragen</li>
+                    <li>Sauberes Profilbild hochladen</li>
+                </ul>
+            </div>
 
+            <div class="footer">
+                <div>Für alle Fragen stehen die Trainer zur Verfügung.</div>
+            </div>
+
+        </div>
     </div>
 
 </body>
