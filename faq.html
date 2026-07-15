@@ -1,240 +1,188 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Häufig gestellte Fragen zur Grappling Intelligence App.">
-    <title>Grappling Intelligence | FAQ & Hilfe</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-base: #030305;
-            --surface-dark: rgba(20, 20, 25, 0.7);
-            --surface-border: rgba(255, 255, 255, 0.08);
-            --text-primary: #ffffff;
-            --text-secondary: #9ca3af;
-            --ai-blue: #0070f3;
-            --ai-purple: #7928ca;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
-        body { background-color: var(--bg-base); color: var(--text-primary); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; }
-
-        /* Ambient Background */
-        .ambient-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; background: #000; overflow: hidden; }
-        .orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.3; }
-        .orb-1 { width: 500px; height: 500px; background: var(--ai-blue); top: -100px; left: -100px; }
-
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; height: 70px; background: rgba(3, 3, 5, 0.8); backdrop-filter: blur(24px); border-bottom: 1px solid var(--surface-border); z-index: 1000; display: flex; align-items: center; justify-content: center; }
-        .nav-content { width: 100%; max-width: 800px; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 800; font-size: 20px; color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
-        .logo-dot { width: 8px; height: 8px; background: var(--ai-blue); border-radius: 50%; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 600; margin-left: 24px; transition: color 0.3s; }
-        .nav-links a:hover, .nav-links a.active { color: var(--text-primary); }
-
-        /* Main Content */
-        .container { max-width: 800px; margin: 0 auto; padding: 120px 24px 60px 24px; flex: 1; width: 100%; }
-        .page-header { text-align: center; margin-bottom: 50px; }
-        .page-header h1 { font-size: 40px; font-weight: 900; letter-spacing: -1px; margin-bottom: 15px; }
-        .page-header p { color: var(--text-secondary); font-size: 18px; }
-
-        /* Section Label */
-        .section-label { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-secondary); margin: 40px 0 4px 4px; }
-        .section-label:first-of-type { margin-top: 0; }
-
-        /* FAQ Accordion */
-        .faq-container { display: flex; flex-direction: column; gap: 16px; }
-        details {
-            background: var(--surface-dark);
-            border: 1px solid var(--surface-border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        details[open] { border-color: rgba(0, 112, 243, 0.5); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
-        details.highlight { border-color: rgba(0, 112, 243, 0.35); }
-        summary {
-            padding: 24px; cursor: pointer; font-size: 18px; font-weight: 700; color: #fff;
-            list-style: none; display: flex; justify-content: space-between; align-items: center; outline: none; gap: 16px;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::after {
-            content: '+'; font-size: 24px; color: var(--ai-blue); transition: transform 0.3s ease; flex-shrink: 0;
-        }
-        details[open] summary::after { transform: rotate(45deg); }
-        .faq-content { padding: 0 24px 24px 24px; color: var(--text-secondary); font-size: 16px; line-height: 1.7; }
-        .faq-content strong { color: var(--text-primary); font-weight: 600; }
-
-        /* Footer */
-        footer { padding: 40px 0; border-top: 1px solid var(--surface-border); text-align: center; background: rgba(3, 3, 5, 0.9); }
-        .footer-links { margin-bottom: 20px; }
-        .footer-links a { color: var(--text-secondary); text-decoration: none; margin: 0 15px; font-size: 14px; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--text-primary); }
-        .copyright { color: #555; font-size: 13px; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ – Grappling Intelligence | Häufige Fragen zur Kampfsportschul-Software</title>
+<meta name="description" content="Häufige Fragen zu Grappling Intelligence: Was kostet die App? Wie funktioniert der Umstieg von Magicline? Ist die Software DSGVO-konform? Welche Disziplinen werden unterstützt? Antworten für Kampfsportschulen, Trainer und Mitglieder.">
+<link rel="canonical" href="https://www.grappling-intelligence.com/faq.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FAQ – Grappling Intelligence">
+<meta property="og:description" content="Antworten auf die häufigsten Fragen zur Software für Kampfsportschulen.">
+<meta property="og:url" content="https://www.grappling-intelligence.com/faq.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Was ist Grappling Intelligence?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Grappling Intelligence ist eine Software für Kampfsportschulen (iOS- und Android-App). Sie deckt den kompletten Trainingsbetrieb ab: Kursplan und Buchung, QR-Check-in und Anwesenheit, Gürtel und Graduierungen pro Disziplin, eine Technik-Datenbank mit Videos, Curriculum-Planung, Familien-Accounts, News und Events. Entwickelt wurde sie gemeinsam mit aktiven BJJ-Schulen in Deutschland." }
+    },
+    {
+      "@type": "Question",
+      "name": "Für welche Kampfsportarten ist die App geeignet?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Grappling Intelligence unterstützt mehrere Disziplinen mit eigenen Gürtel- und Graduierungssystemen, darunter Brazilian Jiu-Jitsu (BJJ), Grappling, MMA, Kickboxen, Krav Maga und Capoeira sowie Kids- und Teens-Programme mit eigenen Curricula." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was kostet Grappling Intelligence?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Die Lizenz zahlt die Schule, nicht das Mitglied – für Mitglieder ist die App kostenlos, ohne In-App-Käufe und ohne Werbung. Es gibt Pakete für Einzelschulen, Mehrstandort-Betriebe und Franchise-Systeme; ein konkretes Angebot gibt es innerhalb von 48 Stunden per E-Mail an info@grappling-intelligence.com." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist Grappling Intelligence eine Alternative zu Magicline?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Für Kampfsportschulen: ja, für den kompletten Trainingsbetrieb. Grappling Intelligence bildet Gürtel, Graduierungen, Curricula, Techniken und Familien-Strukturen ab, die generische Fitnessstudio-Software nicht kennt. Die integrierte Beitragsabrechnung ist in Entwicklung; viele Schulen betreiben ihre bisherige Beitragslösung übergangsweise parallel. Bestehende Mitgliederdaten werden per Magicline-CSV-Export strukturiert übernommen." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie funktioniert der Umstieg mit bestehenden Mitgliederdaten?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Beim Onboarding werden bestehende Mitgliederdaten strukturiert importiert, zum Beispiel aus einem Magicline-CSV-Export – inklusive Disziplinen, Gürteln und Familienzuordnungen. Stundenplan, Curricula und Branding richtet das Grappling-Intelligence-Team gemeinsam mit der Schule ein. Der Umstieg ist typischerweise in wenigen Tagen erledigt." }
+    },
+    {
+      "@type": "Question",
+      "name": "Ist die Software DSGVO-konform?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Grappling Intelligence wird in Deutschland entwickelt, die Daten werden in der EU gehostet (Region Deutschland/Berlin). Die App enthält keine Werbung und verkauft keine Daten an Dritte. Details stehen in der Datenschutzerklärung auf grappling-intelligence.com." }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie melden sich Mitglieder in der App an?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Jedes Mitglied erhält von seiner Schule einen persönlichen Zugangs-Key und meldet sich damit in der App an – ohne Passwort-Verwaltung und ohne komplizierte Registrierung. Eltern verwalten die Profile ihrer Kinder im selben Account." }
+    },
+    {
+      "@type": "Question",
+      "name": "Können mehrere Standorte mit einem System arbeiten?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Grappling Intelligence ist mehrstandortfähig: mehrere Gyms laufen in einem System, jedes mit eigenem Stundenplan und eigenem Branding. Trainer können mit einem Login über mehrere Standorte hinweg arbeiten." }
+    },
+    {
+      "@type": "Question",
+      "name": "Was unterscheidet Grappling Intelligence von einer reinen Trainings-Tracking-App?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tracking-Apps richten sich an einzelne Athleten. Grappling Intelligence ist ein System für die ganze Schule: Die Anwesenheit aus dem QR-Check-in, die Curricula der Trainer und der Fortschritt der Mitglieder greifen ineinander. Der Schüler sieht, was er trainiert hat; der Trainer sieht, was die Klasse kann; der Inhaber sieht, wie die Schule läuft." }
+    },
+    {
+      "@type": "Question",
+      "name": "Gibt es die App im App Store und bei Google Play?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Ja. Grappling Intelligence ist kostenlos im Apple App Store und bei Google Play verfügbar. Die Anmeldung erfolgt mit dem persönlichen Zugangs-Key der eigenen Schule." }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-    <div class="ambient-bg"><div class="orb orb-1"></div></div>
+<header class="site">
+  <div class="wrap nav" id="nav">
+    <a class="brand" href="/">Grappling Intelligence</a>
+    <button class="nav-toggle" aria-label="Menü öffnen" onclick="document.getElementById('nav').classList.toggle('open')">Menü</button>
+    <ul>
+      <li><a href="/">Start</a></li>
+      <li><a href="funktionen.html">Funktionen</a></li>
+      <li><a href="preise.html">Preise</a></li>
+      <li><a href="magicline-alternative.html">Vergleich</a></li>
+      <li><a href="faq.html" aria-current="page">FAQ</a></li>
+      <li><a class="cta" href="mailto:info@grappling-intelligence.com?subject=Demo%20anfragen">Demo anfragen</a></li>
+    </ul>
+  </div>
+</header>
 
-    <nav>
-        <div class="nav-content">
-            <a href="info.html" class="logo"><div class="logo-dot"></div>Grappling Intelligence</a>
-            <div class="nav-links">
-                <a href="info.html">Features</a>
-                <a href="faq.html" class="active">FAQ & Hilfe</a>
-            </div>
-        </div>
-    </nav>
+<main>
 
-    <div class="container">
-        <header class="page-header">
-            <h1>Support & FAQ</h1>
-            <p>Lies dir diese Antworten durch, bevor du dich an die Trainer wendest.</p>
-        </header>
+<section class="hero wrap" style="padding-bottom:24px">
+  <p class="eyebrow">FAQ</p>
+  <h1>Häufige Fragen.</h1>
+  <p class="lead">Alles, was Schulinhaber, Trainer und Mitglieder am häufigsten wissen wollen. Deine Frage fehlt? Schreib uns an <a href="mailto:info@grappling-intelligence.com">info@grappling-intelligence.com</a>.</p>
+</section>
 
-        <div class="faq-container">
+<section class="alt">
+  <div class="wrap" style="max-width:820px">
 
-            <p class="section-label">Anmeldung & Check-in</p>
+    <details class="faq" open>
+      <summary>Was ist Grappling Intelligence?</summary>
+      <p>Grappling Intelligence ist eine Software für Kampfsportschulen (iOS- und Android-App). Sie deckt den kompletten Trainingsbetrieb ab: Kursplan und Buchung, QR-Check-in und Anwesenheit, Gürtel und Graduierungen pro Disziplin, eine Technik-Datenbank mit Videos, Curriculum-Planung, Familien-Accounts, News und Events. Entwickelt wurde sie gemeinsam mit aktiven BJJ-Schulen in Deutschland – von Leuten, die selbst auf der Matte stehen.</p>
+    </details>
 
-            <details class="highlight" open>
-                <summary>Reicht es, wenn ich mich nur anmelde – oder muss ich auch einchecken?</summary>
-                <div class="faq-content">
-                    Für <strong>alle Mitglieder gilt: Anmeldung UND Check-in sind Pflicht.</strong> Du musst dich vorab über den Stundenplan für eine Einheit anmelden (buchen) <strong>und</strong> am Trainingstag vor Ort am Tablet einchecken.
-                    <br><br>
-                    Nur anmelden reicht nicht – ohne Check-in zählt dein Training nicht in deinen Fortschritt. Und einchecken ohne vorherige Anmeldung funktioniert ebenfalls nicht: Das Tablet meldet dir dann, dass du für diesen Kurs nicht angemeldet bist.
-                    <br><br>
-                    <strong>Ausnahme – Minis & Kids:</strong> Diese sind über ihren festen Kurs automatisch angemeldet. Sie müssen sich also nicht jede Woche selbst anmelden, sondern nur noch am Tablet einchecken.
-                </div>
-            </details>
+    <details class="faq">
+      <summary>Für welche Kampfsportarten ist die App geeignet?</summary>
+      <p>Die App unterstützt mehrere Disziplinen mit jeweils eigenen Gürtel- und Graduierungssystemen: Brazilian Jiu-Jitsu (BJJ), Grappling, MMA, Kickboxen, Krav Maga, Capoeira – und Kids- sowie Teens-Programme mit eigenen Curricula inklusive Werte-Erziehung.</p>
+    </details>
 
-            <details>
-                <summary>Wie funktioniert der Check-in vor dem Training?</summary>
-                <div class="faq-content">
-                    Um lästige Warteschlangen am Empfang zu eliminieren, nutzt unsere App einen digitalen QR-Code. Auf deinem Dashboard findest du den Button "Check-in Code". Du hältst diesen Code einfach vor das Tablet im Gym. Das System registriert deine Anwesenheit in Sekundenbruchteilen, was vollautomatisch in deinen persönlichen Trainingsfortschritt einfließt.
-                    <br><br>
-                    Wichtig: Du musst für den jeweiligen Kurs <strong>vorher angemeldet</strong> sein (Ausnahme: Minis & Kids, siehe oben). Bist du an einem Tag für mehrere aufeinanderfolgende Kurse angemeldet, checkt dich ein einziger Scan automatisch auch in die weiteren Einheiten des Tages ein.
-                </div>
-            </details>
+    <details class="faq">
+      <summary>Was kostet Grappling Intelligence?</summary>
+      <p>Die Lizenz zahlt die Schule, nicht das Mitglied. Für Mitglieder ist die App kostenlos – ohne In-App-Käufe und ohne Werbung. Es gibt Pakete für <a href="preise.html">Einzelschulen, Mehrstandort-Betriebe und Franchise-Systeme</a>. Schreib uns zwei Sätze zu deiner Schule und du bekommst innerhalb von 48 Stunden ein konkretes Angebot.</p>
+    </details>
 
-            <details>
-                <summary>Wie melde ich mich von einem gebuchten Training wieder ab?</summary>
-                <div class="faq-content">
-                    Im Stundenplan tippst du bei der gebuchten Einheit einfach auf "Abmelden". Dein Platz wird sofort wieder freigegeben. Bitte melde dich rechtzeitig ab, wenn du nicht kommen kannst – so können andere Mitglieder von der Warteliste nachrücken.
-                    <br><br>
-                    Für Kinder gibt es zusätzlich den schnelleren Weg über den roten "Kind krank / abwesend melden"-Button auf dem Dashboard.
-                </div>
-            </details>
+    <details class="faq">
+      <summary>Ist Grappling Intelligence eine Alternative zu Magicline?</summary>
+      <p>Für Kampfsportschulen: ja – für den kompletten Trainingsbetrieb. Grappling Intelligence bildet Gürtel, Graduierungen, Curricula, Techniken und Familien-Strukturen ab, die generische Fitnessstudio-Software nicht kennt. Die integrierte Beitragsabrechnung ist in Entwicklung; viele Schulen lassen ihre bisherige Beitragslösung übergangsweise parallel laufen. Den ausführlichen Vergleich findest du auf unserer <a href="magicline-alternative.html">Vergleichsseite</a>.</p>
+    </details>
 
-            <p class="section-label">Account & Geräte</p>
+    <details class="faq">
+      <summary>Wie funktioniert der Umstieg mit bestehenden Mitgliederdaten?</summary>
+      <p>Beim Onboarding importieren wir deine bestehenden Mitgliederdaten strukturiert – zum Beispiel aus einem Magicline-CSV-Export – inklusive Disziplinen, Gürteln und Familienzuordnungen. Stundenplan, Curricula und Branding richten wir gemeinsam mit dir ein. Der Umstieg ist typischerweise in wenigen Tagen erledigt, ohne Stillstand im Trainingsbetrieb.</p>
+    </details>
 
-            <details>
-                <summary>Wie melde ich mich in der App an?</summary>
-                <div class="faq-content">
-                    Die Anmeldung erfolgt über deinen persönlichen <strong>Zugangs-Key</strong> – ein klassisches Passwort gibt es nicht. Beim ersten Mal forderst du den Key über die Login-Seite mit deiner bei uns hinterlegten E-Mail-Adresse an. Du bekommst ihn dann automatisch per E-Mail zugeschickt.
-                    <br><br>
-                    Danach bleibst du auf dem Gerät dauerhaft eingeloggt. Solltest du deinen Key einmal verlieren, fordere ihn einfach erneut über deine E-Mail-Adresse an.
-                </div>
-            </details>
+    <details class="faq">
+      <summary>Ist die Software DSGVO-konform?</summary>
+      <p>Ja. Grappling Intelligence wird in Deutschland entwickelt, die Daten werden in der EU gehostet (Region Deutschland/Berlin). Die App enthält keine Werbung und verkauft keine Daten an Dritte. Details findest du in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    </details>
 
-            <details>
-                <summary>Kann ich denselben Account auf mehreren Geräten nutzen?</summary>
-                <div class="faq-content">
-                    <strong>Ja.</strong> Du kannst dich mit deinem Zugangs-Key auf beliebig vielen Geräten gleichzeitig anmelden – zum Beispiel auf deinem Handy und dem deines Partners, um die Profile der Kinder zu verwalten. Alle Daten sind dabei jederzeit synchron.
-                </div>
-            </details>
+    <details class="faq">
+      <summary>Wie melden sich Mitglieder in der App an?</summary>
+      <p>Jedes Mitglied bekommt von seiner Schule einen persönlichen Zugangs-Key und meldet sich damit in der App an – ohne komplizierte Registrierung. Eltern verwalten die Profile ihrer Kinder bequem im selben Account.</p>
+    </details>
 
-            <details>
-                <summary>Brauche ich für jedes meiner Kinder ein eigenes Login?</summary>
-                <div class="faq-content">
-                    Nein, wir haben die App speziell für Familien entwickelt. Als Elternteil loggst du dich einmalig ein. Oben rechts findest du einen Profil-Umschalter, mit dem du nahtlos zwischen den Profilen deiner Kinder hin- und herspringen kannst. Du buchst Kurse oder reichst Krankmeldungen ein, ohne dich jemals neu einloggen zu müssen.
-                </div>
-            </details>
+    <details class="faq">
+      <summary>Können mehrere Standorte mit einem System arbeiten?</summary>
+      <p>Ja. Mehrere Gyms laufen in einem System, jedes mit eigenem Stundenplan und eigenem Branding. Trainer können mit einem Login über mehrere Standorte hinweg arbeiten – ideal für wachsende Schulen und Franchise-Strukturen.</p>
+    </details>
 
-            <p class="section-label">Fortschritt & Training</p>
+    <details class="faq">
+      <summary>Was unterscheidet die App von einer reinen Trainings-Tracking-App?</summary>
+      <p>Tracking-Apps richten sich an einzelne Athleten. Grappling Intelligence ist ein System für die ganze Schule: Anwesenheit aus dem QR-Check-in, Curricula der Trainer und der Fortschritt der Mitglieder greifen ineinander. Der Schüler sieht, was er trainiert hat; der Trainer sieht, was die Klasse kann; der Inhaber sieht, wie die Schule läuft.</p>
+    </details>
 
-            <details>
-                <summary>Wo sehe ich meinen Fortschritt oder den Gürtel meiner Kinder?</summary>
-                <div class="faq-content">
-                    Für Kinder und Jugendliche haben wir die alte Stempelkarte aus Papier komplett digitalisiert – keine zerrissenen, nassen oder vergessenen Karten mehr. Erwachsene sehen eine detaillierte Auswertung in ihrem Profil: Du siehst exakt, welche Techniken du bisher wie oft trainiert hast.
-                </div>
-            </details>
+    <details class="faq">
+      <summary>Gibt es die App im App Store und bei Google Play?</summary>
+      <p>Ja – kostenlos im <a href="https://apps.apple.com/de/app/grappling-intelligence/id6751597788">Apple App Store</a> und bei <a href="https://play.google.com/store/apps/details?id=com.yasincelik.grapplingintelligence">Google Play</a>. Die Anmeldung erfolgt mit dem persönlichen Zugangs-Key deiner Schule.</p>
+    </details>
 
-            <details>
-                <summary>Wie wird entschieden, welche Techniken im Training gezeigt werden?</summary>
-                <div class="faq-content">
-                    Wir nutzen eine intelligente KI-Trainingsplanung. Sobald du im Gym eincheckst, analysiert die KI, welche Techniken du und die anderen anwesenden Teilnehmer bereits beherrschen, noch üben müssen oder sich über die App gewünscht haben. Der Trainer erhält daraufhin einen maßgeschneiderten Lehrplan, der perfekt auf die Fähigkeiten der aktuell anwesenden Gruppe abgestimmt ist.
-                </div>
-            </details>
+  </div>
+</section>
 
-            <details>
-                <summary>Wie hilft mir die App beim Lernen zu Hause?</summary>
-                <div class="faq-content">
-                    Im Reiter "Fortschritt" findest du unser gesamtes technisches Curriculum. Du kannst Videos ansehen und Fehlerquellen nachlesen. Ein massiver Vorteil: Du kannst zu jeder Technik direkt in der App Fragen stellen. Sobald diese Technik live im Training unterrichtet wird, ploppt deine Frage automatisch auf dem Matten-Cockpit des Trainers auf, sodass er sie direkt vor Ort beantworten kann.
-                </div>
-            </details>
-
-            <details>
-                <summary>Was passiert, wenn mein wöchentliches Limit aufgebraucht ist?</summary>
-                <div class="faq-content">
-                    Wenn du dein vertragliches Limit erreicht hast und versuchst, einen Kurs zu buchen, blockiert dich die App nicht. Es öffnet sich ein Fenster, über das du die Einheit buchen und uns unverbindlich mitteilen kannst, dass du Interesse an mehr Training hast. Unser Trainerteam spricht dich dann beim nächsten Besuch entspannt auf eine mögliche Vertragsanpassung an.
-                </div>
-            </details>
-
-            <p class="section-label">Sicherheit & Notfall</p>
-
-            <details>
-                <summary>Wie melde ich mich oder mein Kind krank?</summary>
-                <div class="faq-content">
-                    Direkt auf dem Dashboard gibt es einen roten Button "Kind krank / abwesend melden". Ein Klick genügt, der Platz wird für die Warteliste freigegeben, und der Trainer wird sofort informiert.
-                </div>
-            </details>
-
-            <details>
-                <summary>Wie sehen Trainer meine Allergien/Notfalldaten?</summary>
-                <div class="faq-content">
-                    Auf deinem Dashboard findest du den Button "Notfall-Info". Dort kannst du Allergien und Notfallkontakte hinterlegen. Diese essenziellen Informationen werden dem Trainer während des Unterrichts auf seinem Matten-Cockpit prominent angezeigt, was für maximale Sicherheit im Gym sorgt.
-                </div>
-            </details>
-
-            <p class="section-label">Profil & Rechtliches</p>
-
-            <details>
-                <summary>Wie kann ich meinen Account löschen?</summary>
-                <div class="faq-content">
-                    Im Bereich "Profil" findest du die Möglichkeit, deinen Account unwiderruflich zu löschen. Bitte beachte, dass dabei deine Zugangsdaten und dein Profil dauerhaft entfernt werden.
-                    <br><br>
-                    Wichtig: Das Löschen des App-Accounts beendet nicht automatisch deine Mitgliedschaft bzw. deinen Vertrag. Für eine Kündigung wende dich bitte zusätzlich an dein Team vor Ort.
-                </div>
-            </details>
-
-            <details>
-                <summary>Ich habe einen Fehler gefunden oder eine Idee – wie sage ich euch Bescheid?</summary>
-                <div class="faq-content">
-                    Sofern dein Gym diese Funktion aktiviert hat, findest du im Bereich "Profil" ein Feedback-Formular. Dort kannst du Fehler melden oder Verbesserungsvorschläge einreichen – auf Wunsch auch anonym. Andernfalls sprich uns einfach beim nächsten Training an.
-                </div>
-            </details>
-
-        </div>
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Noch Fragen? Wir antworten persönlich.</h2>
+      <p>Kein Ticketsystem, kein Chatbot – du schreibst direkt mit dem Team, das die App baut.</p>
+      <a class="btn" href="mailto:info@grappling-intelligence.com?subject=Frage%20zu%20Grappling%20Intelligence">Frage stellen</a>
     </div>
+  </div>
+</section>
 
-    <footer>
-        <div class="container" style="padding: 0;">
-            <div class="footer-links">
-                <a href="info.html">Features</a>
-                <a href="faq.html">FAQ</a>
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-            </div>
-            <div class="copyright">
-                &copy; <script>document.write(new Date().getFullYear())</script> Grappling Intelligence.
-            </div>
-        </div>
-    </footer>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <a class="brand" href="/">Grappling Intelligence</a>
+      <ul>
+        <li><a href="funktionen.html">Funktionen</a></li>
+        <li><a href="preise.html">Preise</a></li>
+        <li><a href="magicline-alternative.html">Magicline-Alternative</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+    <p class="fine">© 2026 Grappling Intelligence · Software für Kampfsportschulen · Made in Germany · info@grappling-intelligence.com</p>
+  </div>
+</footer>
+
 </body>
 </html>

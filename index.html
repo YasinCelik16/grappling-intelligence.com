@@ -1,556 +1,213 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Grappling Intelligence - Das KI-gestützte Operating System für Kampfsportakademien.">
-    <title>Grappling Intelligence | AI-Driven Martial Arts Ecosystem</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg-base: #030305;
-            --surface-dark: rgba(20, 20, 25, 0.7);
-            --surface-border: rgba(255, 255, 255, 0.08);
-            --text-primary: #ffffff;
-            --text-secondary: #9ca3af;
-            --ai-blue: #0070f3;
-            --ai-purple: #7928ca;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* --- Ambient AI Background --- */
-        .ambient-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.5;
-            animation: float 20s infinite ease-in-out alternate;
-        }
-
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: var(--ai-blue);
-            top: -100px;
-            left: -100px;
-        }
-
-        .orb-2 {
-            width: 600px;
-            height: 600px;
-            background: var(--ai-purple);
-            bottom: -200px;
-            right: -100px;
-            animation-delay: -5s;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 150px) scale(1.2); }
-        }
-
-        /* --- Navigation --- */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(3, 3, 5, 0.6);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid var(--surface-border);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-content {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 800;
-            font-size: 20px;
-            letter-spacing: -0.5px;
-            color: var(--text-primary);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--ai-blue);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--ai-blue);
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            margin-left: 32px;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* --- Container --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            padding-top: 200px;
-            padding-bottom: 80px;
-            text-align: center;
-            position: relative;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            border-radius: 30px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #a0aec0;
-            margin-bottom: 24px;
-            box-shadow: 0 0 20px rgba(121, 40, 202, 0.2);
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 6vw, 72px);
-            font-weight: 800;
-            letter-spacing: -2px;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            /* Verhindert das abgehackte Layout */
-            text-wrap: balance; 
-            background: linear-gradient(135deg, #fff 0%, #a0aec0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(to right, var(--ai-blue), var(--ai-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: clamp(18px, 2vw, 22px);
-            color: var(--text-secondary);
-            max-width: 750px;
-            margin: 0 auto 48px auto;
-            text-wrap: balance;
-        }
-
-        .cta-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--ai-blue) 0%, var(--ai-purple) 100%);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(0, 112, 243, 0.3);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(121, 40, 202, 0.5);
-        }
-
-        .btn-secondary {
-            background: var(--surface-dark);
-            color: var(--text-primary);
-            border: 1px solid var(--surface-border);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.05);
-            transform: translateY(-2px);
-        }
-
-        /* --- 3D Mockup Showcase --- */
-        .mockup-container {
-            margin-top: 100px;
-            perspective: 1000px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .mockup-frame {
-            position: relative;
-            max-width: 340px;
-            width: 100%;
-            border-radius: 48px;
-            padding: 12px;
-            background: linear-gradient(145deg, #2a2a35 0%, #000000 100%);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8), inset 0 0 2px rgba(255,255,255,0.2);
-            transform: rotateY(0deg) translateY(0);
-            animation: levitate 6s ease-in-out infinite;
-        }
-
-        .mockup-frame::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 30px;
-            background: #000;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-            z-index: 10;
-        }
-
-        .mockup-image {
-            width: 100%;
-            height: auto;
-            border-radius: 36px;
-            display: block;
-            border: 1px solid rgba(0,0,0,0.5);
-        }
-
-        @keyframes levitate {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        /* --- AI Features Section --- */
-        .features {
-            padding: 140px 0;
-            position: relative;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-header h2 {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 20px;
-            text-wrap: balance;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: var(--surface-dark);
-            border: 1px solid var(--surface-border);
-            border-radius: 24px;
-            padding: 40px;
-            backdrop-filter: blur(20px);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, var(--ai-blue), transparent);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(255,255,255,0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(0, 112, 243, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 24px;
-            color: var(--ai-blue);
-        }
-
-        .feature-card h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            color: #fff;
-        }
-
-        .feature-card p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* --- B2B Franchise / Owner Section --- */
-        .b2b-section {
-            padding: 140px 0;
-            border-top: 1px solid var(--surface-border);
-            background: radial-gradient(circle at center, rgba(121, 40, 202, 0.05) 0%, transparent 70%);
-        }
-
-        .b2b-box {
-            background: var(--surface-dark);
-            border: 1px solid var(--surface-border);
-            border-radius: 32px;
-            padding: 80px 40px;
-            text-align: center;
-            backdrop-filter: blur(20px);
-        }
-
-        .b2b-box h2 {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 800;
-            margin-bottom: 24px;
-            text-wrap: balance;
-        }
-
-        .b2b-box p {
-            font-size: 20px;
-            color: var(--text-secondary);
-            max-width: 800px;
-            margin: 0 auto 40px auto;
-            text-wrap: balance;
-        }
-
-        /* --- Footer --- */
-        footer {
-            padding: 60px 0 40px 0;
-            border-top: 1px solid var(--surface-border);
-            text-align: center;
-        }
-
-        .footer-links {
-            margin-bottom: 30px;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .copyright {
-            color: #555;
-            font-size: 13px;
-        }
-
-        /* --- Reveal Animations --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grappling Intelligence – Die Software für Kampfsportschulen | Mitglieder, Kurse, Graduierungen</title>
+<meta name="description" content="Grappling Intelligence ist die App für Kampfsportschulen: Kursplan &amp; Buchung, QR-Check-in, Gürtel &amp; Graduierungen, Technik-Datenbank, Curriculum-Planung und Mitgliederverwaltung – entwickelt von aktiven BJJ-Schulen in Deutschland.">
+<link rel="canonical" href="https://www.grappling-intelligence.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Grappling Intelligence – Die Software für Kampfsportschulen">
+<meta property="og:description" content="Kursplan, QR-Check-in, Graduierungen, Technik-Datenbank und Mitgliederverwaltung in einer App. Entwickelt von aktiven Kampfsportschulen in Deutschland.">
+<meta property="og:url" content="https://www.grappling-intelligence.com/">
+<meta property="og:image" content="https://www.grappling-intelligence.com/images/og-cover.jpg">
+<meta property="og:locale" content="de_DE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Grappling Intelligence",
+  "operatingSystem": "iOS, Android",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "Gym Management Software für Kampfsportschulen",
+  "description": "Software für Kampfsportschulen: Kursplan und Buchung, QR-Check-in, Gürtel und Graduierungen pro Disziplin, Technik-Datenbank mit Videos, Curriculum-Planung, Familien-Accounts und Mitgliederverwaltung.",
+  "url": "https://www.grappling-intelligence.com/",
+  "downloadUrl": [
+    "https://apps.apple.com/de/app/grappling-intelligence/id6751597788",
+    "https://play.google.com/store/apps/details?id=com.yasincelik.grapplingintelligence"
+  ],
+  "inLanguage": "de",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Kampfsportschulen, BJJ-Gyms, MMA-Gyms, Martial-Arts-Academies"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Grappling Intelligence",
+    "url": "https://www.grappling-intelligence.com/",
+    "email": "info@grappling-intelligence.com",
+    "address": { "@type": "PostalAddress", "addressCountry": "DE" }
+  }
+}
+</script>
 </head>
 <body>
 
-    <div class="ambient-bg">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
+<header class="site">
+  <div class="wrap nav" id="nav">
+    <a class="brand" href="/">Grappling Intelligence</a>
+    <button class="nav-toggle" aria-label="Menü öffnen" onclick="document.getElementById('nav').classList.toggle('open')">Menü</button>
+    <ul>
+      <li><a href="/" aria-current="page">Start</a></li>
+      <li><a href="funktionen.html">Funktionen</a></li>
+      <li><a href="preise.html">Preise</a></li>
+      <li><a href="magicline-alternative.html">Vergleich</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a class="cta" href="mailto:info@grappling-intelligence.com?subject=Demo%20anfragen">Demo anfragen</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero wrap">
+  <p class="wordmark">Grappling&nbsp;Intelligence</p>
+  <hr class="goldline">
+  <h1>Die App für Kampfsportschulen. Alles rund ums Training – in einem System.</h1>
+  <p class="lead">Kursplan &amp; Buchung, QR-Check-in, Gürtel &amp; Graduierungen, Technik-Datenbank und Mitgliederverwaltung. Entwickelt von aktiven BJJ-Schulen in Deutschland – für BJJ, Grappling, MMA, Kickboxen, Krav Maga und Kids-Programme.</p>
+  <div class="store-badges">
+    <a class="btn primary" href="mailto:info@grappling-intelligence.com?subject=Demo%20anfragen">Demo für deine Schule anfragen</a>
+    <a class="btn ghost" href="https://apps.apple.com/de/app/grappling-intelligence/id6751597788">App&nbsp;Store</a>
+    <a class="btn ghost" href="https://play.google.com/store/apps/details?id=com.yasincelik.grapplingintelligence">Google&nbsp;Play</a>
+  </div>
+  <p class="sub">4,9 ★ im App Store · Im täglichen Einsatz bei Kampfsportschulen in Bayern</p>
+</section>
+
+<!-- PROBLEM / LÖSUNG -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Warum Grappling Intelligence</p>
+      <h2>Generische Gym-Software kennt keine Gürtel.</h2>
+      <p>Klassische Fitnessstudio-Software verwaltet Verträge und Termine – aber keine Graduierungen, keine Curricula und keine Techniken. Grappling Intelligence wurde in echten Kampfsportschulen entwickelt und bildet genau das ab, was auf und neben der Matte wirklich passiert.</p>
+    </div>
+    <div class="grid cols-3">
+      <div class="card">
+        <span class="k">Für Mitglieder</span>
+        <h3>Trainieren, buchen, Fortschritt sehen</h3>
+        <p>Kurse mit einem Klick buchen (auch wöchentlich im Voraus), per QR-Code einchecken, Gürtel und Streifen verfolgen, Techniken mit Videos nachschlagen und Trophäen sammeln.</p>
+      </div>
+      <div class="card">
+        <span class="k">Für Trainer</span>
+        <h3>Unterricht planen statt verwalten</h3>
+        <p>Anwesenheit auf einen Blick, Curriculum-Planung pro Kurs und Altersgruppe, Technikwünsche und Fragen der Schüler direkt in der App – auch über mehrere Standorte hinweg.</p>
+      </div>
+      <div class="card">
+        <span class="k">Für Inhaber</span>
+        <h3>Die Schule im Griff</h3>
+        <p>Mitgliederverwaltung mit Familien-Accounts, Graduierungsverwaltung pro Disziplin, News &amp; Events mit Wartelisten und ein sauberer Import bestehender Mitgliederdaten – z.&nbsp;B. aus Magicline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES MIT SCREENSHOTS -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Funktionen</p>
+      <h2>Was die App kann</h2>
+      <p>Ein Auszug – die vollständige Übersicht findest du unter <a href="funktionen.html">Funktionen</a>.</p>
     </div>
 
-    <nav>
-        <div class="nav-content">
-            <a href="#" class="logo">
-                <div class="logo-dot"></div>
-                Grappling Intelligence
-            </a>
-            <div class="nav-links">
-                <a href="#ai-engine">AI Engine</a>
-                <a href="#franchise">Für Akademien</a>
-            </div>
-        </div>
-    </nav>
+    <div class="frow">
+      <div class="ftext">
+        <h3>Kursplan, Buchung &amp; QR-Check-in</h3>
+        <p>Mitglieder sehen den kompletten Wochenplan, melden sich mit einem Klick an – auf Wunsch gleich für 4 oder 8 Wochen im Voraus – und checken im Gym per QR-Code ein. Check-in ist bis 30 Minuten nach Kursbeginn möglich.</p>
+        <ul>
+          <li>Wöchentliche Serienbuchung mit einzelner Terminauswahl</li>
+          <li>Events, Seminare und Camps mit Warteliste und Nachrücken</li>
+          <li>Krankmeldung und Notfall-Info direkt in der App</li>
+        </ul>
+      </div>
+      <figure class="phone"><img src="images/screen-kursplan.png" alt="Kursplan der Grappling Intelligence App mit BJJ Grundkurs, wöchentlicher Buchung und Anmeldung" loading="lazy" onerror="this.closest('figure').style.display='none'"></figure>
+    </div>
 
-    <header class="hero container reveal">
-        <div class="badge">Next-Gen SaaS für Kampfsport</div>
-        <h1>Die erste <span>KI-gesteuerte</span> Architektur für den Kampfsport.</h1>
-        <p>Algorithmen, die deine Akademie skalieren. Daten, die deinen Fortschritt auf der Matte in Echtzeit berechnen. Das Operating System der Zukunft.</p>
-        
-        <div class="cta-group">
-            <a href="https://apps.apple.com/de/app/grappling-intelligence/id6751597788" class="btn btn-primary" target="_blank" rel="noopener">
-                Im App Store laden
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.yasincelik.grapplingintelligence" class="btn btn-secondary" target="_blank" rel="noopener">
-                Google Play
-            </a>
-        </div>
+    <div class="frow flip">
+      <div class="ftext">
+        <h3>Gürtel, Graduierungen &amp; Fortschritt</h3>
+        <p>Jedes Mitglied sieht seinen Gürtel und seine Streifen pro Disziplin, die komplette Trainingshistorie, Streaks und Meilensteine. Trainer und Inhaber verwalten Graduierungen zentral – nachvollziehbar statt Bauchgefühl.</p>
+        <ul>
+          <li>Gürtelsysteme pro Disziplin (BJJ, Grappling, MMA u.&nbsp;a.)</li>
+          <li>Statistiken: aktive Wochen, Streaks, Trainings pro Disziplin</li>
+          <li>Trophäen und Achievements für Motivation und Bindung</li>
+        </ul>
+      </div>
+      <figure class="phone"><img src="images/screen-fortschritt.png" alt="Fortschritts-Ansicht mit Trainingsstatistiken, Streak und Disziplinen-Verteilung" loading="lazy" onerror="this.closest('figure').style.display='none'"></figure>
+    </div>
 
-        <div class="mockup-container reveal">
-            <div class="mockup-frame">
-                <img src="images/4.jpeg" alt="Grappling Intelligence AI Interface" class="mockup-image">
-            </div>
-        </div>
-    </header>
+    <div class="frow">
+      <div class="ftext">
+        <h3>Technik-Datenbank mit Videos</h3>
+        <p>Takedowns, Positionen, Sweeps &amp; Escapes, Submissions – als vernetzte Datenbank. Zu jeder Position: Video, häufige Fehler und die möglichen Aktionen von dort. Filterbar nach Gi und No-Gi, verknüpft mit dem echten Trainingsfortschritt.</p>
+        <ul>
+          <li>„1× trainiert“ – die Datenbank kennt das eigene Training</li>
+          <li>Positionen als Curriculum-Übersicht für die ganze Schule</li>
+          <li>Technikwünsche: Schüler beeinflussen kommende Einheiten</li>
+        </ul>
+      </div>
+      <figure class="phone"><img src="images/screen-technik.png" alt="Technik-Detailseite Closed Guard mit Video, häufigen Fehlern und möglichen Aktionen" loading="lazy" onerror="this.closest('figure').style.display='none'"></figure>
+    </div>
 
-    <section id="ai-engine" class="features container">
-        <div class="section-header reveal">
-            <h2>Datengetriebene Dominanz.</h2>
-            <p style="color: var(--text-secondary); font-size: 20px;">Kein Zufall mehr. Die Engine synchronisiert Athletenpotenzial und Akademie-Logistik.</p>
-        </div>
+  </div>
+</section>
 
-        <div class="grid-3">
-            <div class="feature-card reveal">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-                </div>
-                <h3>Adaptive KI-Trainingsplanung</h3>
-                <p>Der Algorithmus analysiert die kollektive Skill-Matrix der anwesenden Klasse in Echtzeit und generiert den optimalen Lehrplan. Präzises Coaching statt Intuition.</p>
-            </div>
-            
-            <div class="feature-card reveal" style="transition-delay: 100ms;">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-                </div>
-                <h3>Predictive Progression</h3>
-                <p>Graduierungen sind nicht länger subjektiv. Das System wertet Mattenzeit, Curriculum-Abdeckung und Frequenz aus, um den exakten Zeitpunkt der Beförderung zu berechnen.</p>
-            </div>
+<!-- PROOF -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Aus der Praxis</p>
+      <h2>Gebaut auf der Matte, nicht im Konferenzraum</h2>
+      <p>Grappling Intelligence wurde gemeinsam mit BJJ Dachau und der Hutton Academy München entwickelt und ist dort täglich im Einsatz – vom Kids-Programm bis zum Erwachsenen-Training.</p>
+    </div>
+    <div class="proof">
+      <div class="stat"><b>4,9 ★</b><span>App Store</span></div>
+      <div class="stat"><b>6+</b><span>Disziplinen</span></div>
+      <div class="stat"><b>100 %</b><span>DSGVO · Hosting EU</span></div>
+    </div>
+    <hr class="goldline">
+    <blockquote class="voice">
+      „Richtig starke App für Trainingstracking und Technik-Datenbank. Sehr übersichtlich und funktional – bis jetzt das Beste im Bereich Trainingsapp, das ich kenne.“
+      <footer>Nutzer-Rezension im Apple App Store</footer>
+    </blockquote>
+  </div>
+</section>
 
-            <div class="feature-card reveal" style="transition-delay: 200ms;">
-                <div class="feature-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                </div>
-                <h3>Militärische Logistik</h3>
-                <p>Ein volldigitales Matten-Cockpit für Headcoaches. Von automatisierten Lead-Pipelines bis zum QR-basierten Check-in-System. Reibungslos, effizient, skalierbar.</p>
-            </div>
-        </div>
-    </section>
+<!-- CTA -->
+<section>
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Bring deine Kampfsportschule auf ein neues Level.</h2>
+      <p>Schreib uns kurz, wie deine Schule aufgestellt ist – wir zeigen dir in einer persönlichen Demo, wie der Umstieg abläuft und wie deine Mitgliederdaten sauber übernommen werden.</p>
+      <a class="btn" href="mailto:info@grappling-intelligence.com?subject=Demo%20anfragen&body=Hallo%2C%20wir%20interessieren%20uns%20f%C3%BCr%20Grappling%20Intelligence.%20Unsere%20Schule%3A%20">Demo anfragen</a>
+    </div>
+  </div>
+</section>
 
-    <section id="franchise" class="b2b-section container">
-        <div class="b2b-box reveal">
-            <h2>Transformieren Sie Ihre Akademie in ein Franchise-ready System.</h2>
-            <p>Grappling Intelligence zentralisiert Ihre gesamte Infrastruktur. Rollenbasierte Zugriffskontrollen, Gamification zur maximalen Mitgliederbindung und automatisierte Prozesse, die Ihnen erlauben, am Unternehmen zu arbeiten – nicht im Unternehmen.</p>
-            <a href="mailto:info@grappling-intelligence.com?subject=Enterprise%20Partnerschaft" class="btn btn-primary">
-                Enterprise Demo anfragen
-            </a>
-        </div>
-    </section>
+</main>
 
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="support.html">Support</a>
-                <a href="impressum.html">Impressum</a>
-                <a href="datenschutz.html">Datenschutz</a>
-            </div>
-            <div class="copyright">
-                &copy; <script>document.write(new Date().getFullYear())</script> Grappling Intelligence. Engineered for High Performance.
-            </div>
-        </div>
-    </footer>
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <a class="brand" href="/">Grappling Intelligence</a>
+      <ul>
+        <li><a href="funktionen.html">Funktionen</a></li>
+        <li><a href="preise.html">Preise</a></li>
+        <li><a href="magicline-alternative.html">Magicline-Alternative</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="support.html">Support</a></li>
+        <li><a href="impressum.html">Impressum</a></li>
+        <li><a href="datenschutz.html">Datenschutz</a></li>
+      </ul>
+    </div>
+    <p class="fine">© 2026 Grappling Intelligence · Software für Kampfsportschulen · Made in Germany · info@grappling-intelligence.com</p>
+  </div>
+</footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reveals = document.querySelectorAll('.reveal');
-            
-            const revealOptions = {
-                threshold: 0.15,
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) return;
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Nur einmal animieren für bessere Performance
-                });
-            }, revealOptions);
-
-            reveals.forEach(reveal => {
-                revealOnScroll.observe(reveal);
-            });
-        });
-    </script>
 </body>
 </html>
