@@ -4,773 +4,780 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hutton Academy — Brazilian Jiu-Jitsu, Krav Maga, Kickboxen &amp; MMA in München</title>
-<meta name="description" content="Kampfsportschule an vier Standorten: München-Schwabing, München-Moosach, Augsburg und Geretsried. BJJ, Krav Maga, Kickboxen, MMA und Kindertraining ab 3 Jahren. Erste Stunde kostenlos, ohne Vertrag.">
+<meta name="description" content="Kampfsportakademie seit 2002. Vier Standorte in München-Schwabing, München-Moosach, Augsburg und Geretsried. Finde einen Kurs, der in deine Woche passt, und sichere dir ein kostenloses Probetraining.">
 <link rel="canonical" href="https://hutton-academy.com/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
-<meta property="og:title" content="Hutton Academy — Kampfsport in München und Umgebung">
-<meta property="og:description" content="BJJ, Krav Maga, Kickboxen und MMA an vier Standorten. Erste Stunde kostenlos, ohne Vertrag.">
+<meta property="og:title" content="Hutton Academy — Kampfsport in München seit 2002">
+<meta property="og:description" content="Vier Standorte. Fünf Disziplinen. Erste Stunde kostenlos.">
 <meta property="og:url" content="https://hutton-academy.com/">
-<meta name="theme-color" content="#16181C">
+<meta name="theme-color" content="#0B0C0E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
-/* ============================================================
-   HUTTON ACADEMY — Design-Tokens
-   Palette:  chalk / ink / tatami / gold / belt-*
-   Type:     Archivo (Display, Expanded) · Inter Tight (Body) · JetBrains Mono (Daten)
-   Signature: Belt Rail — die Gürtelprogression als Scroll-Fortschritt
-   ============================================================ */
+/* ═══════════════════════════════════════════════════════════
+   HUTTON ACADEMY
+   Richtung:  Stealth Luxury — dunkles Graphit, ein einziger
+              entsättigter Champagner-Akzent, Fotografie in
+              Monochrom, Typografie in Sentence Case.
+   Signature: Kursfinder — der Besucher wählt einen echten
+              Termin statt „Rückruf erbeten".
+   ═══════════════════════════════════════════════════════════ */
+
 :root{
-  --chalk:#F0F1EC;
-  --paper:#FAFAF8;
-  --ink:#16181C;
-  --ink-70:#4A4E56;
-  --ink-45:#7C8189;
-  --tatami:#D9DBD2;
-  --tatami-2:#E6E8E0;
-  --gold:#E0A50B;
-  --gold-dark:#B8850A;
+  /* Farbe */
+  --void:#0B0C0E;
+  --graphite:#101216;
+  --slate:#171A1F;
+  --slate-2:#1F232A;
+  --mist:#8B9099;
+  --silver:#C6CAD0;
+  --pearl:#F4F4F2;
+  --bone:#EDEDEA;
+  --champagne:#C6AE87;
+  --line:rgba(255,255,255,.09);
+  --line-2:rgba(255,255,255,.16);
+  --line-dark:rgba(11,12,14,.12);
 
-  --belt-white:#E8E8DF;
-  --belt-blue:#26308C;
-  --belt-purple:#5B3A9E;
-  --belt-brown:#6B4326;
-  --belt-black:#16181C;
+  /* Typo */
+  --sans:'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --text:'Inter Tight',-apple-system,BlinkMacSystemFont,sans-serif;
 
-  --display:'Archivo',ui-sans-serif,system-ui,'Helvetica Neue',Arial,sans-serif;
-  --body:'Inter Tight',ui-sans-serif,system-ui,'Helvetica Neue',Arial,sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
-
-  --wrap:1200px;
-  --gut:clamp(20px,5vw,48px);
-  --rail:5px;
-  --r:4px;
-  --ease:cubic-bezier(.22,.61,.36,1);
+  /* Raster */
+  --wrap:1240px;
+  --gut:clamp(20px,4.5vw,56px);
+  --r:14px;
+  --r-sm:10px;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:90px}
 body{
-  margin:0;background:var(--chalk);color:var(--ink);
-  font-family:var(--body);font-size:17px;line-height:1.6;
-  font-feature-settings:"ss01","cv05";
-  -webkit-font-smoothing:antialiased;
+  margin:0;background:var(--void);color:var(--pearl);
+  font-family:var(--text);font-size:17px;line-height:1.6;
+  font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
 }
 img{max-width:100%;display:block}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:2px}
+button{font:inherit}
+:focus-visible{outline:2px solid var(--champagne);outline-offset:3px;border-radius:4px}
 
-.hu-wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
-.hu-skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--chalk);padding:12px 18px;z-index:999}
-.hu-skip:focus{left:12px;top:12px}
+.ha-wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gut)}
+.ha-skip{position:absolute;left:-9999px;background:var(--pearl);color:var(--void);padding:12px 20px;z-index:999;border-radius:var(--r-sm)}
+.ha-skip:focus{left:16px;top:16px}
 
-/* ---------- Typografie ---------- */
-.hu-h1,.hu-h2,.hu-h3{
-  font-family:var(--display);font-weight:800;
-  font-stretch:118%;letter-spacing:-.02em;line-height:.98;
-  text-wrap:balance;margin:0;
+/* ───────── Typografie ───────── */
+.ha-d1,.ha-d2,.ha-d3{
+  font-family:var(--sans);font-weight:600;
+  letter-spacing:-.035em;line-height:1.02;margin:0;text-wrap:balance;
 }
-.hu-h1{font-size:clamp(2.9rem,8.5vw,6.4rem);text-transform:uppercase}
-.hu-h2{font-size:clamp(2rem,4.6vw,3.4rem);text-transform:uppercase}
-.hu-h3{font-size:clamp(1.15rem,2vw,1.45rem);font-weight:700;font-stretch:110%;text-transform:none;letter-spacing:-.01em}
-.hu-lead{font-size:clamp(1.05rem,1.7vw,1.28rem);color:var(--ink-70);max-width:56ch;margin:0}
-.hu-eyebrow{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--ink-45);margin:0 0 18px;
-  display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+.ha-d1{font-size:clamp(2.7rem,6.6vw,5.1rem);letter-spacing:-.042em}
+.ha-d2{font-size:clamp(2rem,4vw,3.15rem)}
+.ha-d3{font-size:clamp(1.2rem,1.9vw,1.55rem);letter-spacing:-.025em;line-height:1.15}
+.ha-em{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.ha-lead{font-size:clamp(1.05rem,1.5vw,1.24rem);line-height:1.55;color:var(--silver);max-width:54ch;margin:0}
+.ha-label{
+  font-family:var(--sans);font-size:.7rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--mist);
+  margin:0 0 22px;display:flex;align-items:center;gap:12px;
 }
-.hu-eyebrow::before{content:"";width:26px;height:var(--rail);background:var(--gold);flex:none}
+.ha-label::before{content:"";width:22px;height:1px;background:var(--champagne);flex:none}
+.ha-muted{color:var(--mist)}
 
-/* ---------- Signature: Belt Rail ---------- */
-.hu-rail{
-  position:fixed;inset:0 0 auto 0;height:var(--rail);z-index:120;
-  background:var(--tatami);
+/* ───────── Header ───────── */
+.ha-head{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  transition:background .4s var(--ease),border-color .4s var(--ease),backdrop-filter .4s;
+  border-bottom:1px solid transparent;
 }
-.hu-rail__fill{
-  height:100%;width:0%;
-  background:linear-gradient(90deg,
-    var(--belt-white) 0%, var(--belt-white) 14%,
-    var(--belt-blue) 22%, var(--belt-blue) 40%,
-    var(--belt-purple) 48%, var(--belt-purple) 64%,
-    var(--belt-brown) 72%, var(--belt-brown) 84%,
-    var(--belt-black) 92%);
-  background-size:100vw 100%;background-attachment:fixed;
-  transition:width .08s linear;
+.ha-head.is-stuck{background:rgba(11,12,14,.72);backdrop-filter:saturate(160%) blur(20px);border-bottom-color:var(--line)}
+.ha-head__in{display:flex;align-items:center;gap:32px;height:72px}
+.ha-logo{
+  font-family:var(--sans);font-weight:600;font-size:.98rem;letter-spacing:-.01em;
+  text-decoration:none;margin-right:auto;display:flex;align-items:baseline;gap:10px;
 }
-/* Gürtel-Marker vor jeder Sektion */
-.hu-belt{display:flex;align-items:center;gap:4px;margin-bottom:22px}
-.hu-belt__band{width:52px;height:var(--rail);background:var(--belt-black)}
-.hu-belt__stripe{width:6px;height:var(--rail);background:var(--gold)}
-.hu-belt--white .hu-belt__band{background:#C9CABF}
-.hu-belt--blue  .hu-belt__band{background:var(--belt-blue)}
-.hu-belt--purple .hu-belt__band{background:var(--belt-purple)}
-.hu-belt--brown .hu-belt__band{background:var(--belt-brown)}
-
-/* ---------- Header ---------- */
-.hu-head{
-  position:sticky;top:var(--rail);z-index:110;
-  background:rgba(240,241,236,.86);backdrop-filter:blur(14px);
-  border-bottom:1px solid transparent;transition:border-color .25s,background .25s;
-}
-.hu-head.is-stuck{border-bottom-color:var(--tatami)}
-.hu-head__in{display:flex;align-items:center;gap:24px;height:74px}
-.hu-logo{
-  font-family:var(--display);font-weight:800;font-stretch:118%;
-  font-size:1.02rem;letter-spacing:.02em;text-transform:uppercase;
-  text-decoration:none;margin-right:auto;line-height:1.05;
-}
-.hu-logo span{display:block;font-family:var(--mono);font-size:.6rem;font-weight:500;
-  letter-spacing:.2em;color:var(--ink-45);text-transform:uppercase;margin-top:3px}
-.hu-nav{display:flex;gap:26px;align-items:center}
-.hu-nav a{
-  text-decoration:none;font-size:.93rem;font-weight:500;padding:6px 0;
-  border-bottom:2px solid transparent;transition:border-color .2s;
-}
-.hu-nav a:hover{border-bottom-color:var(--gold)}
-.hu-burger{display:none;background:none;border:1px solid var(--tatami);
-  border-radius:var(--r);padding:9px 13px;font-family:var(--mono);font-size:.72rem;
-  letter-spacing:.14em;text-transform:uppercase;cursor:pointer}
-
-/* ---------- Buttons ---------- */
-.hu-btn{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--display);font-weight:700;font-stretch:110%;
-  font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;
-  padding:15px 26px;border-radius:var(--r);text-decoration:none;
-  border:2px solid var(--ink);background:var(--ink);color:var(--chalk);
-  transition:transform .18s var(--ease),background .18s,color .18s;
-  cursor:pointer;
-}
-.hu-btn:hover{transform:translateY(-2px);background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.hu-btn--ghost{background:transparent;color:var(--ink)}
-.hu-btn--ghost:hover{background:var(--ink);border-color:var(--ink);color:var(--chalk)}
-.hu-btn--sm{padding:11px 18px;font-size:.78rem}
-.hu-btn__arrow{transition:transform .18s var(--ease)}
-.hu-btn:hover .hu-btn__arrow{transform:translateX(4px)}
-
-/* ---------- Hero ---------- */
-.hu-hero{padding:clamp(48px,7vw,88px) 0 clamp(40px,5vw,64px)}
-.hu-hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center}
-.hu-hero__claim{margin:0 0 22px}
-.hu-hero__claim em{font-style:normal;color:var(--gold);display:block}
-.hu-hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin:32px 0 0}
-.hu-hero__trust{
-  display:flex;align-items:center;gap:14px;margin-top:28px;
-  font-size:.88rem;color:var(--ink-70);flex-wrap:wrap;
-}
-.hu-stars{color:var(--gold);letter-spacing:2px;font-size:.95rem}
-.hu-hero__media{position:relative}
-.hu-hero__media img{
-  width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r);
-  filter:saturate(.92) contrast(1.04);
-}
-.hu-hero__belts{position:absolute;left:0;bottom:-1px;display:flex;width:100%;height:12px}
-.hu-hero__belts span{flex:1}
-.hu-hero__badge{
-  position:absolute;top:18px;left:18px;background:var(--chalk);
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
-  text-transform:uppercase;padding:8px 12px;border-radius:var(--r);
+.ha-logo small{font-family:var(--text);font-size:.68rem;letter-spacing:.14em;color:var(--mist);text-transform:uppercase;font-weight:400}
+.ha-nav{display:flex;align-items:center;gap:30px}
+.ha-nav a{text-decoration:none;font-size:.92rem;color:var(--silver);transition:color .25s}
+.ha-nav a:hover{color:var(--pearl)}
+.ha-burger{
+  display:none;background:none;border:1px solid var(--line-2);color:var(--pearl);
+  border-radius:100px;padding:8px 16px;font-size:.82rem;cursor:pointer;
 }
 
-/* ---------- Standort-Chips ---------- */
-.hu-chips{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--tatami);padding-top:24px;margin-top:8px}
-.hu-chip{
-  display:inline-flex;align-items:baseline;gap:8px;text-decoration:none;
-  border:1px solid var(--tatami);border-radius:100px;padding:9px 16px;
-  font-size:.88rem;font-weight:500;background:var(--paper);
-  transition:border-color .2s,background .2s;
+/* ───────── Buttons ───────── */
+.ha-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--sans);font-size:.92rem;font-weight:500;letter-spacing:-.01em;
+  padding:13px 24px;border-radius:100px;text-decoration:none;cursor:pointer;
+  background:var(--pearl);color:var(--void);border:1px solid var(--pearl);
+  transition:transform .35s var(--ease),background .3s,border-color .3s,color .3s,opacity .3s;
 }
-.hu-chip:hover{border-color:var(--ink);background:var(--ink);color:var(--chalk)}
-.hu-chip b{font-family:var(--mono);font-size:.7rem;font-weight:500;letter-spacing:.1em;color:var(--ink-45)}
-.hu-chip:hover b{color:var(--gold)}
+.ha-btn:hover{transform:translateY(-1px);background:#fff;border-color:#fff}
+.ha-btn--quiet{background:transparent;color:var(--pearl);border-color:var(--line-2)}
+.ha-btn--quiet:hover{background:rgba(255,255,255,.06);border-color:var(--line-2);color:var(--pearl)}
+.ha-btn--sm{padding:9px 18px;font-size:.85rem}
+.ha-btn--on-light{background:var(--void);color:var(--pearl);border-color:var(--void)}
+.ha-btn--on-light:hover{background:#000;border-color:#000}
+.ha-btn--quiet-light{background:transparent;color:var(--void);border-color:var(--line-dark)}
+.ha-btn--quiet-light:hover{background:rgba(11,12,14,.05);color:var(--void)}
+.ha-arrow{transition:transform .35s var(--ease);display:inline-block}
+.ha-btn:hover .ha-arrow{transform:translateX(3px)}
 
-/* ---------- Sektionen ---------- */
-.hu-sec{padding:clamp(64px,9vw,120px) 0}
-.hu-sec--dark{background:var(--ink);color:var(--chalk)}
-.hu-sec--dark .hu-lead{color:#A8ADB5}
-.hu-sec--dark .hu-eyebrow{color:#8A9099}
-.hu-sec--paper{background:var(--paper)}
-.hu-sec__head{max-width:62ch;margin-bottom:clamp(36px,5vw,56px)}
-
-/* ---------- Schritte ---------- */
-.hu-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--tatami)}
-.hu-sec--dark .hu-steps{background:#2A2E35}
-.hu-step{background:var(--chalk);padding:clamp(24px,3vw,36px)}
-.hu-sec--dark .hu-step{background:var(--ink)}
-.hu-step__n{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;
-  color:var(--gold);margin-bottom:16px;display:block;
+/* ───────── Hero ───────── */
+.ha-hero{position:relative;min-height:min(94vh,880px);display:flex;align-items:flex-end;padding-bottom:clamp(48px,7vh,88px);overflow:hidden}
+.ha-hero__bg{position:absolute;inset:0;z-index:0}
+.ha-hero__bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.9) contrast(1.08) brightness(.62);transform:scale(1.06)}
+.ha-hero__veil{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to top,rgba(11,12,14,.97) 6%,rgba(11,12,14,.55) 44%,rgba(11,12,14,.72) 100%),
+    radial-gradient(120% 80% at 15% 90%,rgba(11,12,14,.85),transparent 60%);
 }
-.hu-step p{margin:10px 0 0;color:var(--ink-70);font-size:.98rem}
-.hu-sec--dark .hu-step p{color:#A8ADB5}
-
-/* ---------- Disziplinen ---------- */
-.hu-disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
-.hu-card{
-  position:relative;background:var(--paper);border:1px solid var(--tatami);
-  border-radius:var(--r);overflow:hidden;text-decoration:none;display:flex;flex-direction:column;
-  transition:transform .22s var(--ease),border-color .22s;
+.ha-hero__in{position:relative;z-index:2;width:100%}
+.ha-hero__claim{max-width:15ch;margin:0 0 26px}
+.ha-hero__cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}
+.ha-hero__foot{
+  display:flex;gap:clamp(20px,4vw,56px);flex-wrap:wrap;align-items:center;
+  margin-top:clamp(36px,6vh,64px);padding-top:26px;border-top:1px solid var(--line);
 }
-.hu-card:hover{transform:translateY(-4px);border-color:var(--ink)}
-.hu-card__bar{height:var(--rail);background:var(--ink)}
-.hu-card__img{aspect-ratio:16/10;object-fit:cover;width:100%;filter:saturate(.9)}
-.hu-card__body{padding:22px 22px 26px;flex:1;display:flex;flex-direction:column}
-.hu-card__meta{
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-45);margin:0 0 10px;
-}
-.hu-card p{margin:8px 0 0;color:var(--ink-70);font-size:.95rem}
-.hu-card__go{
-  margin-top:18px;font-family:var(--display);font-weight:700;font-size:.82rem;
-  letter-spacing:.05em;text-transform:uppercase;display:inline-flex;gap:8px;align-items:center;
-}
-.hu-card__go span{transition:transform .18s var(--ease)}
-.hu-card:hover .hu-card__go span{transform:translateX(4px)}
+.ha-fact{display:flex;flex-direction:column;gap:2px}
+.ha-fact b{font-family:var(--sans);font-size:1.35rem;font-weight:600;letter-spacing:-.03em}
+.ha-fact span{font-size:.78rem;color:var(--mist);letter-spacing:.04em}
 
-/* ---------- Stundenplan ---------- */
-.hu-tabs{display:flex;gap:2px;flex-wrap:wrap;margin-bottom:2px}
-.hu-tab{
-  font-family:var(--display);font-weight:700;font-stretch:110%;font-size:.85rem;
-  letter-spacing:.04em;text-transform:uppercase;
-  padding:14px 20px;border:0;background:#22262D;color:#9AA0A9;cursor:pointer;
-  transition:background .2s,color .2s;
+/* ───────── Live-Leiste ───────── */
+.ha-live{border-bottom:1px solid var(--line);background:var(--graphite)}
+.ha-live__in{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:18px 0;font-size:.9rem}
+.ha-dot{width:6px;height:6px;border-radius:50%;background:var(--champagne);flex:none;position:relative}
+.ha-dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--champagne);opacity:.35;animation:ha-pulse 2.6s var(--ease) infinite}
+@keyframes ha-pulse{0%{transform:scale(.6);opacity:.5}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+.ha-live__txt{color:var(--silver)}
+.ha-live__txt b{color:var(--pearl);font-weight:500}
+.ha-live__geo{margin-left:auto;background:none;border:0;color:var(--champagne);cursor:pointer;font-size:.86rem;padding:4px 0;border-bottom:1px solid transparent;transition:border-color .25s}
+.ha-live__geo:hover{border-bottom-color:var(--champagne)}
+
+/* ───────── Sektionen ───────── */
+.ha-sec{padding:clamp(76px,10vw,150px) 0}
+.ha-sec--light{background:var(--bone);color:var(--void)}
+.ha-sec--light .ha-lead{color:#4B5058}
+.ha-sec--light .ha-label{color:#6E747C}
+.ha-sec--light .ha-muted{color:#6E747C}
+.ha-sec--panel{background:var(--graphite)}
+.ha-sec__head{max-width:60ch;margin-bottom:clamp(44px,6vw,72px)}
+.ha-sec__head .ha-lead{margin-top:22px}
+
+/* ───────── Manifest / Zahlen ───────── */
+.ha-mani{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,6vw,88px);align-items:center}
+.ha-mani__img{border-radius:var(--r);overflow:hidden;position:relative}
+.ha-mani__img img{aspect-ratio:4/5;object-fit:cover;width:100%;filter:grayscale(1) contrast(1.06);transition:filter .8s var(--ease),transform 1.2s var(--ease)}
+.ha-mani__img:hover img{filter:grayscale(.15) contrast(1.02);transform:scale(1.02)}
+.ha-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-dark);margin-top:44px;border-top:1px solid var(--line-dark);border-bottom:1px solid var(--line-dark)}
+.ha-stat{background:var(--bone);padding:24px 18px 24px 0}
+.ha-stat b{display:block;font-family:var(--sans);font-size:clamp(1.7rem,3vw,2.4rem);font-weight:600;letter-spacing:-.04em;line-height:1}
+.ha-stat span{font-size:.8rem;color:#6E747C;display:block;margin-top:8px;letter-spacing:.02em}
+
+/* ───────── Disziplinen ───────── */
+.ha-disc{display:grid;grid-template-columns:repeat(auto-fit,minmax(288px,1fr));gap:clamp(12px,1.4vw,18px)}
+.ha-tile{
+  position:relative;border-radius:var(--r);overflow:hidden;text-decoration:none;
+  min-height:clamp(340px,42vw,440px);display:flex;flex-direction:column;justify-content:flex-end;
+  padding:28px;isolation:isolate;
 }
-.hu-tab[aria-selected="true"]{background:var(--gold);color:var(--ink)}
-.hu-tab:hover:not([aria-selected="true"]){background:#2E333B;color:var(--chalk)}
-.hu-filters{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 26px}
-.hu-filter{
-  font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
-  padding:8px 14px;border-radius:100px;border:1px solid #3A3F47;background:transparent;
-  color:#A8ADB5;cursor:pointer;transition:.2s;
+.ha-tile img{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) contrast(1.05) brightness(.72);transition:transform 1.1s var(--ease),filter .8s var(--ease)}
+.ha-tile::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,rgba(11,12,14,.92) 8%,rgba(11,12,14,.28) 55%,rgba(11,12,14,.42) 100%);
+  transition:opacity .6s var(--ease)}
+.ha-tile:hover img{transform:scale(1.045);filter:grayscale(.25) contrast(1.02) brightness(.68)}
+.ha-tile__meta{font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;color:var(--champagne);margin:0 0 12px}
+.ha-tile p{color:var(--silver);font-size:.95rem;margin:10px 0 0;max-width:34ch}
+.ha-tile__go{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:var(--sans);font-size:.88rem;font-weight:500}
+.ha-tile:hover .ha-arrow{transform:translateX(3px)}
+
+/* ───────── Kursfinder ───────── */
+.ha-finder{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--slate)}
+.ha-finder__ctrl{padding:clamp(22px,3vw,32px);border-bottom:1px solid var(--line);display:grid;gap:22px}
+.ha-fgroup{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap}
+.ha-fgroup__lbl{font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--mist);width:84px;flex:none;padding-top:6px}
+.ha-fopts{display:flex;gap:7px;flex-wrap:wrap;flex:1}
+.ha-pill{
+  border:1px solid var(--line-2);background:transparent;color:var(--silver);
+  border-radius:100px;padding:7px 15px;font-size:.86rem;cursor:pointer;
+  transition:background .25s,color .25s,border-color .25s;white-space:nowrap;
 }
-.hu-filter[aria-pressed="true"]{background:var(--chalk);color:var(--ink);border-color:var(--chalk)}
-.hu-week{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;background:#2A2E35;border:1px solid #2A2E35}
-.hu-day{background:var(--ink);padding:16px 12px;min-height:180px}
-.hu-day__name{
-  font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  color:#8A9099;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #2A2E35;
+.ha-pill:hover{border-color:rgba(255,255,255,.32);color:var(--pearl)}
+.ha-pill[aria-pressed="true"]{background:var(--pearl);color:var(--void);border-color:var(--pearl)}
+.ha-finder__out{max-height:520px;overflow-y:auto}
+.ha-res{
+  display:grid;grid-template-columns:132px 92px 1fr auto;gap:20px;align-items:center;
+  padding:18px clamp(22px,3vw,32px);border-bottom:1px solid var(--line);
+  transition:background .25s;
 }
-.hu-slot{display:block;padding:9px 0;border-bottom:1px solid #22262D}
-.hu-slot:last-child{border-bottom:0}
-.hu-slot__t{font-family:var(--mono);font-size:.78rem;color:var(--gold);font-variant-numeric:tabular-nums}
-.hu-slot__n{font-size:.86rem;font-weight:500;margin-top:2px;line-height:1.3}
-.hu-slot__lvl{font-size:.74rem;color:#8A9099;margin-top:1px}
-.hu-slot[hidden]{display:none}
-.hu-day__empty{color:#5C626B;font-size:.8rem;font-family:var(--mono)}
-.hu-plan__note{margin-top:20px;font-size:.85rem;color:#8A9099}
+.ha-res:last-child{border-bottom:0}
+.ha-res:hover{background:rgba(255,255,255,.025)}
+.ha-res__date{font-size:.86rem;color:var(--silver)}
+.ha-res__date b{display:block;color:var(--pearl);font-weight:500}
+.ha-res__time{font-family:var(--sans);font-size:1.02rem;font-weight:500;letter-spacing:-.02em}
+.ha-res__time span{display:block;font-family:var(--text);font-size:.76rem;color:var(--mist);font-weight:400;letter-spacing:0}
+.ha-res__name{font-family:var(--sans);font-size:1rem;font-weight:500;letter-spacing:-.02em}
+.ha-res__sub{font-size:.82rem;color:var(--mist);margin-top:2px}
+.ha-res__sub em{font-style:normal;color:var(--champagne)}
+.ha-empty{padding:52px 32px;text-align:center;color:var(--mist)}
+.ha-finder__foot{padding:16px clamp(22px,3vw,32px);font-size:.82rem;color:var(--mist);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;background:var(--graphite)}
 
-/* ---------- Preise ---------- */
-.hu-prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-.hu-price{border:1px solid var(--tatami);border-radius:var(--r);padding:28px;background:var(--paper);display:flex;flex-direction:column}
-.hu-price--hero{border:2px solid var(--ink);background:var(--chalk);position:relative}
-.hu-price__tag{
-  position:absolute;top:-11px;left:24px;background:var(--gold);color:var(--ink);
-  font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;
+/* ───────── Ablauf ───────── */
+.ha-path{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.ha-node{background:var(--void);padding:clamp(24px,2.6vw,34px) clamp(20px,2vw,28px)}
+.ha-node__k{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--champagne);display:block;margin-bottom:18px}
+.ha-node p{color:var(--mist);font-size:.94rem;margin:10px 0 0}
+
+/* ───────── Standorte ───────── */
+.ha-locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:1px;background:var(--line-dark);border-block:1px solid var(--line-dark)}
+.ha-loc{background:var(--bone);padding:clamp(26px,3vw,36px);display:flex;flex-direction:column}
+.ha-loc__dist{font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:#8A6F41;min-height:1.2em;margin-bottom:10px}
+.ha-loc address{font-style:normal;color:#4B5058;font-size:.95rem;margin:14px 0 18px;line-height:1.55}
+.ha-loc__list{list-style:none;padding:0;margin:0 0 26px;flex:1;font-size:.88rem;color:#6E747C}
+.ha-loc__list li{padding:7px 0;border-top:1px solid var(--line-dark)}
+.ha-loc__act{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ───────── Preise ───────── */
+.ha-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:clamp(12px,1.4vw,18px)}
+.ha-plan{border:1px solid var(--line);border-radius:var(--r);padding:clamp(26px,3vw,34px);display:flex;flex-direction:column;background:var(--graphite);transition:border-color .35s}
+.ha-plan:hover{border-color:var(--line-2)}
+.ha-plan--focus{border-color:var(--champagne);background:var(--slate);position:relative}
+.ha-plan__tag{position:absolute;top:20px;right:22px;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;color:var(--champagne)}
+.ha-plan__price{font-family:var(--sans);font-size:2.6rem;font-weight:600;letter-spacing:-.045em;line-height:1;margin:20px 0 6px}
+.ha-plan__price small{font-family:var(--text);font-size:.86rem;font-weight:400;color:var(--mist);letter-spacing:0}
+.ha-plan ul{list-style:none;padding:0;margin:22px 0 28px;flex:1;font-size:.92rem;color:var(--silver)}
+.ha-plan li{padding:9px 0;border-top:1px solid var(--line)}
+.ha-plan__note{font-size:.82rem;color:var(--mist);margin-top:26px;text-align:center}
+
+/* ───────── Team ───────── */
+.ha-team{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:clamp(14px,2vw,26px)}
+.ha-coach__img{border-radius:var(--r);overflow:hidden;margin-bottom:20px}
+.ha-coach__img img{aspect-ratio:3/4;object-fit:cover;width:100%;filter:grayscale(1) contrast(1.05);transition:filter .8s var(--ease),transform 1.2s var(--ease)}
+.ha-coach:hover .ha-coach__img img{filter:grayscale(.1);transform:scale(1.03)}
+.ha-coach__role{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--champagne);margin:6px 0 0}
+.ha-coach p{font-size:.92rem;color:var(--mist);margin:12px 0 0}
+
+/* ───────── Stimmen ───────── */
+.ha-quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(12px,1.4vw,18px)}
+.ha-quote{border:1px solid var(--line-dark);border-radius:var(--r);padding:clamp(26px,3vw,34px);margin:0;background:#F5F5F3;display:flex;flex-direction:column}
+.ha-quote blockquote{margin:0;font-family:var(--sans);font-size:1.05rem;font-weight:400;letter-spacing:-.018em;line-height:1.45;flex:1}
+.ha-quote figcaption{font-size:.8rem;color:#6E747C;margin-top:22px;letter-spacing:.04em}
+.ha-rating{display:flex;align-items:baseline;gap:12px;margin-bottom:26px}
+.ha-rating b{font-family:var(--sans);font-size:2rem;font-weight:600;letter-spacing:-.04em;line-height:1}
+.ha-rating span{font-size:.86rem;color:#6E747C}
+
+/* ───────── FAQ ───────── */
+.ha-faq{max-width:840px;border-top:1px solid var(--line)}
+.ha-faq details{border-bottom:1px solid var(--line)}
+.ha-faq summary{
+  cursor:pointer;list-style:none;padding:24px 46px 24px 0;position:relative;
+  font-family:var(--sans);font-size:1.06rem;font-weight:500;letter-spacing:-.02em;
+  transition:color .25s;
 }
-.hu-price__val{font-family:var(--display);font-weight:800;font-stretch:115%;font-size:2.6rem;line-height:1;margin:14px 0 4px}
-.hu-price__val small{font-family:var(--body);font-weight:500;font-size:.9rem;color:var(--ink-45)}
-.hu-price ul{list-style:none;padding:0;margin:18px 0 24px;font-size:.94rem;color:var(--ink-70);flex:1}
-.hu-price li{padding-left:22px;position:relative;margin-bottom:9px}
-.hu-price li::before{content:"";position:absolute;left:0;top:9px;width:10px;height:2px;background:var(--gold)}
+.ha-faq summary::-webkit-details-marker{display:none}
+.ha-faq summary:hover{color:var(--champagne)}
+.ha-faq summary::after,.ha-faq summary::before{content:"";position:absolute;right:4px;top:50%;background:currentColor;transition:transform .4s var(--ease),opacity .3s}
+.ha-faq summary::after{width:13px;height:1px;margin-top:0}
+.ha-faq summary::before{width:1px;height:13px;right:10px;margin-top:-6px}
+.ha-faq details[open] summary::before{transform:scaleY(0);opacity:0}
+.ha-faq p{margin:0 0 26px;color:var(--mist);max-width:68ch;font-size:.98rem}
 
-/* ---------- App ---------- */
-.hu-app{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center}
-.hu-app__list{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:2px;background:#2A2E35;border:1px solid #2A2E35}
-.hu-app__list li{background:var(--ink);padding:16px 18px;display:flex;gap:14px;align-items:baseline}
-.hu-app__list b{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;color:var(--gold);flex:none;width:26px}
-.hu-app__list span{font-size:.95rem;color:#C5C9CF}
-.hu-app__visual{
-  aspect-ratio:1/1;border:1px solid #2A2E35;border-radius:var(--r);
-  display:flex;align-items:center;justify-content:center;padding:40px;
-  background:radial-gradient(circle at 50% 30%,#22262D,var(--ink) 70%);
+/* ───────── Anfrage ───────── */
+.ha-req{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(32px,5vw,80px);align-items:start}
+.ha-picked{
+  border:1px solid var(--champagne);border-radius:var(--r-sm);padding:16px 18px;
+  margin-bottom:22px;font-size:.9rem;display:none;background:rgba(198,174,135,.07);
 }
-.hu-beltprog{width:100%;display:grid;gap:14px}
-.hu-beltprog__row{display:flex;align-items:center;gap:14px}
-.hu-beltprog__bar{height:16px;border-radius:2px;flex:1;position:relative;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;gap:3px}
-.hu-beltprog__bar i{width:3px;height:9px;background:rgba(255,255,255,.55);display:block}
-.hu-beltprog__lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#8A9099;width:74px;flex:none}
-.hu-beltprog__row--now .hu-beltprog__lbl{color:var(--gold)}
-
-/* ---------- Team ---------- */
-.hu-team{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.hu-coach img{aspect-ratio:4/5;object-fit:cover;width:100%;border-radius:var(--r);filter:saturate(.9)}
-.hu-coach h3{margin:16px 0 2px}
-.hu-coach__role{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-45)}
-.hu-coach p{font-size:.93rem;color:var(--ink-70);margin:10px 0 0}
-
-/* ---------- Bewertungen ---------- */
-.hu-revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
-.hu-rev{background:var(--paper);border:1px solid var(--tatami);border-radius:var(--r);padding:26px}
-.hu-rev blockquote{margin:12px 0 18px;font-size:1rem;line-height:1.55}
-.hu-rev figcaption{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-45)}
-
-/* ---------- Standorte ---------- */
-.hu-locs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-.hu-loc{border:1px solid var(--tatami);border-radius:var(--r);padding:26px;background:var(--paper);display:flex;flex-direction:column}
-.hu-loc address{font-style:normal;color:var(--ink-70);font-size:.95rem;margin:10px 0 16px;flex:1}
-.hu-loc__tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.hu-loc__tags span{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid var(--tatami);padding:4px 8px;border-radius:100px;color:var(--ink-45)}
-
-/* ---------- FAQ ---------- */
-.hu-faq{max-width:820px}
-.hu-faq details{border-bottom:1px solid var(--tatami)}
-.hu-faq summary{
-  cursor:pointer;list-style:none;padding:22px 40px 22px 0;position:relative;
-  font-family:var(--display);font-weight:700;font-stretch:108%;font-size:1.05rem;
+.ha-picked.is-on{display:block}
+.ha-picked b{display:block;font-family:var(--sans);font-weight:500;margin-bottom:2px}
+.ha-picked button{background:none;border:0;color:var(--champagne);cursor:pointer;font-size:.82rem;padding:0;margin-top:8px;text-decoration:underline;text-underline-offset:3px}
+.ha-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ha-field{display:flex;flex-direction:column;gap:8px;font-size:.8rem;color:var(--mist);letter-spacing:.02em}
+.ha-field--full{grid-column:1/-1}
+.ha-field input,.ha-field select{
+  font:inherit;font-size:1rem;color:var(--pearl);padding:14px 16px;
+  background:var(--slate);border:1px solid var(--line);border-radius:var(--r-sm);
+  width:100%;transition:border-color .25s,background .25s;appearance:none;
 }
-.hu-faq summary::-webkit-details-marker{display:none}
-.hu-faq summary::after{
-  content:"";position:absolute;right:6px;top:50%;width:12px;height:2px;background:var(--ink);
-}
-.hu-faq summary::before{
-  content:"";position:absolute;right:11px;top:50%;width:2px;height:12px;margin-top:-5px;
-  background:var(--ink);transition:transform .22s var(--ease);
-}
-.hu-faq details[open] summary::before{transform:scaleY(0)}
-.hu-faq p{margin:0 0 24px;color:var(--ink-70);max-width:68ch}
+.ha-field select{background-image:linear-gradient(45deg,transparent 50%,var(--mist) 50%),linear-gradient(135deg,var(--mist) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 22px,calc(100% - 14px) 22px;background-size:6px 6px;background-repeat:no-repeat}
+.ha-field input:focus,.ha-field select:focus{border-color:var(--line-2);background:var(--slate-2);outline:none}
+.ha-check{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start;font-size:.84rem;color:var(--mist);line-height:1.5}
+.ha-check input{width:17px;height:17px;flex:none;margin-top:3px;accent-color:var(--champagne)}
+.ha-check a{color:var(--silver)}
+.ha-form__end{grid-column:1/-1;display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.ha-form__end small{color:var(--mist);font-size:.8rem}
+.ha-contact{margin-top:38px;padding-top:26px;border-top:1px solid var(--line);font-size:.92rem;color:var(--mist);display:grid;gap:6px}
+.ha-contact a{color:var(--silver);text-decoration:none;transition:color .25s}
+.ha-contact a:hover{color:var(--champagne)}
 
-/* ---------- Formular ---------- */
-.hu-form{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.hu-form label{display:flex;flex-direction:column;gap:7px;font-size:.82rem;font-weight:500}
-.hu-form label.hu-full{grid-column:1/-1}
-.hu-form input,.hu-form select{
-  font:inherit;font-size:1rem;padding:13px 14px;border:1px solid var(--tatami);
-  border-radius:var(--r);background:var(--paper);color:var(--ink);width:100%;
-}
-.hu-form input:focus,.hu-form select:focus{border-color:var(--ink)}
-.hu-consent{grid-column:1/-1;display:flex;gap:11px;align-items:flex-start;font-size:.84rem;color:var(--ink-70);font-weight:400}
-.hu-consent input{width:auto;margin-top:3px;flex:none}
-.hu-form__foot{grid-column:1/-1;display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-top:6px}
-.hu-form__foot small{color:var(--ink-45);font-size:.8rem}
+/* ───────── Footer ───────── */
+.ha-foot{border-top:1px solid var(--line);padding:64px 0 34px;font-size:.9rem;color:var(--mist)}
+.ha-foot__grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;padding-bottom:44px}
+.ha-foot h4{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--silver);margin:0 0 18px;font-weight:500}
+.ha-foot ul{list-style:none;padding:0;margin:0}
+.ha-foot li{margin-bottom:10px}
+.ha-foot a{text-decoration:none;transition:color .25s}
+.ha-foot a:hover{color:var(--pearl)}
+.ha-foot__bar{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:26px;border-top:1px solid var(--line);font-size:.82rem}
 
-/* ---------- Footer ---------- */
-.hu-foot{background:var(--ink);color:#9AA0A9;padding:64px 0 32px;font-size:.9rem}
-.hu-foot__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;padding-bottom:40px;border-bottom:1px solid #2A2E35}
-.hu-foot h4{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--chalk);margin:0 0 16px;font-weight:500}
-.hu-foot ul{list-style:none;padding:0;margin:0}
-.hu-foot li{margin-bottom:9px}
-.hu-foot a{text-decoration:none}
-.hu-foot a:hover{color:var(--gold)}
-.hu-foot__bar{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:24px;font-size:.82rem}
+/* ───────── Reveal ───────── */
+.ha-r{opacity:0;transform:translateY(18px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.ha-r.is-in{opacity:1;transform:none}
+.ha-r[data-d="1"]{transition-delay:.08s}
+.ha-r[data-d="2"]{transition-delay:.16s}
+.ha-r[data-d="3"]{transition-delay:.24s}
 
-/* ---------- Scroll-Reveal ---------- */
-.hu-rev-in{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
-.hu-rev-in.is-in{opacity:1;transform:none}
-
-/* ---------- Responsive ---------- */
-@media (max-width:1000px){
-  .hu-hero__grid,.hu-app{grid-template-columns:1fr}
-  .hu-hero__media{order:-1;max-width:520px}
-  .hu-steps{grid-template-columns:1fr}
-  .hu-foot__grid{grid-template-columns:1fr 1fr}
-  .hu-week{grid-template-columns:1fr;border:0}
-  .hu-day{min-height:0}
-  .hu-day:has(.hu-day__empty){display:none}
+/* ───────── Responsive ───────── */
+@media (max-width:1080px){
+  .ha-mani,.ha-req{grid-template-columns:1fr}
+  .ha-mani__img{order:-1;max-width:520px}
+  .ha-path{grid-template-columns:1fr 1fr}
+  .ha-foot__grid{grid-template-columns:1fr 1fr}
+  .ha-res{grid-template-columns:1fr auto;gap:6px 18px}
+  .ha-res__date{grid-column:1;order:1}
+  .ha-res__time{grid-column:1;order:2}
+  .ha-res__body{grid-column:1;order:3}
+  .ha-res__act{grid-column:2;grid-row:1/4;order:4;align-self:center}
 }
 @media (max-width:760px){
-  .hu-nav{
-    position:fixed;inset:calc(var(--rail) + 74px) 0 auto 0;background:var(--chalk);
-    flex-direction:column;align-items:stretch;gap:0;padding:12px var(--gut) 24px;
-    border-bottom:1px solid var(--tatami);display:none;
+  body{font-size:16px}
+  .ha-nav{
+    position:fixed;inset:72px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;
+    background:rgba(11,12,14,.97);backdrop-filter:blur(24px);padding:10px var(--gut) 26px;
+    border-bottom:1px solid var(--line);display:none;
   }
-  .hu-nav.is-open{display:flex}
-  .hu-nav a{padding:14px 0;border-bottom:1px solid var(--tatami)}
-  .hu-nav .hu-btn{margin-top:14px;justify-content:center}
-  .hu-burger{display:block}
-  .hu-form{grid-template-columns:1fr}
-  .hu-foot__grid{grid-template-columns:1fr}
+  .ha-nav.is-open{display:flex}
+  .ha-nav a{padding:16px 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .ha-nav .ha-btn{margin-top:18px}
+  .ha-burger{display:block}
+  .ha-path,.ha-form{grid-template-columns:1fr}
+  .ha-stats{grid-template-columns:1fr;border-bottom:0}
+  .ha-stat{padding:18px 0;border-bottom:1px solid var(--line-dark)}
+  .ha-fgroup{gap:8px}
+  .ha-fgroup__lbl{width:100%}
+  .ha-foot__grid{grid-template-columns:1fr}
+  .ha-live__geo{margin-left:0}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
-  .hu-rev-in{opacity:1;transform:none}
+  .ha-r{opacity:1;transform:none}
 }
 </style>
 </head>
 <body>
 
-<a class="hu-skip" href="#main">Zum Inhalt springen</a>
+<a class="ha-skip" href="#main">Zum Inhalt springen</a>
 
-<!-- SIGNATURE: Gürtel-Fortschritt. Weiß → Blau → Lila → Braun → Schwarz. -->
-<div class="hu-rail" aria-hidden="true"><div class="hu-rail__fill" id="railFill"></div></div>
-
-<header class="hu-head" id="head">
-  <div class="hu-wrap hu-head__in">
-    <a class="hu-logo" href="/">Hutton Academy<span>Seit 2002</span></a>
-    <nav class="hu-nav" id="nav" aria-label="Hauptmenü">
-      <a href="#disziplinen">Training</a>
-      <a href="#stundenplan">Stundenplan</a>
-      <a href="#preise">Preise</a>
+<header class="ha-head" id="head">
+  <div class="ha-wrap ha-head__in">
+    <a class="ha-logo" href="/">Hutton Academy <small>München</small></a>
+    <nav class="ha-nav" id="nav" aria-label="Hauptmenü">
+      <a href="#disziplinen">Disziplinen</a>
+      <a href="#kursfinder">Kursfinder</a>
       <a href="#standorte">Standorte</a>
+      <a href="#beitrag">Beitrag</a>
       <a href="#team">Team</a>
-      <a class="hu-btn hu-btn--sm" href="#probetraining">Probetraining</a>
+      <a class="ha-btn ha-btn--sm" href="#anfrage">Probetraining</a>
     </nav>
-    <button class="hu-burger" id="burger" aria-expanded="false" aria-controls="nav">Menü</button>
+    <button class="ha-burger" id="burger" aria-expanded="false" aria-controls="nav">Menü</button>
   </div>
 </header>
 
 <main id="main">
 
-<!-- ============ HERO ============ -->
-<section class="hu-hero">
-  <div class="hu-wrap">
-    <div class="hu-hero__grid">
-      <div>
-        <p class="hu-eyebrow">München · Moosach · Augsburg · Geretsried</p>
-        <h1 class="hu-h1 hu-hero__claim">Technik schlägt<em>Kraft.</em></h1>
-        <p class="hu-lead">Brazilian Jiu-Jitsu, Krav Maga, Kickboxen und MMA an vier Standorten. Du lernst, wie du dich gegen jemanden behauptest, der größer und stärker ist als du — Schritt für Schritt, in einer Gruppe, die auf dich aufpasst.</p>
-        <div class="hu-hero__cta">
-          <a class="hu-btn" href="#probetraining">Erste Stunde kostenlos <span class="hu-btn__arrow">→</span></a>
-          <a class="hu-btn hu-btn--ghost" href="#stundenplan">Stundenplan ansehen</a>
-        </div>
-        <p class="hu-hero__trust">
-          <span class="hu-stars" aria-hidden="true">★★★★★</span>
-          <!-- TODO: echte Google-Zahlen der Hutton Academy eintragen -->
-          <span><strong>4,9 von 5</strong> aus 280 Google-Bewertungen</span>
-          <span aria-hidden="true">·</span>
-          <span>Kein Vertrag fürs Probetraining</span>
-        </p>
-      </div>
-      <div class="hu-hero__media">
-        <img src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-16-scaled-e1648134979614.jpg"
-             alt="Zwei Trainierende beim Brazilian Jiu-Jitsu auf der Matte der Hutton Academy" width="1500" height="1001">
-        <span class="hu-hero__badge">Schwabing · Hiltenspergerstr. 9</span>
-        <div class="hu-hero__belts" aria-hidden="true">
-          <span style="background:var(--belt-white)"></span>
-          <span style="background:var(--belt-blue)"></span>
-          <span style="background:var(--belt-purple)"></span>
-          <span style="background:var(--belt-brown)"></span>
-          <span style="background:var(--belt-black)"></span>
-        </div>
-      </div>
+<!-- ════════ HERO ════════ -->
+<section class="ha-hero">
+  <div class="ha-hero__bg">
+    <img src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-16-scaled-e1648134979614.jpg"
+         alt="Training auf der Matte der Hutton Academy" width="1500" height="1001" fetchpriority="high">
+  </div>
+  <div class="ha-hero__veil"></div>
+  <div class="ha-wrap ha-hero__in">
+    <p class="ha-label ha-r is-in">Kampfsportakademie seit 2002</p>
+    <h1 class="ha-d1 ha-hero__claim ha-r is-in" data-d="1">Technik, die den <span class="ha-em">Unterschied</span> ausgleicht.</h1>
+    <p class="ha-lead ha-r is-in" data-d="2">Brazilian Jiu-Jitsu, Krav Maga, Kickboxen und MMA — unterrichtet von Trainern, die selbst jede Woche auf der Matte stehen. An vier Standorten in und um München.</p>
+    <div class="ha-hero__cta ha-r is-in" data-d="3">
+      <a class="ha-btn" href="#kursfinder">Kurs finden <span class="ha-arrow">→</span></a>
+      <a class="ha-btn ha-btn--quiet" href="#anfrage">Probetraining sichern</a>
     </div>
-
-    <div class="hu-chips">
-      <a class="hu-chip" href="#standorte"><b>MUC</b> Schwabing</a>
-      <a class="hu-chip" href="#standorte"><b>MONA</b> Moosach</a>
-      <a class="hu-chip" href="#standorte"><b>AUG</b> Augsburg / Neusäß</a>
-      <a class="hu-chip" href="#standorte"><b>GER</b> Geretsried</a>
+    <div class="ha-hero__foot ha-r is-in" data-d="3">
+      <div class="ha-fact"><b>24</b><span>Jahre Akademie</span></div>
+      <div class="ha-fact"><b>4</b><span>Standorte</span></div>
+      <div class="ha-fact"><b>5</b><span>Disziplinen</span></div>
+      <!-- TODO: echte Google-Zahlen eintragen -->
+      <div class="ha-fact"><b>4,9</b><span>Google-Bewertung</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ SO FÄNGST DU AN ============ -->
-<section class="hu-sec hu-sec--paper" id="start">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <div class="hu-belt hu-belt--white"><span class="hu-belt__band"></span></div>
-      <h2 class="hu-h2">So fängst du an</h2>
-      <p class="hu-lead" style="margin-top:18px">Kein Vorwissen, keine Ausrüstung, keine Fitness nötig. Nur Sportsachen und etwas zu trinken. Beim BJJ leihen wir dir einen Anzug.</p>
+<!-- ════════ LIVE ════════ -->
+<div class="ha-live">
+  <div class="ha-wrap ha-live__in">
+    <span class="ha-dot" aria-hidden="true"></span>
+    <span class="ha-live__txt" id="liveTxt">Stundenplan wird geladen …</span>
+    <button class="ha-live__geo" id="geoBtn">Nächsten Standort finden</button>
+  </div>
+</div>
+
+<!-- ════════ MANIFEST ════════ -->
+<section class="ha-sec ha-sec--light" id="akademie">
+  <div class="ha-wrap ha-mani">
+    <div class="ha-r">
+      <p class="ha-label">Die Akademie</p>
+      <h2 class="ha-d2">Wir unterrichten seit 2002 dasselbe Prinzip.</h2>
+      <p class="ha-lead" style="margin-top:24px">Hans Hutton hat die erste Akademie für Brazilian Jiu-Jitsu in München gegründet. Was damals galt, gilt heute: Wer Hebel, Position und Timing beherrscht, braucht keine Kraft. Deshalb funktioniert unser Training für die 55-jährige Einsteigerin genauso wie für den Wettkämpfer.</p>
+      <p class="ha-lead" style="margin-top:18px">Vier Schulen, ein Lehrplan. Du lernst an jedem Standort dasselbe System, von Trainern, die alle im Haus ausgebildet wurden.</p>
+      <div class="ha-stats">
+        <div class="ha-stat"><b>2002</b><span>Gegründet in Schwabing</span></div>
+        <div class="ha-stat"><b>3–99</b><span>Jahre, alle Altersgruppen</span></div>
+        <div class="ha-stat"><b>0 €</b><span>Erste Stunde</span></div>
+      </div>
     </div>
-    <div class="hu-steps hu-rev-in">
-      <div class="hu-step">
-        <span class="hu-step__n">Schritt 01</span>
-        <h3 class="hu-h3">Formular ausfüllen</h3>
-        <p>Name, Kurs, Standort. Dauert eine Minute.</p>
-      </div>
-      <div class="hu-step">
-        <span class="hu-step__n">Schritt 02</span>
-        <h3 class="hu-h3">Wir rufen dich an</h3>
-        <p>Wir klären deine Fragen und finden einen Termin, der in deine Woche passt.</p>
-      </div>
-      <div class="hu-step">
-        <span class="hu-step__n">Schritt 03</span>
-        <h3 class="hu-h3">Du machst mit</h3>
-        <p>Eine ganze Stunde, kostenlos. Danach entscheidest du in Ruhe.</p>
-      </div>
+    <div class="ha-mani__img ha-r" data-d="1">
+      <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2020/06/Academy_2-e1648135126640.jpg"
+           alt="Trainingsfläche der Hutton Academy" width="1267" height="843">
     </div>
   </div>
 </section>
 
-<!-- ============ DISZIPLINEN ============ -->
-<section class="hu-sec" id="disziplinen">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <div class="hu-belt hu-belt--blue"><span class="hu-belt__band"></span><span class="hu-belt__stripe"></span></div>
-      <h2 class="hu-h2">Was du bei uns trainierst</h2>
-      <p class="hu-lead" style="margin-top:18px">Fünf Programme, ein Team. Viele unserer Mitglieder kombinieren zwei davon.</p>
+<!-- ════════ DISZIPLINEN ════════ -->
+<section class="ha-sec" id="disziplinen">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Programme</p>
+      <h2 class="ha-d2">Fünf Wege, dieselbe Halle.</h2>
+      <p class="ha-lead">Die meisten Mitglieder beginnen mit einer Disziplin und nehmen nach ein paar Monaten eine zweite dazu. Beides ist im Unlimited-Beitrag enthalten.</p>
     </div>
 
-    <div class="hu-disc hu-rev-in">
-      <a class="hu-card" href="/brazilian-jiu-jitsu/">
-        <div class="hu-card__bar" style="background:var(--belt-blue)"></div>
-        <img class="hu-card__img" loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-22-scaled-e1648134994912.jpg" alt="Bodenkampf-Training beim Brazilian Jiu-Jitsu" width="1500" height="1000">
-        <div class="hu-card__body">
-          <p class="hu-card__meta">Ab 14 Jahren · Gi &amp; No-Gi</p>
-          <h3 class="hu-h3">Brazilian Jiu-Jitsu</h3>
-          <p>Bodenkampf mit Hebeln, Würgern und Positionen. Der Sport, in dem Technik den Größenunterschied ausgleicht.</p>
-          <span class="hu-card__go">Mehr erfahren <span>→</span></span>
-        </div>
+    <div class="ha-disc">
+      <a class="ha-tile ha-r" href="/brazilian-jiu-jitsu/">
+        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-22-scaled-e1648134994912.jpg" alt="Brazilian Jiu-Jitsu Bodenkampf" width="1500" height="1000">
+        <p class="ha-tile__meta">Ab 14 · Gi &amp; No-Gi</p>
+        <h3 class="ha-d3">Brazilian Jiu-Jitsu</h3>
+        <p>Bodenkampf mit Hebeln, Würgern und Positionskontrolle. Unser Kernfach seit dem ersten Tag.</p>
+        <span class="ha-tile__go">Ansehen <span class="ha-arrow">→</span></span>
       </a>
 
-      <a class="hu-card" href="/krav-maga/">
-        <div class="hu-card__bar" style="background:#8C2F2F"></div>
-        <img class="hu-card__img" loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2022/03/Krav-Maga-2-e1648135007138.jpg" alt="Krav-Maga-Training mit Schlagpolstern" width="1500" height="1001">
-        <div class="hu-card__body">
-          <p class="hu-card__meta">Ab 16 Jahren · Selbstverteidigung</p>
-          <h3 class="hu-h3">Krav Maga</h3>
-          <p>Verteidigung für echte Alltagssituationen: aus dem Stand, gegen mehrere, ohne Regeln und ohne Ring.</p>
-          <span class="hu-card__go">Mehr erfahren <span>→</span></span>
-        </div>
+      <a class="ha-tile ha-r" data-d="1" href="/krav-maga/">
+        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2022/03/Krav-Maga-2-e1648135007138.jpg" alt="Krav Maga Selbstverteidigung" width="1500" height="1001">
+        <p class="ha-tile__meta">Ab 16 · Selbstverteidigung</p>
+        <h3 class="ha-d3">Krav Maga</h3>
+        <p>Für die Situationen, die es außerhalb der Halle gibt. Ohne Regeln, ohne Ring, ohne Vorwarnung.</p>
+        <span class="ha-tile__go">Ansehen <span class="ha-arrow">→</span></span>
       </a>
 
-      <a class="hu-card" href="/boxen-k1/">
-        <div class="hu-card__bar" style="background:var(--gold)"></div>
-        <img class="hu-card__img" loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton-Academy_6-e1648135080729.jpg" alt="Kickbox-Training in der Hutton Academy" width="1267" height="843">
-        <div class="hu-card__body">
-          <p class="hu-card__meta">Ab 14 Jahren · Kondition</p>
-          <h3 class="hu-h3">Kickboxen</h3>
-          <p>Schlagen, Treten, Bewegen. Das härteste Ganzkörper-Workout im Haus — und du lernst dabei etwas.</p>
-          <span class="hu-card__go">Mehr erfahren <span>→</span></span>
-        </div>
+      <a class="ha-tile ha-r" data-d="2" href="/boxen-k1/">
+        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton-Academy_6-e1648135080729.jpg" alt="Kickbox-Training" width="1267" height="843">
+        <p class="ha-tile__meta">Ab 14 · Kondition</p>
+        <h3 class="ha-d3">Kickboxen</h3>
+        <p>Schlagen, treten, bewegen. Das intensivste Ganzkörpertraining im Haus — mit Technik statt Geräten.</p>
+        <span class="ha-tile__go">Ansehen <span class="ha-arrow">→</span></span>
       </a>
 
-      <a class="hu-card" href="/mma/">
-        <div class="hu-card__bar" style="background:var(--belt-purple)"></div>
-        <img class="hu-card__img" loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2020/06/Academy_2-e1648135126640.jpg" alt="MMA-Training auf der Matte" width="1267" height="843">
-        <div class="hu-card__body">
-          <p class="hu-card__meta">Ab 16 Jahren · Fortgeschritten</p>
-          <h3 class="hu-h3">MMA</h3>
-          <p>Stand und Boden zusammengesetzt. Für alle, die wissen wollen, wie ihre Technik unter echtem Druck hält.</p>
-          <span class="hu-card__go">Mehr erfahren <span>→</span></span>
-        </div>
+      <a class="ha-tile ha-r" href="/mma/">
+        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-16-scaled-e1648134979614.jpg" alt="MMA-Training" width="1500" height="1001">
+        <p class="ha-tile__meta">Ab 16 · Fortgeschritten</p>
+        <h3 class="ha-d3">MMA</h3>
+        <p>Stand und Boden zusammengesetzt. Für alle, die wissen wollen, wie ihre Technik unter Druck hält.</p>
+        <span class="ha-tile__go">Ansehen <span class="ha-arrow">→</span></span>
       </a>
 
-      <a class="hu-card" href="/hero-kids-bjj/">
-        <div class="hu-card__bar" style="background:#2E7D5B"></div>
-        <img class="hu-card__img" loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton_Academy_M%C3%BCnchen-1024x576.jpg" alt="Kindertraining Hero Kids BJJ" width="1024" height="576">
-        <div class="hu-card__body">
-          <p class="hu-card__meta">3–14 Jahre · Drei Altersgruppen</p>
-          <h3 class="hu-h3">Hero Kids</h3>
-          <p>Minis, Kids und Teens trainieren getrennt. Sie lernen sich zu verteidigen — und was Respekt und Durchhalten heißt.</p>
-          <span class="hu-card__go">Mehr erfahren <span>→</span></span>
-        </div>
+      <a class="ha-tile ha-r" data-d="1" href="/hero-kids-bjj/">
+        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton_Academy_M%C3%BCnchen-1024x576.jpg" alt="Kindertraining Hero Kids" width="1024" height="576">
+        <p class="ha-tile__meta">3–14 Jahre · Drei Gruppen</p>
+        <h3 class="ha-d3">Hero Kids</h3>
+        <p>Minis, Kids und Teens trainieren getrennt. Sie lernen sich zu wehren — und was Respekt bedeutet.</p>
+        <span class="ha-tile__go">Ansehen <span class="ha-arrow">→</span></span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ============ STUNDENPLAN ============ -->
-<section class="hu-sec hu-sec--dark" id="stundenplan">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <div class="hu-belt hu-belt--purple"><span class="hu-belt__band"></span><span class="hu-belt__stripe"></span><span class="hu-belt__stripe"></span></div>
-      <h2 class="hu-h2">Stundenplan</h2>
-      <p class="hu-lead" style="margin-top:18px">Wähle deinen Standort und filtere nach Disziplin. Änderungen an Feiertagen kündigen wir in der App an.</p>
+<!-- ════════ KURSFINDER — SIGNATURE ════════ -->
+<section class="ha-sec ha-sec--panel" id="kursfinder">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Kursfinder</p>
+      <h2 class="ha-d2">Sag uns, wann du kannst.</h2>
+      <p class="ha-lead">Wir zeigen dir die nächsten passenden Termine aus dem laufenden Stundenplan — und du sicherst dir direkt einen davon als Probetraining. Kein Rückruf nötig.</p>
     </div>
 
-    <div class="hu-rev-in">
-      <div class="hu-tabs" role="tablist" aria-label="Standort wählen">
-        <button class="hu-tab" role="tab" aria-selected="true"  data-loc="muc">Schwabing</button>
-        <button class="hu-tab" role="tab" aria-selected="false" data-loc="mona">Moosach</button>
-        <button class="hu-tab" role="tab" aria-selected="false" data-loc="aug">Augsburg</button>
-        <button class="hu-tab" role="tab" aria-selected="false" data-loc="ger">Geretsried</button>
+    <div class="ha-finder ha-r" data-d="1">
+      <div class="ha-finder__ctrl">
+        <div class="ha-fgroup">
+          <span class="ha-fgroup__lbl" id="lblOrt">Standort</span>
+          <div class="ha-fopts" role="group" aria-labelledby="lblOrt" id="fOrt"></div>
+        </div>
+        <div class="ha-fgroup">
+          <span class="ha-fgroup__lbl" id="lblDis">Disziplin</span>
+          <div class="ha-fopts" role="group" aria-labelledby="lblDis" id="fDis"></div>
+        </div>
+        <div class="ha-fgroup">
+          <span class="ha-fgroup__lbl" id="lblTag">Wochentag</span>
+          <div class="ha-fopts" role="group" aria-labelledby="lblTag" id="fTag"></div>
+        </div>
+        <div class="ha-fgroup">
+          <span class="ha-fgroup__lbl" id="lblZeit">Tageszeit</span>
+          <div class="ha-fopts" role="group" aria-labelledby="lblZeit" id="fZeit"></div>
+        </div>
       </div>
 
-      <div class="hu-filters" role="group" aria-label="Nach Disziplin filtern">
-        <button class="hu-filter" aria-pressed="true"  data-f="all">Alle</button>
-        <button class="hu-filter" aria-pressed="false" data-f="BJJ">BJJ</button>
-        <button class="hu-filter" aria-pressed="false" data-f="Krav Maga">Krav Maga</button>
-        <button class="hu-filter" aria-pressed="false" data-f="Kickboxen">Kickboxen</button>
-        <button class="hu-filter" aria-pressed="false" data-f="MMA">MMA</button>
-        <button class="hu-filter" aria-pressed="false" data-f="Kids">Kids</button>
-      </div>
+      <div class="ha-finder__out" id="out" aria-live="polite"></div>
 
-      <div class="hu-week" id="week"></div>
-      <p class="hu-plan__note">Alle Kurse sind für Einsteiger offen, sofern nicht anders angegeben. Du bist unsicher, welche Stunde passt? Ruf an: <a href="tel:+4915560292365" style="color:var(--gold)">+49 155 60292365</a></p>
+      <div class="ha-finder__foot">
+        <span id="outCount"></span>
+        <span>Alle Zeiten für die kommenden 14 Tage · Feiertage ausgenommen</span>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PREISE ============ -->
-<section class="hu-sec" id="preise">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <div class="hu-belt hu-belt--brown"><span class="hu-belt__band"></span><span class="hu-belt__stripe"></span><span class="hu-belt__stripe"></span><span class="hu-belt__stripe"></span></div>
-      <h2 class="hu-h2">Was es kostet</h2>
-      <p class="hu-lead" style="margin-top:18px">Keine Aufnahmegebühr, keine versteckten Posten. Beitrag per SEPA-Lastschrift, monatlich.</p>
+<!-- ════════ ABLAUF ════════ -->
+<section class="ha-sec">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Dein Einstieg</p>
+      <h2 class="ha-d2">Was in den ersten vier Wochen passiert.</h2>
+      <p class="ha-lead">Damit du weißt, worauf du dich einlässt — und wann es anfängt, Spaß zu machen.</p>
+    </div>
+    <div class="ha-path ha-r" data-d="1">
+      <div class="ha-node">
+        <span class="ha-node__k">Stunde 1</span>
+        <h3 class="ha-d3">Du schaust dir alles an</h3>
+        <p>Ein Trainer nimmt dich in Empfang und stellt dir jemanden zur Seite. Du machst mit, so weit du willst.</p>
+      </div>
+      <div class="ha-node">
+        <span class="ha-node__k">Woche 1</span>
+        <h3 class="ha-d3">Fallen und aufstehen</h3>
+        <p>Zuerst lernst du, dich sicher zu bewegen. Alles Weitere baut darauf auf.</p>
+      </div>
+      <div class="ha-node">
+        <span class="ha-node__k">Woche 2–3</span>
+        <h3 class="ha-d3">Erste Techniken</h3>
+        <p>Du bekommst drei, vier Bewegungen, die du wirklich kannst — und merkst, dass sie funktionieren.</p>
+      </div>
+      <div class="ha-node">
+        <span class="ha-node__k">Woche 4</span>
+        <h3 class="ha-d3">Du gehörst dazu</h3>
+        <p>Du kennst die Namen, hast deine Trainingspartner und weißt, warum die Leute hier bleiben.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ STANDORTE ════════ -->
+<section class="ha-sec ha-sec--light" id="standorte">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Standorte</p>
+      <h2 class="ha-d2">Vier Hallen, ein Beitrag.</h2>
+      <p class="ha-lead">Mit der Unlimited-Mitgliedschaft trainierst du an allen vier — praktisch, wenn Arbeit und Wochenende an verschiedenen Orten stattfinden.</p>
+    </div>
+  </div>
+  <div class="ha-wrap">
+    <div class="ha-locs ha-r" data-d="1" id="locGrid">
+      <div class="ha-loc" data-lat="48.1560" data-lng="11.5655">
+        <p class="ha-loc__dist" data-dist></p>
+        <h3 class="ha-d3">München-Schwabing</h3>
+        <address>Hiltenspergerstraße 9<br>80798 München<br>Josephsplatz, U2</address>
+        <ul class="ha-loc__list">
+          <li>BJJ · Krav Maga · Kickboxen · MMA</li>
+          <li>Hero Kids, alle drei Gruppen</li>
+          <li>Umkleiden mit Duschen</li>
+        </ul>
+        <div class="ha-loc__act">
+          <a class="ha-btn ha-btn--on-light ha-btn--sm" href="#kursfinder" data-jump="muc">Kurse ansehen</a>
+          <a class="ha-btn ha-btn--quiet-light ha-btn--sm" href="https://maps.google.com/?q=Hiltenspergerstra%C3%9Fe+9,+80798+M%C3%BCnchen" target="_blank" rel="noopener">Route</a>
+        </div>
+      </div>
+
+      <div class="ha-loc" data-lat="48.1806" data-lng="11.5137">
+        <p class="ha-loc__dist" data-dist></p>
+        <h3 class="ha-d3">München-Moosach</h3>
+        <address>Pelkovenstraße 143–147<br>80992 München<br>Im MONA, neben dem OEZ</address>
+        <ul class="ha-loc__list">
+          <li>BJJ · Krav Maga · Kickboxen</li>
+          <li>Hero Minis und Teens</li>
+          <li>Parkhaus direkt im Haus</li>
+        </ul>
+        <div class="ha-loc__act">
+          <a class="ha-btn ha-btn--on-light ha-btn--sm" href="#kursfinder" data-jump="mona">Kurse ansehen</a>
+          <a class="ha-btn ha-btn--quiet-light ha-btn--sm" href="https://maps.google.com/?q=Pelkovenstra%C3%9Fe+143,+80992+M%C3%BCnchen" target="_blank" rel="noopener">Route</a>
+        </div>
+      </div>
+
+      <div class="ha-loc" data-lat="48.3811" data-lng="10.8281">
+        <p class="ha-loc__dist" data-dist></p>
+        <h3 class="ha-d3">Augsburg / Neusäß</h3>
+        <address>Ulmer Straße 2<br>86356 Neusäß<br>10 Minuten vom Zentrum</address>
+        <ul class="ha-loc__list">
+          <li>BJJ · Krav Maga</li>
+          <li>Hero Kids</li>
+          <li>Parkplätze vor der Tür</li>
+        </ul>
+        <div class="ha-loc__act">
+          <a class="ha-btn ha-btn--on-light ha-btn--sm" href="#kursfinder" data-jump="aug">Kurse ansehen</a>
+          <a class="ha-btn ha-btn--quiet-light ha-btn--sm" href="https://maps.google.com/?q=Ulmer+Stra%C3%9Fe+2,+86356+Neus%C3%A4%C3%9F" target="_blank" rel="noopener">Route</a>
+        </div>
+      </div>
+
+      <div class="ha-loc" data-lat="47.8583" data-lng="11.4756">
+        <p class="ha-loc__dist" data-dist></p>
+        <h3 class="ha-d3">Geretsried</h3>
+        <address>Sudetenstraße 49<br>82538 Geretsried<br>Im Umkreis Bad Tölz</address>
+        <ul class="ha-loc__list">
+          <li>BJJ · Kickboxen</li>
+          <li>Hero Kids</li>
+          <li>Unser jüngster Standort</li>
+        </ul>
+        <div class="ha-loc__act">
+          <a class="ha-btn ha-btn--on-light ha-btn--sm" href="#kursfinder" data-jump="ger">Kurse ansehen</a>
+          <a class="ha-btn ha-btn--quiet-light ha-btn--sm" href="https://maps.google.com/?q=Sudetenstra%C3%9Fe+49,+82538+Geretsried" target="_blank" rel="noopener">Route</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ BEITRAG ════════ -->
+<section class="ha-sec" id="beitrag">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Beitrag</p>
+      <h2 class="ha-d2">Transparent, ohne Aufnahmegebühr.</h2>
+      <p class="ha-lead">Monatlich per SEPA-Lastschrift. Keine Startpauschale, keine Prüfungsgebühren, keine Verlängerung ohne dein Wissen.</p>
     </div>
 
-    <!-- TODO YASIN: echte Preise + Laufzeiten eintragen. Die Zahlen unten sind Platzhalter. -->
-    <div class="hu-prices hu-rev-in">
-      <div class="hu-price">
-        <p class="hu-card__meta">Kids &amp; Teens</p>
-        <p class="hu-price__val">XX €<small> / Monat</small></p>
+    <!-- TODO YASIN: echte Beiträge und Laufzeiten eintragen -->
+    <div class="ha-plans ha-r" data-d="1">
+      <div class="ha-plan">
+        <p class="ha-tile__meta" style="color:var(--mist)">Kinder &amp; Jugendliche</p>
+        <h3 class="ha-d3">Hero Kids</h3>
+        <p class="ha-plan__price">XX €<small> / Monat</small></p>
         <ul>
-          <li>Alle Kindertrainings deiner Altersgruppe</li>
-          <li>Gürtelprüfungen inklusive</li>
+          <li>Alle Trainings der Altersgruppe</li>
+          <li>Gürtelprüfungen enthalten</li>
           <li>Geschwisterrabatt</li>
         </ul>
-        <a class="hu-btn hu-btn--ghost hu-btn--sm" href="#probetraining">Probetraining</a>
+        <a class="ha-btn ha-btn--quiet" href="#anfrage">Probetraining</a>
       </div>
 
-      <div class="hu-price hu-price--hero">
-        <span class="hu-price__tag">Am häufigsten gewählt</span>
-        <p class="hu-card__meta">Unlimited</p>
-        <p class="hu-price__val">XX €<small> / Monat</small></p>
+      <div class="ha-plan ha-plan--focus">
+        <span class="ha-plan__tag">Empfohlen</span>
+        <p class="ha-tile__meta" style="color:var(--mist)">Erwachsene</p>
+        <h3 class="ha-d3">Unlimited</h3>
+        <p class="ha-plan__price">XX €<small> / Monat</small></p>
         <ul>
           <li>Alle Disziplinen, alle Stunden</li>
-          <li>Alle vier Standorte nutzbar</li>
-          <li>Mitglieder-App inklusive</li>
+          <li>Alle vier Standorte</li>
           <li>Offene Mattenzeit am Wochenende</li>
+          <li>Leihanzug für die ersten Wochen</li>
         </ul>
-        <a class="hu-btn" href="#probetraining">Probetraining <span class="hu-btn__arrow">→</span></a>
+        <a class="ha-btn" href="#anfrage">Probetraining <span class="ha-arrow">→</span></a>
       </div>
 
-      <div class="hu-price">
-        <p class="hu-card__meta">Eine Disziplin</p>
-        <p class="hu-price__val">XX €<small> / Monat</small></p>
+      <div class="ha-plan">
+        <p class="ha-tile__meta" style="color:var(--mist)">Erwachsene</p>
+        <h3 class="ha-d3">Eine Disziplin</h3>
+        <p class="ha-plan__price">XX €<small> / Monat</small></p>
         <ul>
           <li>Alle Stunden einer Disziplin</li>
-          <li>Ein Standort</li>
-          <li>Mitglieder-App inklusive</li>
+          <li>Ein Standort deiner Wahl</li>
+          <li>Jederzeit aufstockbar</li>
         </ul>
-        <a class="hu-btn hu-btn--ghost hu-btn--sm" href="#probetraining">Probetraining</a>
+        <a class="ha-btn ha-btn--quiet" href="#anfrage">Probetraining</a>
       </div>
+    </div>
+    <p class="ha-plan__note">Studierende, Azubis und Familien fragen bitte direkt nach — dafür haben wir eigene Konditionen.</p>
+  </div>
+</section>
+
+<!-- ════════ TEAM ════════ -->
+<section class="ha-sec ha-sec--panel" id="team">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Trainer</p>
+      <h2 class="ha-d2">Die Leute, die dir gegenüberstehen.</h2>
+      <p class="ha-lead">Alle Trainer wurden im Haus ausgebildet und trainieren selbst weiter. Keine Lizenznehmer, keine Wochenendzertifikate.</p>
+    </div>
+    <div class="ha-team">
+      <article class="ha-coach ha-r">
+        <div class="ha-coach__img"><img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2024/08/DSC9606-Bearbeitet-Bearbeitet-800x533.jpg" alt="Hans Hutton" width="800" height="533"></div>
+        <h3 class="ha-d3">Hans Hutton</h3>
+        <p class="ha-coach__role">Gründer · Schwarzgurt 3. Grad</p>
+        <p>Kampfsport seit 1993, BJJ seit 1998. Hat 2002 die Akademie gegründet und das Hutton-Krav-Maga-Konzept entwickelt.</p>
+      </article>
+      <article class="ha-coach ha-r" data-d="1">
+        <div class="ha-coach__img"><img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2024/10/Julian-5-2-800x533.jpg" alt="Julian Fazekas-Con" width="800" height="533"></div>
+        <h3 class="ha-d3">Julian Fazekas-Con</h3>
+        <p class="ha-coach__role">Mitgründer · Schwarzgurt 2. Grad</p>
+        <p>BJJ seit 2009, unterrichtet seit 2013. Verantwortet die Trainerausbildung und das Kindertrainingskonzept.</p>
+      </article>
+      <article class="ha-coach ha-r" data-d="2">
+        <div class="ha-coach__img"><img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2024/12/Dariusch-Purple-Belt-600x400.jpg" alt="Dariusch Müller" width="600" height="400">
+        </div>
+        <h3 class="ha-d3">Dariusch Müller</h3>
+        <p class="ha-coach__role">Gym Manager · Lilagurt</p>
+        <p>Organisiert den Betrieb und unterrichtet die Stunden, nach denen man ehrlich fertig ist.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ APP ============ -->
-<section class="hu-sec hu-sec--dark" id="app">
-  <div class="hu-wrap hu-app hu-rev-in">
-    <div>
-      <p class="hu-eyebrow">Für Mitglieder · iOS &amp; Android</p>
-      <h2 class="hu-h2">Deine Schule in der Hosentasche</h2>
-      <p class="hu-lead" style="margin-top:18px">Jedes Mitglied bekommt einen persönlichen Zugang zu unserer App. Keine andere Schule in München hat das.</p>
-      <ul class="hu-app__list">
-        <li><b>01</b><span>Kursplan ansehen und Platz buchen</span></li>
-        <li><b>02</b><span>Per QR-Code einchecken — deine Anwesenheit zählt für die nächste Graduierung</span></li>
-        <li><b>03</b><span>Techniken der Stunde als Video nachschauen</span></li>
-        <li><b>04</b><span>Gürtel und Streifen pro Disziplin nachverfolgen</span></li>
-        <li><b>05</b><span>Eltern verwalten die Profile ihrer Kinder im selben Account</span></li>
-      </ul>
-    </div>
-    <div class="hu-app__visual" aria-hidden="true">
-      <div class="hu-beltprog">
-        <div class="hu-beltprog__row"><span class="hu-beltprog__lbl">Weiß</span><span class="hu-beltprog__bar" style="background:var(--belt-white)"><i></i><i></i><i></i><i></i></span></div>
-        <div class="hu-beltprog__row hu-beltprog__row--now"><span class="hu-beltprog__lbl">Blau</span><span class="hu-beltprog__bar" style="background:var(--belt-blue)"><i></i><i></i></span></div>
-        <div class="hu-beltprog__row"><span class="hu-beltprog__lbl">Lila</span><span class="hu-beltprog__bar" style="background:var(--belt-purple);opacity:.35"></span></div>
-        <div class="hu-beltprog__row"><span class="hu-beltprog__lbl">Braun</span><span class="hu-beltprog__bar" style="background:var(--belt-brown);opacity:.28"></span></div>
-        <div class="hu-beltprog__row"><span class="hu-beltprog__lbl">Schwarz</span><span class="hu-beltprog__bar" style="background:#3A3F47;opacity:.5"></span></div>
+<!-- ════════ STIMMEN ════════ -->
+<section class="ha-sec ha-sec--light">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Mitglieder</p>
+      <div class="ha-rating">
+        <!-- TODO YASIN: echte Google-Werte -->
+        <b>4,9</b><span>aus 280 Google-Bewertungen</span>
       </div>
+      <h2 class="ha-d2">Warum Leute bleiben.</h2>
     </div>
-  </div>
-</section>
-
-<!-- ============ TEAM ============ -->
-<section class="hu-sec hu-sec--paper" id="team">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <div class="hu-belt"><span class="hu-belt__band"></span><span class="hu-belt__stripe"></span></div>
-      <h2 class="hu-h2">Wer dich unterrichtet</h2>
-      <p class="hu-lead" style="margin-top:18px">Alle Trainer stehen selbst regelmäßig auf der Matte. Keine Franchise-Lizenznehmer, kein Fernkurs.</p>
-    </div>
-    <div class="hu-team hu-rev-in">
-      <div class="hu-coach">
-        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2024/08/DSC9606-Bearbeitet-Bearbeitet-800x533.jpg" alt="Hans Hutton" width="800" height="533">
-        <h3 class="hu-h3">Hans Hutton</h3>
-        <p class="hu-coach__role">Gründer · 3. Grad Schwarzgurt</p>
-        <p>Kampfsport seit 1993, BJJ seit 1998. Hat 2002 die Hutton Academy gegründet und das Hutton-Krav-Maga-Konzept entwickelt.</p>
-      </div>
-      <div class="hu-coach">
-        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2024/10/Julian-5-2-800x533.jpg" alt="Julian Fazekas-Con" width="800" height="533">
-        <h3 class="hu-h3">Julian Fazekas-Con</h3>
-        <p class="hu-coach__role">Mitgründer · 2. Grad Schwarzgurt</p>
-        <p>BJJ seit 2009, Trainer seit 2013. Verantwortet die Trainerausbildung und das Kindertrainingskonzept.</p>
-      </div>
-      <div class="hu-coach">
-        <img loading="lazy" src="https://hutton-academy.com/wp-content/uploads/2024/12/Dariusch-Purple-Belt-600x400.jpg" alt="Dariusch Müller" width="600" height="400">
-        <h3 class="hu-h3">Dariusch Müller</h3>
-        <p class="hu-coach__role">Gym Manager · Lilagurt</p>
-        <p>Hält den Laden am Laufen und unterrichtet die Stunden, nach denen du wirklich fertig bist.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ BEWERTUNGEN ============ -->
-<section class="hu-sec" id="bewertungen">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <h2 class="hu-h2">Was Mitglieder sagen</h2>
-    </div>
-    <!-- TODO YASIN: durch echte Google-Bewertungen ersetzen (Trustindex-Widget wie bei BJJ Dachau möglich) -->
-    <div class="hu-revs hu-rev-in">
-      <figure class="hu-rev" style="margin:0">
-        <span class="hu-stars" aria-hidden="true">★★★★★</span>
-        <blockquote>„Seit sechs Jahren trainiere ich hier und habe den Sport lieben gelernt. Die Atmosphäre ist so freundlich, dass jedes Training einfach Spaß macht."</blockquote>
+    <div class="ha-quotes">
+      <figure class="ha-quote ha-r">
+        <blockquote>„Seit sechs Jahren trainiere ich hier und habe den Sport lieben gelernt. Die Atmosphäre ist so freundlich, dass jedes Training Spaß macht."</blockquote>
         <figcaption>Sarah · Schwabing</figcaption>
       </figure>
-      <figure class="hu-rev" style="margin:0">
-        <span class="hu-stars" aria-hidden="true">★★★★★</span>
-        <blockquote>„Richtig gute Trainer, die auf einen persönlich eingehen. Auch wenn man niemanden kennt, fühlt man sich sofort wohl."</blockquote>
+      <figure class="ha-quote ha-r" data-d="1">
+        <blockquote>„Richtig gute Trainer, die auf einen persönlich eingehen. Auch wenn man niemanden kennt, fühlt man sich vom ersten Tag an wohl."</blockquote>
         <figcaption>Simon · Schwabing</figcaption>
       </figure>
-      <figure class="hu-rev" style="margin:0">
-        <span class="hu-stars" aria-hidden="true">★★★★★</span>
-        <blockquote>„Jede wiederholt gestellte Frage bleibt nie ohne Antwort. Ich bin froh, den Weg hierher gefunden zu haben."</blockquote>
+      <figure class="ha-quote ha-r" data-d="2">
+        <blockquote>„Jede Frage — auch die zum dritten Mal gestellte — bleibt nie ohne Antwort. Ich bin froh, den Weg hierher gefunden zu haben."</blockquote>
         <figcaption>Ines · Schwabing</figcaption>
       </figure>
     </div>
   </div>
 </section>
 
-<!-- ============ STANDORTE ============ -->
-<section class="hu-sec hu-sec--paper" id="standorte">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <h2 class="hu-h2">Vier Standorte</h2>
-      <p class="hu-lead" style="margin-top:18px">Als Unlimited-Mitglied trainierst du an allen vieren.</p>
+<!-- ════════ FAQ ════════ -->
+<section class="ha-sec">
+  <div class="ha-wrap">
+    <div class="ha-sec__head ha-r">
+      <p class="ha-label">Fragen</p>
+      <h2 class="ha-d2">Bevor du kommst.</h2>
     </div>
-    <div class="hu-locs hu-rev-in">
-      <div class="hu-loc">
-        <h3 class="hu-h3">München-Schwabing</h3>
-        <address>Hiltenspergerstraße 9<br>80798 München<br><span style="color:var(--ink-45)">Direkt am Josephsplatz (U2)</span></address>
-        <div class="hu-loc__tags"><span>BJJ</span><span>Krav Maga</span><span>Kickboxen</span><span>MMA</span><span>Kids</span></div>
-        <a class="hu-btn hu-btn--ghost hu-btn--sm" href="https://maps.google.com/?q=Hiltenspergerstraße+9,+80798+München" target="_blank" rel="noopener">Route</a>
-      </div>
-      <div class="hu-loc">
-        <h3 class="hu-h3">München-Moosach</h3>
-        <address>Pelkovenstraße 143–147<br>80992 München<br><span style="color:var(--ink-45)">Im MONA, neben dem OEZ</span></address>
-        <div class="hu-loc__tags"><span>BJJ</span><span>Krav Maga</span><span>Kickboxen</span><span>Kids</span></div>
-        <a class="hu-btn hu-btn--ghost hu-btn--sm" href="https://maps.google.com/?q=Pelkovenstraße+143,+80992+München" target="_blank" rel="noopener">Route</a>
-      </div>
-      <div class="hu-loc">
-        <h3 class="hu-h3">Augsburg / Neusäß</h3>
-        <address>Ulmer Straße 2<br>86356 Neusäß<br><span style="color:var(--ink-45)">10 Min. vom Augsburger Zentrum</span></address>
-        <div class="hu-loc__tags"><span>BJJ</span><span>Krav Maga</span><span>Kids</span></div>
-        <a class="hu-btn hu-btn--ghost hu-btn--sm" href="https://maps.google.com/?q=Ulmer+Straße+2,+86356+Neusäß" target="_blank" rel="noopener">Route</a>
-      </div>
-      <div class="hu-loc">
-        <h3 class="hu-h3">Geretsried</h3>
-        <address>Sudetenstraße 49<br>82538 Geretsried<br><span style="color:var(--ink-45)">Im Umkreis Bad Tölz</span></address>
-        <div class="hu-loc__tags"><span>BJJ</span><span>Kickboxen</span><span>Kids</span></div>
-        <a class="hu-btn hu-btn--ghost hu-btn--sm" href="https://maps.google.com/?q=Sudetenstraße+49,+82538+Geretsried" target="_blank" rel="noopener">Route</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section class="hu-sec" id="faq">
-  <div class="hu-wrap">
-    <div class="hu-sec__head hu-rev-in">
-      <h2 class="hu-h2">Häufige Fragen</h2>
-    </div>
-    <div class="hu-faq hu-rev-in">
+    <div class="ha-faq ha-r" data-d="1">
       <details open>
-        <summary>Ich bin unfit. Kann ich trotzdem anfangen?</summary>
-        <p>Ja — die meisten fangen genau so an. Du musst nicht fit sein, um zu trainieren; du trainierst, um fit zu werden. In den Einsteigerkursen lernst du die Grundlagen und baust dabei Kraft und Kondition auf.</p>
+        <summary>Ich bin nicht fit. Kann ich trotzdem anfangen?</summary>
+        <p>Ja — so fangen die meisten an. Du musst nicht fit sein, um zu trainieren; du trainierst, um fit zu werden. In den Einsteigerkursen lernst du die Grundlagen und baust dabei Kraft und Kondition auf. Pausen macht jeder, wann er sie braucht.</p>
       </details>
       <details>
         <summary>Verletzt man sich beim Kampfsport nicht ständig?</summary>
-        <p>Nein. Techniken werden erst vorgeführt, dann in Einzelschritten erklärt und langsam geübt. Beim BJJ signalisierst du durch Abklopfen, dass dein Partner aufhören soll — deshalb ist das Verletzungsrisiko gering. Beim Kickboxen, Krav Maga und MMA arbeiten wir viel mit Schlagpolstern.</p>
+        <p>Nein. Techniken werden vorgeführt, in Einzelschritten erklärt und dann langsam geübt. Beim BJJ klopfst du ab, sobald es unangenehm wird — dein Partner hört sofort auf. Beim Kickboxen, Krav Maga und MMA arbeiten wir überwiegend mit Schlagpolstern.</p>
       </details>
       <details>
         <summary>Was brauche ich fürs Probetraining?</summary>
@@ -778,48 +785,55 @@ a{color:inherit}
       </details>
       <details>
         <summary>Ab welchem Alter können Kinder mitmachen?</summary>
-        <p>Ab 3 Jahren. Wir unterrichten in drei Altersgruppen: Hero Minis (3–6), Hero Kids (6–8) und Hero Teens (9–14) — jeweils mit eigenem Programm.</p>
+        <p>Ab 3 Jahren, in drei getrennten Gruppen: Hero Minis (3–6), Hero Kids (6–8) und Hero Teens (9–14). Jede Gruppe hat ein eigenes Programm — die Kleinen lernen vor allem über Spiele.</p>
       </details>
       <details>
         <summary>Kann ich an mehreren Standorten trainieren?</summary>
-        <p>Mit der Unlimited-Mitgliedschaft ja, an allen vier. Praktisch, wenn du unter der Woche in München bist und am Wochenende in Geretsried.</p>
+        <p>Mit der Unlimited-Mitgliedschaft an allen vier. Du meldest dich nirgends extra an, du kommst einfach.</p>
       </details>
       <details>
-        <summary>Wie kündige ich?</summary>
-        <p>Schriftlich per E-Mail an deinen Standort, zum Ende der vereinbarten Laufzeit. Die genaue Frist steht in deinem Vertrag — frag uns gern vorher, wir sagen dir ehrlich, was für dich sinnvoll ist.</p>
+        <summary>Wie lange bindet mich ein Vertrag?</summary>
+        <p>Das hängt vom Tarif ab. Wir sagen dir im Gespräch ehrlich, welche Laufzeit für dich sinnvoll ist — bei Unsicherheit lieber die kürzere. Kündigung schriftlich per E-Mail an deinen Standort.</p>
       </details>
     </div>
   </div>
 </section>
 
-<!-- ============ PROBETRAINING ============ -->
-<section class="hu-sec hu-sec--dark" id="probetraining">
-  <div class="hu-wrap">
-    <div class="hu-app hu-rev-in">
-      <div>
-        <div class="hu-belt"><span class="hu-belt__band" style="background:var(--gold)"></span></div>
-        <h2 class="hu-h2">Erste Stunde,<br>kostenlos</h2>
-        <p class="hu-lead" style="margin-top:18px">Trag dich ein — wir melden uns innerhalb eines Werktags und finden einen Termin, der passt. Kein Vertrag, keine Verpflichtung.</p>
-        <p style="margin-top:28px;font-family:var(--mono);font-size:.8rem;letter-spacing:.08em;color:#8A9099">
-          Lieber direkt?<br>
-          <a href="tel:+4915560292365" style="color:var(--gold);text-decoration:none">+49 155 60292365</a><br>
-          <a href="mailto:muenchen@hutton-academy.de" style="color:var(--gold);text-decoration:none">muenchen@hutton-academy.de</a>
-        </p>
+<!-- ════════ ANFRAGE ════════ -->
+<section class="ha-sec ha-sec--panel" id="anfrage">
+  <div class="ha-wrap ha-req">
+    <div class="ha-r">
+      <p class="ha-label">Probetraining</p>
+      <h2 class="ha-d2">Erste Stunde,<br>kostenlos.</h2>
+      <p class="ha-lead" style="margin-top:24px">Wähle im Kursfinder einen Termin oder trag dich einfach ein. Wir bestätigen innerhalb eines Werktags — telefonisch, nicht per Automatik.</p>
+      <div class="ha-contact">
+        <span>Lieber direkt sprechen?</span>
+        <a href="tel:+4915560292365">+49 155 60292365</a>
+        <a href="mailto:muenchen@hutton-academy.de">muenchen@hutton-academy.de</a>
+      </div>
+    </div>
+
+    <div class="ha-r" data-d="1">
+      <div class="ha-picked" id="picked" role="status">
+        <b id="pickedTitle"></b>
+        <span id="pickedSub"></span>
+        <button type="button" id="pickedClear">Termin entfernen</button>
       </div>
 
-      <!-- TODO YASIN: action= auf euer Formular-Backend setzen (Formspree, Netlify Forms, eigenes Endpoint) -->
-      <form class="hu-form" method="post" action="#">
-        <label class="hu-full">Vor- und Nachname
+      <!-- TODO YASIN: action= auf euer Backend setzen (Formspree, Netlify Forms o. ä.) -->
+      <form class="ha-form" method="post" action="#" id="reqForm">
+        <input type="hidden" name="wunschtermin" id="fTermin">
+        <label class="ha-field ha-field--full">Vor- und Nachname
           <input type="text" name="name" autocomplete="name" required>
         </label>
-        <label>E-Mail
+        <label class="ha-field">E-Mail
           <input type="email" name="email" autocomplete="email" required>
         </label>
-        <label>Telefon
+        <label class="ha-field">Telefon
           <input type="tel" name="telefon" autocomplete="tel" required>
         </label>
-        <label>Kurs
-          <select name="kurs" required>
+        <label class="ha-field">Disziplin
+          <select name="kurs" id="selKurs" required>
             <option value="">Bitte wählen</option>
             <option>Brazilian Jiu-Jitsu</option>
             <option>Krav Maga</option>
@@ -830,8 +844,8 @@ a{color:inherit}
             <option>Hero Teens (9–14 J.)</option>
           </select>
         </label>
-        <label>Standort
-          <select name="standort" required>
+        <label class="ha-field">Standort
+          <select name="standort" id="selOrt" required>
             <option value="">Bitte wählen</option>
             <option>München-Schwabing</option>
             <option>München-Moosach</option>
@@ -839,15 +853,15 @@ a{color:inherit}
             <option>Geretsried</option>
           </select>
         </label>
-        <label class="hu-full" id="kindLabel" hidden>Name und Alter des Kindes
+        <label class="ha-field ha-field--full" id="kidField" hidden>Name und Alter des Kindes
           <input type="text" name="kind">
         </label>
-        <label class="hu-consent">
+        <label class="ha-check">
           <input type="checkbox" name="datenschutz" required>
-          <span>Ich bin einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert werden. <a href="/datenschutzerklaerung/" style="color:var(--gold)">Datenschutz</a></span>
+          <span>Ich bin einverstanden, dass meine Daten zur Bearbeitung meiner Anfrage gespeichert werden. <a href="/datenschutzerklaerung/">Datenschutzerklärung</a></span>
         </label>
-        <div class="hu-form__foot">
-          <button class="hu-btn" type="submit" style="background:var(--gold);border-color:var(--gold);color:var(--ink)">Probetraining anfragen <span class="hu-btn__arrow">→</span></button>
+        <div class="ha-form__end">
+          <button class="ha-btn" type="submit">Probetraining anfragen <span class="ha-arrow">→</span></button>
           <small>Antwort innerhalb eines Werktags</small>
         </div>
       </form>
@@ -857,15 +871,15 @@ a{color:inherit}
 
 </main>
 
-<footer class="hu-foot">
-  <div class="hu-wrap">
-    <div class="hu-foot__grid">
+<footer class="ha-foot">
+  <div class="ha-wrap">
+    <div class="ha-foot__grid">
       <div>
-        <a class="hu-logo" href="/" style="color:var(--chalk);text-decoration:none">Hutton Academy<span>Seit 2002</span></a>
-        <p style="margin-top:16px;max-width:34ch">Kampfsport und Selbstverteidigung in München, Augsburg und Geretsried.</p>
+        <a class="ha-logo" href="/" style="text-decoration:none;color:var(--pearl)">Hutton Academy <small>München</small></a>
+        <p style="margin-top:18px;max-width:32ch">Kampfsport und Selbstverteidigung in München, Augsburg und Geretsried. Seit 2002.</p>
       </div>
       <div>
-        <h4>Training</h4>
+        <h4>Disziplinen</h4>
         <ul>
           <li><a href="/brazilian-jiu-jitsu/">Brazilian Jiu-Jitsu</a></li>
           <li><a href="/krav-maga/">Krav Maga</a></li>
@@ -888,159 +902,291 @@ a{color:inherit}
         <ul>
           <li><a href="tel:+4915560292365">+49 155 60292365</a></li>
           <li><a href="mailto:muenchen@hutton-academy.de">muenchen@hutton-academy.de</a></li>
-          <li><a href="https://kampfsportgmbh.recruitee.com/" rel="noopener">Jobs</a></li>
+          <li><a href="https://kampfsportgmbh.recruitee.com/" rel="noopener">Karriere</a></li>
           <li><a href="https://www.instagram.com/hutton_academy/" rel="noopener">Instagram</a></li>
         </ul>
       </div>
     </div>
-    <div class="hu-foot__bar">
+    <div class="ha-foot__bar">
       <span>© 2002–2026 Hutton Academy</span>
-      <span><a href="/impressum/">Impressum</a> · <a href="/datenschutzerklaerung/">Datenschutz</a> · <a href="/faq/">FAQ</a></span>
+      <span><a href="/impressum/">Impressum</a> · <a href="/datenschutzerklaerung/">Datenschutz</a></span>
     </div>
   </div>
 </footer>
 
 <script>
-/* ============================================================
-   1) STUNDENPLAN-DATEN
-   TODO YASIN: Hier die echten Zeiten eintragen — das ist die
-   einzige Stelle, die du für den Stundenplan anfassen musst.
-   d = Wochentag (0 = Mo … 6 = So)
-   t = Uhrzeit, n = Kursname, f = Filterkategorie, lvl = Zusatz
-   ============================================================ */
-const STUNDENPLAN = {
-  muc: [
-    {d:0,t:"17:00",n:"Hero Minis",f:"Kids",lvl:"3–6 Jahre"},
-    {d:0,t:"18:00",n:"BJJ Grundkurs",f:"BJJ",lvl:"Einsteiger"},
-    {d:0,t:"19:30",n:"BJJ Fortgeschrittene",f:"BJJ",lvl:"Ab Blaugurt"},
-    {d:1,t:"18:00",n:"Krav Maga",f:"Krav Maga",lvl:"Alle Level"},
-    {d:1,t:"19:30",n:"Kickboxen",f:"Kickboxen",lvl:"Alle Level"},
-    {d:2,t:"17:00",n:"Hero Kids",f:"Kids",lvl:"6–8 Jahre"},
-    {d:2,t:"18:00",n:"BJJ No-Gi",f:"BJJ",lvl:"Alle Level"},
-    {d:2,t:"19:30",n:"MMA",f:"MMA",lvl:"Fortgeschritten"},
-    {d:3,t:"18:00",n:"Krav Maga",f:"Krav Maga",lvl:"Alle Level"},
-    {d:3,t:"19:30",n:"BJJ Grundkurs",f:"BJJ",lvl:"Einsteiger"},
-    {d:4,t:"18:00",n:"Kickboxen",f:"Kickboxen",lvl:"Alle Level"},
-    {d:4,t:"19:30",n:"Open Mat",f:"BJJ",lvl:"Freies Training"},
-    {d:5,t:"11:00",n:"BJJ Samstagstraining",f:"BJJ",lvl:"Alle Level"}
+/* ═══════════════════════════════════════════════════════════
+   1) STUNDENPLAN — die einzige Stelle, die gepflegt werden muss.
+      d = Wochentag (1 = Montag … 7 = Sonntag)
+      t = Beginn, e = Ende, n = Kurs, f = Disziplin, l = Hinweis
+   ═══════════════════════════════════════════════════════════ */
+const ORTE = {
+  muc : {name:"München-Schwabing", kurz:"Schwabing", formular:"München-Schwabing"},
+  mona: {name:"München-Moosach",   kurz:"Moosach",   formular:"München-Moosach"},
+  aug : {name:"Augsburg / Neusäß", kurz:"Augsburg",  formular:"Augsburg / Neusäß"},
+  ger : {name:"Geretsried",        kurz:"Geretsried",formular:"Geretsried"}
+};
+
+const PLAN = {
+  muc:[
+    {d:1,t:"17:00",e:"17:45",n:"Hero Minis",f:"Kids",l:"3–6 Jahre"},
+    {d:1,t:"18:00",e:"19:15",n:"BJJ Grundkurs",f:"BJJ",l:"Einsteiger"},
+    {d:1,t:"19:30",e:"21:00",n:"BJJ Fortgeschrittene",f:"BJJ",l:"Ab Blaugurt"},
+    {d:2,t:"18:00",e:"19:15",n:"Krav Maga",f:"Krav Maga",l:"Alle Level"},
+    {d:2,t:"19:30",e:"20:45",n:"Kickboxen",f:"Kickboxen",l:"Alle Level"},
+    {d:3,t:"17:00",e:"17:45",n:"Hero Kids",f:"Kids",l:"6–8 Jahre"},
+    {d:3,t:"18:00",e:"19:15",n:"BJJ No-Gi",f:"BJJ",l:"Alle Level"},
+    {d:3,t:"19:30",e:"21:00",n:"MMA",f:"MMA",l:"Fortgeschritten"},
+    {d:4,t:"18:00",e:"19:15",n:"Krav Maga",f:"Krav Maga",l:"Alle Level"},
+    {d:4,t:"19:30",e:"20:45",n:"BJJ Grundkurs",f:"BJJ",l:"Einsteiger"},
+    {d:5,t:"18:00",e:"19:15",n:"Kickboxen",f:"Kickboxen",l:"Alle Level"},
+    {d:5,t:"19:30",e:"21:00",n:"Open Mat",f:"BJJ",l:"Freies Training"},
+    {d:6,t:"11:00",e:"12:30",n:"BJJ Samstagstraining",f:"BJJ",l:"Alle Level"}
   ],
-  mona: [
-    {d:0,t:"16:30",n:"Hero Minis",f:"Kids",lvl:"3–6 Jahre"},
-    {d:0,t:"18:30",n:"BJJ Grundkurs",f:"BJJ",lvl:"Einsteiger"},
-    {d:2,t:"17:30",n:"Hero Teens",f:"Kids",lvl:"9–14 Jahre"},
-    {d:2,t:"19:00",n:"Kickboxen",f:"Kickboxen",lvl:"Alle Level"},
-    {d:4,t:"18:30",n:"Krav Maga",f:"Krav Maga",lvl:"Alle Level"}
+  mona:[
+    {d:1,t:"16:30",e:"17:15",n:"Hero Minis",f:"Kids",l:"3–6 Jahre"},
+    {d:1,t:"18:30",e:"19:45",n:"BJJ Grundkurs",f:"BJJ",l:"Einsteiger"},
+    {d:3,t:"17:30",e:"18:30",n:"Hero Teens",f:"Kids",l:"9–14 Jahre"},
+    {d:3,t:"19:00",e:"20:15",n:"Kickboxen",f:"Kickboxen",l:"Alle Level"},
+    {d:5,t:"18:30",e:"19:45",n:"Krav Maga",f:"Krav Maga",l:"Alle Level"}
   ],
-  aug: [
-    {d:1,t:"17:00",n:"Hero Kids",f:"Kids",lvl:"6–8 Jahre"},
-    {d:1,t:"18:30",n:"BJJ Grundkurs",f:"BJJ",lvl:"Einsteiger"},
-    {d:3,t:"18:30",n:"BJJ Fortgeschrittene",f:"BJJ",lvl:"Ab Blaugurt"},
-    {d:3,t:"20:00",n:"Krav Maga",f:"Krav Maga",lvl:"Alle Level"}
+  aug:[
+    {d:2,t:"17:00",e:"17:45",n:"Hero Kids",f:"Kids",l:"6–8 Jahre"},
+    {d:2,t:"18:30",e:"19:45",n:"BJJ Grundkurs",f:"BJJ",l:"Einsteiger"},
+    {d:4,t:"18:30",e:"19:45",n:"BJJ Fortgeschrittene",f:"BJJ",l:"Ab Blaugurt"},
+    {d:4,t:"20:00",e:"21:15",n:"Krav Maga",f:"Krav Maga",l:"Alle Level"}
   ],
-  ger: [
-    {d:0,t:"17:30",n:"Hero Kids",f:"Kids",lvl:"6–14 Jahre"},
-    {d:0,t:"19:00",n:"BJJ Grundkurs",f:"BJJ",lvl:"Einsteiger"},
-    {d:2,t:"19:00",n:"Kickboxen",f:"Kickboxen",lvl:"Alle Level"},
-    {d:4,t:"19:00",n:"BJJ No-Gi",f:"BJJ",lvl:"Alle Level"}
+  ger:[
+    {d:1,t:"17:30",e:"18:20",n:"Hero Kids",f:"Kids",l:"6–14 Jahre"},
+    {d:1,t:"19:00",e:"20:15",n:"BJJ Grundkurs",f:"BJJ",l:"Einsteiger"},
+    {d:3,t:"19:00",e:"20:15",n:"Kickboxen",f:"Kickboxen",l:"Alle Level"},
+    {d:5,t:"19:00",e:"20:15",n:"BJJ No-Gi",f:"BJJ",l:"Alle Level"}
   ]
 };
 
-const DAYS = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
-let loc = "muc", filter = "all";
+/* Zuordnung Disziplin → Formularwert */
+const KURS_MAP = {
+  "BJJ":"Brazilian Jiu-Jitsu", "Krav Maga":"Krav Maga",
+  "Kickboxen":"Kickboxen", "MMA":"MMA", "Kids":"Hero Kids (6–8 J.)"
+};
 
-function renderWeek(){
-  const week = document.getElementById("week");
-  const data = STUNDENPLAN[loc] || [];
-  week.innerHTML = DAYS.map((day, i) => {
-    const slots = data
-      .filter(s => s.d === i && (filter === "all" || s.f === filter))
-      .sort((a,b) => a.t.localeCompare(b.t));
-    const inner = slots.length
-      ? slots.map(s => `<span class="hu-slot">
-            <span class="hu-slot__t">${s.t}</span>
-            <span class="hu-slot__n">${s.n}</span>
-            <span class="hu-slot__lvl">${s.lvl}</span>
-          </span>`).join("")
-      : `<span class="hu-day__empty">—</span>`;
-    return `<div class="hu-day"><div class="hu-day__name">${day}</div>${inner}</div>`;
-  }).join("");
+/* ═══════════ 2) Kursfinder ═══════════ */
+const TAGE = ["","Mo","Di","Mi","Do","Fr","Sa","So"];
+const TAGE_LANG = ["","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
+const MONATE = ["Jan.","Feb.","März","Apr.","Mai","Juni","Juli","Aug.","Sep.","Okt.","Nov.","Dez."];
+
+const state = {ort:"alle", dis:"alle", tag:"alle", zeit:"alle"};
+
+function chip(label, val, key){
+  return `<button class="ha-pill" type="button" role="button" aria-pressed="${state[key]===val}" data-key="${key}" data-val="${val}">${label}</button>`;
+}
+function buildFilters(){
+  document.getElementById("fOrt").innerHTML =
+    chip("Alle","alle","ort") + Object.keys(ORTE).map(k => chip(ORTE[k].kurz,k,"ort")).join("");
+  document.getElementById("fDis").innerHTML =
+    ["alle","BJJ","Krav Maga","Kickboxen","MMA","Kids"]
+      .map(v => chip(v==="alle"?"Alle":v, v, "dis")).join("");
+  document.getElementById("fTag").innerHTML =
+    chip("Jeder Tag","alle","tag") + [1,2,3,4,5,6,7].map(d => chip(TAGE[d], String(d), "tag")).join("");
+  document.getElementById("fZeit").innerHTML =
+    chip("Egal","alle","zeit") + chip("Vormittag","vor","zeit") + chip("Nachmittag","nach","zeit") + chip("Abend","abend","zeit");
 }
 
-document.querySelectorAll(".hu-tab").forEach(tab => {
-  tab.addEventListener("click", () => {
-    document.querySelectorAll(".hu-tab").forEach(t => t.setAttribute("aria-selected","false"));
-    tab.setAttribute("aria-selected","true");
-    loc = tab.dataset.loc;
-    renderWeek();
+/* Nächste 14 Tage auflösen */
+function termine(){
+  const heute = new Date();
+  const out = [];
+  for(let i = 0; i < 14; i++){
+    const tag = new Date(heute.getFullYear(), heute.getMonth(), heute.getDate() + i);
+    const wd = tag.getDay() === 0 ? 7 : tag.getDay();
+    Object.keys(PLAN).forEach(ort => {
+      if(state.ort !== "alle" && state.ort !== ort) return;
+      PLAN[ort].forEach(k => {
+        if(k.d !== wd) return;
+        if(state.dis !== "alle" && k.f !== state.dis) return;
+        if(state.tag !== "alle" && String(wd) !== state.tag) return;
+        const h = parseInt(k.t.slice(0,2), 10);
+        if(state.zeit === "vor"   && h >= 12) return;
+        if(state.zeit === "nach"  && (h < 12 || h >= 17)) return;
+        if(state.zeit === "abend" && h < 17) return;
+        const start = new Date(tag); start.setHours(h, parseInt(k.t.slice(3), 10), 0, 0);
+        if(start < heute) return;
+        out.push({ort, wd, tag, start, ...k});
+      });
+    });
+  }
+  return out.sort((a,b) => a.start - b.start).slice(0, 24);
+}
+
+function datumsLabel(d){
+  const heute = new Date(); heute.setHours(0,0,0,0);
+  const diff = Math.round((new Date(d.getFullYear(),d.getMonth(),d.getDate()) - heute) / 86400000);
+  if(diff === 0) return "Heute";
+  if(diff === 1) return "Morgen";
+  return TAGE_LANG[d.getDay() === 0 ? 7 : d.getDay()];
+}
+
+function renderFinder(){
+  const list = termine();
+  const out = document.getElementById("out");
+  const cnt = document.getElementById("outCount");
+
+  if(!list.length){
+    out.innerHTML = `<div class="ha-empty">Für diese Auswahl steht in den nächsten zwei Wochen kein Termin an.<br>Nimm einen anderen Tag oder ruf uns an — wir finden etwas.</div>`;
+    cnt.textContent = "Keine Treffer";
+    return;
+  }
+
+  out.innerHTML = list.map((k, i) => `
+    <div class="ha-res">
+      <div class="ha-res__date"><b>${datumsLabel(k.tag)}</b>${k.tag.getDate()}. ${MONATE[k.tag.getMonth()]}</div>
+      <div class="ha-res__time">${k.t}<span>bis ${k.e}</span></div>
+      <div class="ha-res__body">
+        <div class="ha-res__name">${k.n}</div>
+        <div class="ha-res__sub">${k.l} · <em>${ORTE[k.ort].kurz}</em></div>
+      </div>
+      <div class="ha-res__act">
+        <button class="ha-btn ha-btn--quiet ha-btn--sm" type="button" data-pick="${i}">Termin wählen</button>
+      </div>
+    </div>`).join("");
+
+  cnt.textContent = `${list.length} passende Termine`;
+
+  out.querySelectorAll("[data-pick]").forEach(b => {
+    b.addEventListener("click", () => waehle(list[parseInt(b.dataset.pick, 10)]));
+  });
+}
+
+/* Termin übernehmen → Formular vorbelegen */
+function waehle(k){
+  const txt = `${TAGE_LANG[k.wd]}, ${k.tag.getDate()}. ${MONATE[k.tag.getMonth()]} · ${k.t}–${k.e} Uhr`;
+  const picked = document.getElementById("picked");
+  document.getElementById("pickedTitle").textContent = `${k.n} · ${ORTE[k.ort].name}`;
+  document.getElementById("pickedSub").textContent = txt;
+  document.getElementById("fTermin").value = `${k.n} | ${ORTE[k.ort].name} | ${txt}`;
+  picked.classList.add("is-on");
+
+  const selKurs = document.getElementById("selKurs");
+  const wunsch = KURS_MAP[k.f] || "";
+  [...selKurs.options].forEach(o => { if(o.value === wunsch || o.text === wunsch) selKurs.value = o.value || o.text; });
+  document.getElementById("selOrt").value = ORTE[k.ort].formular;
+  selKurs.dispatchEvent(new Event("change"));
+
+  document.getElementById("anfrage").scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+document.getElementById("pickedClear").addEventListener("click", () => {
+  document.getElementById("picked").classList.remove("is-on");
+  document.getElementById("fTermin").value = "";
+});
+
+document.querySelector(".ha-finder__ctrl").addEventListener("click", e => {
+  const b = e.target.closest(".ha-pill");
+  if(!b) return;
+  state[b.dataset.key] = b.dataset.val;
+  document.querySelectorAll(`.ha-pill[data-key="${b.dataset.key}"]`)
+    .forEach(p => p.setAttribute("aria-pressed", String(p === b)));
+  renderFinder();
+});
+
+/* Standort-Karte → Kursfinder vorfiltern */
+document.querySelectorAll("[data-jump]").forEach(a => {
+  a.addEventListener("click", () => {
+    state.ort = a.dataset.jump;
+    document.querySelectorAll('.ha-pill[data-key="ort"]')
+      .forEach(p => p.setAttribute("aria-pressed", String(p.dataset.val === state.ort)));
+    renderFinder();
   });
 });
 
-document.querySelectorAll(".hu-filter").forEach(btn => {
-  btn.addEventListener("click", () => {
-    document.querySelectorAll(".hu-filter").forEach(b => b.setAttribute("aria-pressed","false"));
-    btn.setAttribute("aria-pressed","true");
-    filter = btn.dataset.f;
-    renderWeek();
-  });
+buildFilters();
+renderFinder();
+
+/* ═══════════ 3) Live-Zeile: nächster Kurs ═══════════ */
+(function live(){
+  const alle = [];
+  const jetzt = new Date();
+  for(let i = 0; i < 8; i++){
+    const tag = new Date(jetzt.getFullYear(), jetzt.getMonth(), jetzt.getDate() + i);
+    const wd = tag.getDay() === 0 ? 7 : tag.getDay();
+    Object.keys(PLAN).forEach(ort => PLAN[ort].forEach(k => {
+      if(k.d !== wd) return;
+      const s = new Date(tag); s.setHours(+k.t.slice(0,2), +k.t.slice(3), 0, 0);
+      if(s > jetzt) alle.push({s, ort, ...k});
+    }));
+  }
+  alle.sort((a,b) => a.s - b.s);
+  const el = document.getElementById("liveTxt");
+  if(!alle.length){ el.textContent = "Aktuell kein Kurs im Plan."; return; }
+  const n = alle[0];
+  const wann = datumsLabel(n.s) === "Heute"
+    ? `heute um ${n.t} Uhr`
+    : `${datumsLabel(n.s).toLowerCase()} um ${n.t} Uhr`;
+  el.innerHTML = `Nächstes Training: <b>${n.n}</b> ${wann} in <b>${ORTE[n.ort].kurz}</b>`;
+})();
+
+/* ═══════════ 4) Nächster Standort per Standortfreigabe ═══════════ */
+document.getElementById("geoBtn").addEventListener("click", function(){
+  const btn = this;
+  if(!navigator.geolocation){ btn.textContent = "Nicht verfügbar"; return; }
+  btn.textContent = "Suche …";
+  navigator.geolocation.getCurrentPosition(pos => {
+    const {latitude:la, longitude:lo} = pos.coords;
+    const karten = [...document.querySelectorAll(".ha-loc")];
+    let beste = null, min = Infinity;
+    karten.forEach(c => {
+      const d = km(la, lo, +c.dataset.lat, +c.dataset.lng);
+      c.querySelector("[data-dist]").textContent = d.toFixed(1).replace(".", ",") + " km entfernt";
+      if(d < min){ min = d; beste = c; }
+    });
+    const grid = document.getElementById("locGrid");
+    karten.sort((a,b) => km(la,lo,+a.dataset.lat,+a.dataset.lng) - km(la,lo,+b.dataset.lat,+b.dataset.lng))
+          .forEach(c => grid.appendChild(c));
+    btn.textContent = "Nächster Standort: " + beste.querySelector(".ha-d3").textContent;
+  }, () => { btn.textContent = "Standort nicht freigegeben"; }, {timeout:8000});
 });
 
-renderWeek();
+function km(la1, lo1, la2, lo2){
+  const R = 6371, r = Math.PI/180;
+  const dLa = (la2-la1)*r, dLo = (lo2-lo1)*r;
+  const a = Math.sin(dLa/2)**2 + Math.cos(la1*r)*Math.cos(la2*r)*Math.sin(dLo/2)**2;
+  return 2*R*Math.asin(Math.sqrt(a));
+}
 
-/* ---------- 2) Belt Rail: Scroll-Fortschritt ---------- */
-const fill = document.getElementById("railFill");
+/* ═══════════ 5) Header, Menü, Reveal, Formular ═══════════ */
 const head = document.getElementById("head");
-let ticking = false;
-function onScroll(){
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const p = max > 0 ? (window.scrollY / max) * 100 : 0;
-  fill.style.width = p + "%";
-  head.classList.toggle("is-stuck", window.scrollY > 20);
-  ticking = false;
-}
-addEventListener("scroll", () => {
-  if(!ticking){ requestAnimationFrame(onScroll); ticking = true; }
-}, {passive:true});
-onScroll();
+addEventListener("scroll", () => head.classList.toggle("is-stuck", scrollY > 24), {passive:true});
 
-/* ---------- 3) Mobile Navigation ---------- */
-const burger = document.getElementById("burger");
-const nav = document.getElementById("nav");
+const burger = document.getElementById("burger"), nav = document.getElementById("nav");
 burger.addEventListener("click", () => {
   const open = nav.classList.toggle("is-open");
   burger.setAttribute("aria-expanded", String(open));
   burger.textContent = open ? "Schließen" : "Menü";
 });
 nav.addEventListener("click", e => {
-  if(e.target.tagName === "A" && nav.classList.contains("is-open")){
+  if(e.target.closest("a") && nav.classList.contains("is-open")){
     nav.classList.remove("is-open");
     burger.setAttribute("aria-expanded","false");
     burger.textContent = "Menü";
   }
 });
 
-/* ---------- 4) Scroll-Reveal ---------- */
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches){
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(en => {
-      if(en.isIntersecting){ en.target.classList.add("is-in"); io.unobserve(en.target); }
-    });
-  }, {threshold:.12, rootMargin:"0px 0px -40px"});
-  document.querySelectorAll(".hu-rev-in").forEach(el => io.observe(el));
-} else {
-  document.querySelectorAll(".hu-rev-in").forEach(el => el.classList.add("is-in"));
+  const io = new IntersectionObserver(en => en.forEach(x => {
+    if(x.isIntersecting){ x.target.classList.add("is-in"); io.unobserve(x.target); }
+  }), {threshold:.1, rootMargin:"0px 0px -60px"});
+  document.querySelectorAll(".ha-r:not(.is-in)").forEach(el => io.observe(el));
+}else{
+  document.querySelectorAll(".ha-r").forEach(el => el.classList.add("is-in"));
 }
 
-/* ---------- 5) Kinderfeld nur bei Kids-Kursen zeigen ---------- */
-const kursSelect = document.querySelector('select[name="kurs"]');
-const kindLabel = document.getElementById("kindLabel");
-kursSelect.addEventListener("change", () => {
-  kindLabel.hidden = !kursSelect.value.startsWith("Hero");
+const selKurs = document.getElementById("selKurs"), kidField = document.getElementById("kidField");
+selKurs.addEventListener("change", () => {
+  kidField.hidden = !selKurs.value.startsWith("Hero");
 });
 </script>
 
-<!-- ============ STRUKTURIERTE DATEN ============
-     Fehlte auf der alten Seite komplett. Sorgt dafür, dass Google
-     die vier Standorte als eigene Betriebe mit Adresse versteht. -->
+<!-- ════════ STRUKTURIERTE DATEN ════════ -->
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -1048,36 +1194,26 @@ kursSelect.addEventListener("change", () => {
     {
       "@type":"SportsActivityLocation","@id":"https://hutton-academy.com/#schwabing",
       "name":"Hutton Academy München-Schwabing",
-      "description":"Kampfsportschule für Brazilian Jiu-Jitsu, Krav Maga, Kickboxen, MMA und Kindertraining.",
-      "url":"https://hutton-academy.com/",
-      "telephone":"+4915560292365","email":"muenchen@hutton-academy.de",
+      "description":"Kampfsportakademie für Brazilian Jiu-Jitsu, Krav Maga, Kickboxen, MMA und Kindertraining. Gegründet 2002.",
+      "url":"https://hutton-academy.com/","telephone":"+4915560292365","email":"muenchen@hutton-academy.de",
       "address":{"@type":"PostalAddress","streetAddress":"Hiltenspergerstraße 9","postalCode":"80798","addressLocality":"München","addressCountry":"DE"},
-      "geo":{"@type":"GeoCoordinates","latitude":48.1559994,"longitude":11.5654946},
+      "geo":{"@type":"GeoCoordinates","latitude":48.1560,"longitude":11.5655},
       "sameAs":["https://www.instagram.com/hutton_academy/","https://www.facebook.com/BJJMuenchen/"]
     },
-    {
-      "@type":"SportsActivityLocation","@id":"https://hutton-academy.com/#moosach",
-      "name":"Hutton Academy München-Moosach","url":"https://hutton-academy.com/mona/",
-      "address":{"@type":"PostalAddress","streetAddress":"Pelkovenstraße 143-147","postalCode":"80992","addressLocality":"München","addressCountry":"DE"}
-    },
-    {
-      "@type":"SportsActivityLocation","@id":"https://hutton-academy.com/#augsburg",
-      "name":"Hutton Academy Augsburg","url":"https://hutton-academy.com/augsburg/",
-      "address":{"@type":"PostalAddress","streetAddress":"Ulmer Straße 2","postalCode":"86356","addressLocality":"Neusäß","addressCountry":"DE"}
-    },
-    {
-      "@type":"SportsActivityLocation","@id":"https://hutton-academy.com/#geretsried",
-      "name":"Hutton Academy Geretsried","url":"https://hutton-academy.com/geretsried/",
-      "address":{"@type":"PostalAddress","streetAddress":"Sudetenstraße 49","postalCode":"82538","addressLocality":"Geretsried","addressCountry":"DE"}
-    },
-    {
-      "@type":"FAQPage","@id":"https://hutton-academy.com/#faq",
-      "mainEntity":[
-        {"@type":"Question","name":"Ich bin unfit. Kann ich trotzdem anfangen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Du musst nicht fit sein, um zu trainieren – du trainierst, um fit zu werden. In den Einsteigerkursen lernst du die Grundlagen und baust dabei Kraft und Kondition auf."}},
-        {"@type":"Question","name":"Was brauche ich fürs Probetraining?","acceptedAnswer":{"@type":"Answer","text":"Sportkleidung, etwas zu trinken und Badeschlappen. Beim BJJ leihen wir dir einen Anzug (Gi)."}},
-        {"@type":"Question","name":"Ab welchem Alter können Kinder mitmachen?","acceptedAnswer":{"@type":"Answer","text":"Ab 3 Jahren, in drei Altersgruppen: Hero Minis (3–6), Hero Kids (6–8) und Hero Teens (9–14)."}}
-      ]
-    }
+    {"@type":"SportsActivityLocation","@id":"https://hutton-academy.com/#moosach","name":"Hutton Academy München-Moosach","url":"https://hutton-academy.com/mona/",
+     "address":{"@type":"PostalAddress","streetAddress":"Pelkovenstraße 143-147","postalCode":"80992","addressLocality":"München","addressCountry":"DE"},
+     "geo":{"@type":"GeoCoordinates","latitude":48.1806,"longitude":11.5137}},
+    {"@type":"SportsActivityLocation","@id":"https://hutton-academy.com/#augsburg","name":"Hutton Academy Augsburg","url":"https://hutton-academy.com/augsburg/",
+     "address":{"@type":"PostalAddress","streetAddress":"Ulmer Straße 2","postalCode":"86356","addressLocality":"Neusäß","addressCountry":"DE"},
+     "geo":{"@type":"GeoCoordinates","latitude":48.3811,"longitude":10.8281}},
+    {"@type":"SportsActivityLocation","@id":"https://hutton-academy.com/#geretsried","name":"Hutton Academy Geretsried","url":"https://hutton-academy.com/geretsried/",
+     "address":{"@type":"PostalAddress","streetAddress":"Sudetenstraße 49","postalCode":"82538","addressLocality":"Geretsried","addressCountry":"DE"},
+     "geo":{"@type":"GeoCoordinates","latitude":47.8583,"longitude":11.4756}},
+    {"@type":"FAQPage","@id":"https://hutton-academy.com/#faq","mainEntity":[
+      {"@type":"Question","name":"Ich bin nicht fit. Kann ich trotzdem anfangen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Du musst nicht fit sein, um zu trainieren – du trainierst, um fit zu werden. In den Einsteigerkursen lernst du die Grundlagen und baust dabei Kraft und Kondition auf."}},
+      {"@type":"Question","name":"Was brauche ich fürs Probetraining?","acceptedAnswer":{"@type":"Answer","text":"Sportkleidung, etwas zu trinken und Badeschlappen. Beim BJJ leihen wir dir einen Anzug (Gi)."}},
+      {"@type":"Question","name":"Ab welchem Alter können Kinder mitmachen?","acceptedAnswer":{"@type":"Answer","text":"Ab 3 Jahren, in drei Gruppen: Hero Minis (3–6), Hero Kids (6–8) und Hero Teens (9–14)."}}
+    ]}
   ]
 }
 </script>
