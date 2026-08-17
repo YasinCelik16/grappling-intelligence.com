@@ -2,1095 +2,628 @@
 <html lang="de" class="no-js">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
-<title>Hutton Academy | Institution for Performance Martial Arts</title>
-<meta name="description" content="Systematic Martial Arts Training. Exklusive Akademie in München. BJJ, Krav Maga, Kickboxen.">
-<meta name="theme-color" content="#050505">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>HUTTON | Institution of Kinematics</title>
+<meta name="theme-color" content="#020202">
 
+<!-- Premium Typography: Cinzel for Architectural Authority, Manrope for Swiss Precision Data -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Syne for avant-garde, structural headlines. Inter for precision data. -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-<!-- Three.js for WebGL Background -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
+/* ==========================================================================
+   HUTTON ACADEMY - APEX EDITION (EDITORIAL LUXURY)
+   Vibe: Porsche Design, Tadao Ando Architecture, High-Fashion Editorial
+   ========================================================================== */
+
 :root {
-  /* Apex Color Palette */
-  --color-void: #030303;
-  --color-base: #080808;
-  --color-surface: #121212;
-  --color-surface-hover: #1c1c1c;
+  --c-void: #020202; /* Vantablack */
+  --c-carbon: #0a0a0a;
+  --c-tungsten: #1a1a1a;
+  --c-alabaster: #f5f5f5;
+  --c-muted: #737373;
+  --c-accent: #B89065; /* Anodized Bronze */
   
-  --color-text-main: #FFFFFF;
-  --color-text-muted: #888888;
-  --color-text-dark: #333333;
+  --f-heading: 'Cinzel', serif;
+  --f-body: 'Manrope', sans-serif;
   
-  /* The Signature Accent: A sophisticated metallic copper/gold */
-  --color-accent: #D4AF37; 
-  --color-accent-glow: rgba(212, 175, 55, 0.15);
-  
-  --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-active: rgba(212, 175, 55, 0.3);
-
-  /* Typography */
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
-
-  /* Layout & Metrics */
-  --pad-global: clamp(1.5rem, 4vw, 4rem);
-  --section-space: clamp(6rem, 15vh, 12rem);
-  --rad-sm: 4px;
-  --rad-md: 12px;
-  --rad-lg: 24px;
-  --rad-pill: 100px;
-  
-  /* Easings for cinematic feel */
-  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --ease-slow: cubic-bezier(0.4, 0, 0, 1);
+  --ease-cinematic: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-spring: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-::selection { background: var(--color-accent); color: var(--color-void); }
-html { scroll-behavior: smooth; font-size: 16px; background: var(--color-void); }
+::selection { background: var(--c-alabaster); color: var(--c-void); }
 
-body {
-  font-family: var(--font-body);
-  color: var(--color-text-main);
-  background-color: var(--color-void);
-  line-height: 1.6;
+html {
+  background: var(--c-void);
+  /* Verhindert horizontales Scrollen auf Body-Ebene */
+  overflow-x: hidden;
+  font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--f-body);
+  color: var(--c-alabaster);
+  background: var(--c-void);
   cursor: none; /* Custom Cursor */
+  overflow-x: hidden;
 }
 
-/* 3D Canvas Background */
-#webgl-canvas {
+/* ==========================================================================
+   TEXTURE & AMBIENCE
+   ========================================================================== */
+.noise-overlay {
   position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: 0; pointer-events: none; opacity: 0.6; mix-blend-mode: screen;
+  pointer-events: none; z-index: 9998; opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-/* Base Utility Classes */
-.relative { position: relative; z-index: 1; }
-.container { width: 100%; max-width: 1600px; margin: 0 auto; padding: 0 var(--pad-global); }
-.section { padding: var(--section-space) 0; }
-.img-fluid { width: 100%; height: auto; display: block; }
-a { color: inherit; text-decoration: none; cursor: none; }
-button { background: none; border: none; font: inherit; color: inherit; cursor: none; }
-button:focus, input:focus { outline: none; }
-
-.h-display { font-family: var(--font-display); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; }
-.h-xl { font-size: clamp(3.5rem, 10vw, 8rem); letter-spacing: -0.04em; text-transform: uppercase; }
-.h-lg { font-size: clamp(2.5rem, 6vw, 5rem); text-transform: uppercase; }
-.h-md { font-size: clamp(1.5rem, 3vw, 2.5rem); }
-.h-sm { font-size: clamp(1.1rem, 2vw, 1.5rem); }
-
-.text-lead { font-size: clamp(1.1rem, 1.5vw, 1.5rem); color: var(--color-text-muted); max-width: 50ch; font-weight: 300; }
-.text-overline { 
-  display: block; font-family: var(--font-body); font-size: 0.75rem; 
-  text-transform: uppercase; letter-spacing: 0.2em; color: var(--color-accent); 
-  margin-bottom: 1.5rem; font-weight: 500;
+/* Custom Cursor */
+.cursor {
+  position: fixed; top: 0; left: 0;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--c-alabaster);
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s var(--ease-spring), height 0.3s var(--ease-spring);
 }
+.cursor.hovered { width: 80px; height: 80px; background: rgba(255,255,255,0.1); backdrop-filter: blur(4px); mix-blend-mode: normal; border: 1px solid rgba(255,255,255,0.5); }
 
-.cursor-dot, .cursor-outline {
-  position: fixed; top: 0; left: 0; transform: translate(-50%, -50%);
-  border-radius: 50%; z-index: 9999; pointer-events: none;
-}
-.cursor-dot {
-  width: 6px; height: 6px; background-color: var(--color-accent);
-  transition: width 0.2s, height 0.2s, opacity 0.2s;
-}
-.cursor-outline {
-  width: 40px; height: 40px; border: 1px solid rgba(212, 175, 55, 0.4);
-  transition: width 0.2s, height 0.2s, background-color 0.2s, border-color 0.2s;
-  /* Smooth trailing effect via JS */
-}
-/* Hover States triggered via JS class */
-.cursor-hover .cursor-dot { opacity: 0; }
-.cursor-hover .cursor-outline { width: 60px; height: 60px; background-color: var(--color-accent-glow); border-color: var(--color-accent); mix-blend-mode: difference; }
-
+/* Preloader */
 .preloader {
-  position: fixed; inset: 0; z-index: 10000; background: var(--color-void);
+  position: fixed; inset: 0; background: var(--c-void); z-index: 9999;
   display: flex; flex-direction: column; justify-content: center; align-items: center;
-  transition: opacity 1.2s var(--ease-expo), visibility 1.2s;
+  transition: transform 1.2s var(--ease-cinematic);
 }
-.preloader.hidden { opacity: 0; visibility: hidden; }
-.loader-text { font-family: var(--font-display); font-size: 2rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.2em; overflow: hidden; }
-.loader-text span { display: inline-block; transform: translateY(100%); animation: slideUp 0.8s var(--ease-expo) forwards; }
-.loader-progress { margin-top: 2rem; width: 200px; height: 1px; background: var(--border-subtle); position: relative; overflow: hidden; }
-.loader-bar { position: absolute; top: 0; left: 0; height: 100%; background: var(--color-accent); width: 0%; transition: width 0.1s linear; }
+.preloader.done { transform: translateY(-100%); }
+.loader-count { font-family: var(--f-heading); font-size: 5rem; font-weight: 300; color: var(--c-alabaster); }
+.loader-line { width: 0%; height: 1px; background: var(--c-accent); margin-top: 2rem; transition: width 0.1s linear; }
 
-@keyframes slideUp { to { transform: translateY(0); } }
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+.t-hero { font-family: var(--f-heading); font-size: clamp(3rem, 10vw, 9rem); line-height: 0.9; text-transform: uppercase; font-weight: 400; letter-spacing: -0.02em; }
+.t-h2 { font-family: var(--f-heading); font-size: clamp(2rem, 5vw, 4.5rem); line-height: 1.1; text-transform: uppercase; font-weight: 400; }
+.t-h3 { font-family: var(--f-heading); font-size: clamp(1.5rem, 3vw, 2.5rem); line-height: 1.2; text-transform: uppercase; }
+.t-label { font-family: var(--f-body); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.3em; color: var(--c-muted); font-weight: 500; display: block; margin-bottom: 1.5rem; }
+.t-body { font-size: clamp(1rem, 1.2vw, 1.1rem); line-height: 1.8; color: var(--c-muted); font-weight: 300; max-width: 55ch; }
+.t-accent { color: var(--c-accent); font-style: italic; font-weight: 300; }
 
-.header {
+/* ==========================================================================
+   COMPONENTS
+   ========================================================================== */
+.btn-exclusive {
+  position: relative; display: inline-flex; align-items: center; justify-content: center;
+  padding: 1.2rem 3rem; background: transparent; border: 1px solid rgba(255,255,255,0.2);
+  color: var(--c-alabaster); font-family: var(--f-body); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;
+  overflow: hidden; cursor: none; transition: border-color 0.4s;
+}
+.btn-exclusive::before {
+  content: ''; position: absolute; inset: 0; background: var(--c-alabaster);
+  transform: translateY(100%); transition: transform 0.6s var(--ease-cinematic); z-index: -1;
+}
+.btn-exclusive:hover { border-color: transparent; color: var(--c-void); }
+.btn-exclusive:hover::before { transform: translateY(0); }
+
+/* Navigation */
+.nav-bar {
   position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-  padding: 2rem 0; transition: all 0.6s var(--ease-expo);
-  border-bottom: 1px solid transparent;
+  padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center;
+  mix-blend-mode: difference; transition: padding 0.5s var(--ease-cinematic);
 }
-.header.scrolled {
-  padding: 1rem 0; background: rgba(3, 3, 3, 0.7);
-  backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom-color: var(--border-subtle);
-}
-.header-inner { display: flex; justify-content: space-between; align-items: center; }
-.brand { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 0.5rem; }
-.brand span { color: var(--color-accent); }
+.brand { font-family: var(--f-heading); font-size: 1.5rem; letter-spacing: 0.1em; color: #fff; font-weight: 600; }
+.menu-btn { font-family: var(--f-body); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: #fff; cursor: none; }
 
-.nav-desktop { display: flex; gap: 3rem; align-items: center; }
-.nav-link {
-  font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--color-text-main); position: relative; padding: 0.5rem 0;
-  transition: color 0.3s;
-}
-.nav-link::after {
-  content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px;
-  background: var(--color-accent); transform: scaleX(0); transform-origin: right;
-  transition: transform 0.4s var(--ease-expo);
-}
-.nav-link:hover { color: var(--color-accent); }
-.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+.section { position: relative; padding: 10rem 4rem; }
+.container { max-width: 1600px; margin: 0 auto; }
 
-/* Interactive Primary Button */
-.btn-apex {
-  position: relative; display: inline-flex; justify-content: center; align-items: center;
-  padding: 1rem 2.5rem; background: transparent; border: 1px solid var(--border-subtle);
-  color: var(--color-text-main); font-family: var(--font-display); font-size: 0.85rem;
-  font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
-  border-radius: var(--rad-pill); overflow: hidden; transition: border-color 0.4s;
-}
-.btn-apex::before {
-  content: ''; position: absolute; inset: 0; background: var(--color-text-main);
-  border-radius: var(--rad-pill); transform: scaleY(0); transform-origin: bottom;
-  transition: transform 0.5s var(--ease-expo); z-index: -1;
-}
-.btn-apex:hover { color: var(--color-void); border-color: var(--color-text-main); }
-.btn-apex:hover::before { transform: scaleY(1); }
+/* Hero */
+.hero { height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 5rem; position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; z-index: -2; width: 100%; height: 110%; object-fit: cover; filter: grayscale(100%) brightness(0.4) contrast(1.2); transform: translateY(0); /* Parallax via JS */ }
+.hero-gradient { position: absolute; inset: 0; background: linear-gradient(to top, var(--c-void) 0%, transparent 60%); z-index: -1; }
+.hero-content { display: flex; justify-content: space-between; align-items: flex-end; width: 100%; }
+.hero-text-wrap { overflow: hidden; }
+.hero-text-inner { transform: translateY(100%); transition: transform 1.2s var(--ease-cinematic); }
+.hero.is-loaded .hero-text-inner { transform: translateY(0); }
 
-.hero { height: 100vh; min-height: 800px; display: flex; align-items: center; position: relative; overflow: hidden; }
-.hero-content { position: relative; z-index: 2; width: 100%; }
-.hero-title-wrap { overflow: hidden; margin-bottom: 1rem; }
-.hero-title { transform: translateY(110%); } /* Animated via JS */
-.hero-sub { opacity: 0; transform: translateY(20px); max-width: 600px; }
-.hero-actions { opacity: 0; transform: translateY(20px); margin-top: 3rem; display: flex; gap: 1.5rem; align-items: center; }
+/* Manifest (Editorial Split) */
+.manifest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: center; }
+.manifest-img-wrap { position: relative; width: 100%; aspect-ratio: 3/4; overflow: hidden; clip-path: inset(100% 0 0 0); transition: clip-path 1.5s var(--ease-cinematic); }
+.manifest-img-wrap.is-revealed { clip-path: inset(0 0 0 0); }
+.manifest-img { position: absolute; inset: 0; width: 100%; height: 120%; object-fit: cover; filter: grayscale(100%); }
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.1); }
+.stat-num { font-family: var(--f-heading); font-size: 2.5rem; color: var(--c-alabaster); line-height: 1; }
 
-.scroll-indicator {
-  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 1rem; opacity: 0;
+/* The Service (Horizontal Scroll Section) */
+.horizontal-track {
+  position: relative;
+  height: 300vh; /* Der User scrollt 300vh nach unten... */
 }
-.scroll-line { width: 1px; height: 60px; background: var(--border-subtle); position: relative; overflow: hidden; }
-.scroll-line::after {
-  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 50%;
-  background: var(--color-accent); animation: scrollDown 2s infinite cubic-bezier(0.6, 0.05, 0.4, 1);
+.horizontal-camera {
+  position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden;
+  display: flex; align-items: center; background: var(--c-carbon);
 }
-@keyframes scrollDown { 0% { transform: translateY(-100%); } 100% { transform: translateY(200%); } }
+.horizontal-film {
+  display: flex; height: 70vh; padding: 0 10vw; gap: 8vw;
+  width: 300vw; /* ...während dieser Container nach links gleitet */
+  will-change: transform;
+}
+.h-card { width: 50vw; flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
+.h-card-img { width: 100%; height: 50vh; object-fit: cover; margin-bottom: 2rem; filter: grayscale(100%); border-radius: 4px; }
+.h-card-text { font-size: 1.5rem; font-family: var(--f-heading); max-width: 80%; }
 
-.marquee-container {
-  width: 100%; padding: 2rem 0; background: var(--color-accent); color: var(--color-void);
-  overflow: hidden; display: flex; white-space: nowrap; transform: rotate(-1deg) scale(1.02);
-  position: relative; z-index: 10;
-}
-.marquee-content {
-  display: flex; animation: marquee 20s linear infinite;
-}
-.marquee-item {
-  font-family: var(--font-display); font-size: 2.5rem; font-weight: 800;
-  text-transform: uppercase; padding: 0 2rem; display: flex; align-items: center; gap: 2rem;
-}
-.marquee-item::after { content: '✦'; font-size: 1.5rem; }
-@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+/* The Arsenal (Discipline Reveal on Hover) */
+.arsenal { min-height: 100vh; padding: 10rem 4rem; position: relative; display: flex; align-items: center; }
+.arsenal-bg-container { position: absolute; inset: 0; z-index: -1; overflow: hidden; }
+.a-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.8s var(--ease-cinematic), transform 6s linear; filter: grayscale(80%) brightness(0.3); transform: scale(1.1); }
+.a-bg.active { opacity: 1; transform: scale(1); }
 
-.philosophy { background: var(--color-base); position: relative; border-top: 1px solid var(--border-subtle); }
-.phil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
-.phil-text-reveal {
-  font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem); line-height: 1.2;
-  color: var(--border-subtle); /* Text is hidden, revealed on scroll */
-  background: linear-gradient(to right, var(--color-text-main) 50%, var(--border-subtle) 50%);
-  background-size: 200% 100%; background-position: 100% 0;
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  transition: background-position 0.1s;
+.arsenal-list { display: flex; flex-direction: column; width: 100%; position: relative; z-index: 2; }
+.arsenal-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 3rem 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.3); transition: color 0.4s; cursor: none;
 }
-.phil-image-wrap { position: relative; overflow: hidden; border-radius: var(--rad-lg); aspect-ratio: 3/4; }
-.phil-image { width: 100%; height: 120%; object-fit: cover; object-position: center; } /* Height 120% for parallax */
-.phil-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 4rem; border-top: 1px solid var(--border-subtle); padding-top: 2rem; }
-.stat-num { font-family: var(--font-display); font-size: 3.5rem; font-weight: 700; color: var(--color-accent); line-height: 1; }
-.stat-lbl { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); margin-top: 0.5rem; }
+.arsenal-item:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+.arsenal-item:hover { color: var(--c-alabaster); }
+.a-title { font-family: var(--f-heading); font-size: clamp(3rem, 6vw, 6rem); line-height: 1; transition: transform 0.6s var(--ease-cinematic); }
+.arsenal-item:hover .a-title { transform: translateX(2vw); }
+.a-meta { font-family: var(--f-body); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0; transform: translateX(-20px); transition: all 0.4s; text-align: right; }
+.arsenal-item:hover .a-meta { opacity: 1; transform: translateX(0); }
 
-.disciplines-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; height: 70vh; min-height: 600px; }
-.disc-card {
-  position: relative; border-radius: var(--rad-md); overflow: hidden;
-  background: var(--color-surface); display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 2.5rem; transition: all 0.6s var(--ease-spring); cursor: none;
+/* Kids Program (Editorial Callout) */
+.kids-program { background: var(--c-alabaster); color: var(--c-void); padding: 12rem 4rem; text-align: center; }
+.kids-program .t-label { color: var(--c-void); opacity: 0.6; }
+.kids-program .t-body { color: var(--c-void); margin: 0 auto; max-width: 70ch; }
+.kids-img-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 2rem; margin-top: 6rem; align-items: center; }
+.k-img { width: 100%; object-fit: cover; filter: grayscale(100%); }
+
+/* The Allocation (Booking/Pricing) */
+.allocation { padding: 10rem 4rem; background: var(--c-void); }
+.alloc-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 8rem; margin-top: 6rem; }
+.tier-box {
+  padding: 4rem; border: 1px solid rgba(255,255,255,0.1);
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 100%);
+  position: relative; overflow: hidden;
 }
-/* Flex-grow interaction */
-.disciplines-grid:hover .disc-card { filter: grayscale(100%) opacity(0.5); }
-.disciplines-grid .disc-card:hover { flex-grow: 1.5; filter: grayscale(0%) opacity(1); transform: translateY(-10px); box-shadow: 0 30px 60px rgba(0,0,0,0.8); z-index: 2; }
-
-.disc-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s, transform 6s linear; transform: scale(1.1); z-index: 0; }
-.disc-card:hover .disc-bg { opacity: 0.4; transform: scale(1); }
-.disc-overlay { position: absolute; inset: 0; background: linear-gradient(to top, var(--color-base) 0%, transparent 100%); z-index: 1; }
-.disc-content { position: relative; z-index: 2; transform: translateY(20px); transition: transform 0.6s var(--ease-expo); }
-.disc-card:hover .disc-content { transform: translateY(0); }
-.disc-num { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-accent); font-weight: 700; margin-bottom: 1rem; opacity: 0.5; }
-.disc-desc { font-size: 0.95rem; color: var(--color-text-muted); margin-top: 1rem; opacity: 0; height: 0; overflow: hidden; transition: opacity 0.4s 0.2s; }
-.disc-card:hover .disc-desc { opacity: 1; height: auto; }
-
-.booking-section { background: var(--color-void); position: relative; border-block: 1px solid var(--border-subtle); overflow: hidden; }
-/* Aesthetic Background Elements for Booking */
-.booking-bg-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%); z-index: 0; pointer-events: none; }
-
-.wizard-container { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; background: rgba(18, 18, 18, 0.6); backdrop-filter: blur(40px); border: 1px solid var(--border-subtle); border-radius: var(--rad-lg); padding: 4rem; box-shadow: 0 40px 100px rgba(0,0,0,0.5); }
-.wizard-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 2rem; }
-.wizard-progress { display: flex; gap: 0.5rem; align-items: center; }
-.progress-dot { width: 40px; height: 4px; background: var(--border-subtle); border-radius: 2px; transition: background 0.4s; }
-.progress-dot.active { background: var(--color-accent); }
-.progress-dot.done { background: var(--color-text-main); }
-
-/* Wizard Steps Wrapper */
-.wizard-steps-wrapper { position: relative; min-height: 400px; overflow: hidden; }
-.wizard-step { position: absolute; top: 0; left: 0; width: 100%; opacity: 0; visibility: hidden; transform: translateX(50px); transition: all 0.6s var(--ease-expo); }
-.wizard-step.active { opacity: 1; visibility: visible; transform: translateX(0); position: relative; }
-.wizard-step.prev { transform: translateX(-50px); }
-
-/* Selection Grids (Locations & Disciplines) */
-.sel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-.sel-card {
-  background: var(--color-surface); border: 1px solid var(--border-subtle); border-radius: var(--rad-md);
-  padding: 2rem; cursor: none; transition: all 0.3s; text-align: center; position: relative; overflow: hidden;
+.tier-box.flagship { border-color: var(--c-accent); }
+.tier-box.flagship::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--c-accent);
 }
-.sel-card::before { content: ''; position: absolute; inset: 0; background: var(--color-accent-glow); opacity: 0; transition: opacity 0.3s; }
-.sel-card:hover { border-color: var(--color-text-muted); transform: translateY(-5px); }
-.sel-card:hover::before { opacity: 1; }
-.sel-card.selected { border-color: var(--color-accent); background: var(--color-base); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1); }
-.sel-card.selected::after {
-  content: '✓'; position: absolute; top: 1rem; right: 1rem; width: 24px; height: 24px;
-  background: var(--color-accent); color: var(--color-void); border-radius: 50%;
-  display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold;
-}
-.sel-card h4 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem; position: relative; z-index: 2;}
-.sel-card p { font-size: 0.85rem; color: var(--color-text-muted); position: relative; z-index: 2;}
+.price-val { font-family: var(--f-heading); font-size: 4rem; margin: 2rem 0; line-height: 1; }
+.price-val span { font-family: var(--f-body); font-size: 1rem; color: var(--c-muted); }
+.feature-list { list-style: none; margin-bottom: 3rem; }
+.feature-list li { padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.9rem; color: var(--c-muted); display: flex; justify-content: space-between; }
 
-/* Time Slot Selection */
-.slot-list { display: flex; flex-direction: column; gap: 1rem; max-height: 400px; overflow-y: auto; padding-right: 1rem; }
-.slot-list::-webkit-scrollbar { width: 4px; }
-.slot-list::-webkit-scrollbar-thumb { background: var(--border-active); border-radius: 4px; }
-.slot-row {
-  display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 2rem;
-  background: var(--color-surface); border: 1px solid var(--border-subtle); border-radius: var(--rad-md);
-  cursor: none; transition: all 0.3s;
+/* The Concierge Form */
+.concierge-form { display: flex; flex-direction: column; gap: 3rem; }
+.input-row { position: relative; }
+.lux-input {
+  width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(255,255,255,0.2);
+  color: var(--c-alabaster); font-family: var(--f-body); font-size: 1.2rem; padding: 1rem 0;
+  border-radius: 0; transition: border-color 0.3s;
 }
-.slot-row:hover { border-color: var(--color-text-main); background: var(--color-surface-hover); }
-.slot-date { display: flex; flex-direction: column; }
-.slot-day { font-weight: 600; color: var(--color-text-main); }
-.slot-meta { font-size: 0.85rem; color: var(--color-text-muted); }
-.slot-time { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; color: var(--color-accent); }
+.lux-input:focus { outline: none; border-bottom-color: var(--c-accent); }
+.lux-label {
+  position: absolute; left: 0; top: 1rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em;
+  color: var(--c-muted); pointer-events: none; transition: all 0.3s var(--ease-cinematic);
+}
+.lux-input:focus ~ .lux-label, .lux-input:not(:placeholder-shown) ~ .lux-label {
+  top: -1rem; font-size: 0.65rem; color: var(--c-accent);
+}
 
-/* Form Elements */
-.app-form { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.form-group.full { grid-column: 1 / -1; }
-.form-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); }
-.form-input {
-  background: transparent; border: none; border-bottom: 1px solid var(--border-subtle);
-  color: var(--color-text-main); font-family: var(--font-body); font-size: 1.2rem;
-  padding: 1rem 0; transition: border-color 0.3s;
-}
-.form-input:focus { border-bottom-color: var(--color-accent); }
-.form-input::placeholder { color: #444; }
+/* Footer */
+.footer { border-top: 1px solid rgba(255,255,255,0.1); padding: 6rem 4rem 2rem; text-align: center; }
+.f-logo { font-family: var(--f-heading); font-size: 4rem; letter-spacing: 0.1em; color: rgba(255,255,255,0.1); }
 
-.wizard-footer { margin-top: 3rem; display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border-subtle); }
-.btn-text { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-muted); transition: color 0.3s; }
-.btn-text:hover { color: var(--color-text-main); }
-.btn-primary {
-  background: var(--color-text-main); color: var(--color-void); padding: 1rem 3rem;
-  font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  border-radius: var(--rad-pill); transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px;
-}
-.btn-primary:hover { background: var(--color-accent); box-shadow: 0 10px 20px var(--color-accent-glow); transform: translateY(-2px); }
-.btn-primary:disabled { background: var(--color-surface); color: var(--color-text-muted); cursor: not-allowed; transform: none; box-shadow: none; pointer-events: none; }
+/* Utilities for Animations */
+.reveal-text { clip-path: inset(0 100% 0 0); transition: clip-path 1.2s var(--ease-cinematic); }
+.reveal-text.is-in { clip-path: inset(0 0 0 0); }
+.fade-up { opacity: 0; transform: translateY(40px); transition: all 1s var(--ease-cinematic); }
+.fade-up.is-in { opacity: 1; transform: translateY(0); }
 
-/* Success State */
-.success-state { text-align: center; padding: 4rem 0; }
-.success-icon { width: 80px; height: 80px; background: rgba(212, 175, 55, 0.1); border: 1px solid var(--color-accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; color: var(--color-accent); font-size: 2rem; }
-
-.pricing-section { background: var(--color-base); }
-.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; }
-.price-card {
-  background: var(--color-void); border: 1px solid var(--border-subtle); border-radius: var(--rad-lg);
-  padding: 4rem 3rem; position: relative; transition: transform 0.4s, border-color 0.4s;
+/* Responsive */
+@media(max-width: 1024px) {
+  .manifest-grid, .alloc-grid { grid-template-columns: 1fr; gap: 4rem; }
+  .horizontal-track { display: none; /* Simplification for mobile */ }
+  .a-title { font-size: 3rem; }
+  .kids-img-grid { grid-template-columns: 1fr; }
 }
-.price-card:hover { transform: translateY(-10px); border-color: var(--border-active); }
-.price-card.elite {
-  border-color: var(--color-accent);
-  background: linear-gradient(180deg, rgba(212,175,55,0.05) 0%, var(--color-void) 100%);
-}
-.elite-badge {
-  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
-  background: var(--color-accent); color: var(--color-void); font-family: var(--font-display);
-  font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  padding: 6px 16px; border-radius: var(--rad-pill);
-}
-.price-name { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; }
-.price-val { font-family: var(--font-display); font-size: 4rem; font-weight: 700; color: var(--color-text-main); line-height: 1; margin-bottom: 2rem; }
-.price-val span { font-size: 1rem; color: var(--color-text-muted); font-weight: 400; font-family: var(--font-body); }
-.price-features { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; }
-.price-features li { display: flex; gap: 12px; font-size: 0.95rem; color: var(--color-text-muted); border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem; }
-.price-features li::before { content: '✦'; color: var(--color-accent); }
-
-.footer { background: var(--color-void); border-top: 1px solid var(--border-subtle); padding: 8rem 0 3rem; overflow: hidden; }
-.footer-massive { font-family: var(--font-display); font-size: clamp(4rem, 15vw, 12rem); font-weight: 800; color: var(--border-subtle); line-height: 0.8; text-align: center; margin-bottom: 4rem; letter-spacing: -0.05em; user-select: none; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
-.footer-col h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-main); margin-bottom: 1.5rem; }
-.footer-links { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
-.footer-links a { color: var(--color-text-muted); font-size: 0.95rem; transition: color 0.3s; }
-.footer-links a:hover { color: var(--color-accent); }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; border-top: 1px solid var(--border-subtle); font-size: 0.85rem; color: var(--color-text-muted); }
-
-/* Responsive Adjustments */
-@media (max-width: 1200px) {
-  .disciplines-grid { grid-template-columns: repeat(2, 1fr); height: auto; }
-  .disc-card { min-height: 400px; }
-  .pricing-grid { grid-template-columns: 1fr; max-width: 600px; margin: 4rem auto 0; }
-}
-@media (max-width: 900px) {
-  .phil-grid { grid-template-columns: 1fr; gap: 3rem; }
-  .phil-image-wrap { order: -1; aspect-ratio: 16/9; }
-  .wizard-container { padding: 2rem; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 600px) {
-  .nav-desktop { display: none; }
-  .hero-actions { flex-direction: column; width: 100%; }
-  .hero-actions .btn-apex { width: 100%; }
-  .app-form { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
+@media(max-width: 768px) {
+  .section { padding: 6rem 2rem; }
+  .nav-bar { padding: 1.5rem 2rem; }
+  .t-hero { font-size: 12vw; }
 }
 </style>
 </head>
 <body>
 
+<!-- Noise Overlay for Editorial Print Texture -->
+<div class="noise-overlay"></div>
+
+<!-- Custom Interactive Cursor -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Preloader -->
 <div class="preloader" id="preloader">
-  <div class="loader-text"><span>HUTTON</span></div>
-  <div class="loader-progress">
-    <div class="loader-bar" id="loaderBar"></div>
-  </div>
+  <div class="loader-count" id="loaderCount">00</div>
+  <div style="width: 200px;"><div class="loader-line" id="loaderLine"></div></div>
+  <span class="t-label" style="margin-top: 2rem;">Initializing Kinematics</span>
 </div>
 
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-outline" id="cursorOutline"></div>
+<!-- Nav -->
+<nav class="nav-bar" id="navbar">
+  <div class="brand">HUTTON.</div>
+  <div class="menu-btn interactable">Menu</div>
+</nav>
 
-<!-- Background 3D Canvas -->
-<canvas id="webgl-canvas"></canvas>
-
-<header class="header relative" id="header">
-  <div class="container header-inner">
-    <a href="#" class="brand" data-cursor="hover">Hutton<span>.</span></a>
-    <nav class="nav-desktop">
-      <a href="#philosophy" class="nav-link" data-cursor="hover">Manifesto</a>
-      <a href="#disciplines" class="nav-link" data-cursor="hover">Disziplinen</a>
-      <a href="#locations" class="nav-link" data-cursor="hover">Infrastruktur</a>
-      <a href="#pricing" class="nav-link" data-cursor="hover">Investment</a>
-    </nav>
-    <a href="#booking" class="btn-apex" data-cursor="hover">Initialisierung</a>
-  </div>
-</header>
-
-<section class="hero relative" id="home">
-  <div class="container hero-content">
-    <span class="text-overline gs-reveal">Kampfsportakademie seit 2002</span>
-    <div class="hero-title-wrap"><h1 class="h-display h-xl hero-title">Mastery</h1></div>
-    <div class="hero-title-wrap"><h1 class="h-display h-xl hero-title" style="color: transparent; -webkit-text-stroke: 1px var(--color-text-main);">Through</h1></div>
-    <div class="hero-title-wrap"><h1 class="h-display h-xl hero-title">Discipline.</h1></div>
-    
-    <p class="text-lead hero-sub mt-4">
-      Eine Institution für physische Souveränität. Wir transferieren analytische Präzision in kompromisslose Kampfkunst. Kein Fitnessstudio. Ein privater Club für persönliches Wachstum.
-    </p>
-    
-    <div class="hero-actions">
-      <a href="#booking" class="btn-apex" data-cursor="hover">Probetraining sichern</a>
-      <a href="#philosophy" class="nav-link" style="font-size: 0.85rem;" data-cursor="hover">System entdecken ↓</a>
-    </div>
-  </div>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <img src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-16-scaled-e1648134979614.jpg" alt="Hero" class="hero-bg" id="heroBg">
+  <div class="hero-gradient"></div>
   
-  <div class="scroll-indicator" id="scrollIndicator">
-    <span style="font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;">Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<div class="marquee-container relative">
-  <div class="marquee-content">
-    <div class="marquee-item">Brazilian Jiu-Jitsu</div>
-    <div class="marquee-item">Krav Maga</div>
-    <div class="marquee-item">Kickboxen</div>
-    <div class="marquee-item">Mixed Martial Arts</div>
-    <div class="marquee-item">NextGen Kids</div>
-    <!-- Duplicate for seamless loop -->
-    <div class="marquee-item">Brazilian Jiu-Jitsu</div>
-    <div class="marquee-item">Krav Maga</div>
-    <div class="marquee-item">Kickboxen</div>
-    <div class="marquee-item">Mixed Martial Arts</div>
-    <div class="marquee-item">NextGen Kids</div>
-  </div>
-</div>
-
-<section class="section philosophy relative" id="philosophy">
-  <div class="container phil-grid">
+  <div class="container hero-content">
     <div>
-      <span class="text-overline">Das Paradigma</span>
-      <h2 class="phil-text-reveal" id="textReveal">
-        Wer Hebel, Position und Timing meistert, macht rohe Kraft obsolet. Wir lehren nicht nur Techniken, wir installieren funktionierende biomechanische Systeme.
-      </h2>
+      <div class="hero-text-wrap"><h1 class="t-hero hero-text-inner">The Physics</h1></div>
+      <div class="hero-text-wrap"><h1 class="t-hero hero-text-inner"><span class="t-accent">Of</span> Dominance.</h1></div>
+    </div>
+    <div style="text-align: right; padding-bottom: 1rem;">
+      <span class="t-label">Est. 2002 / Munich</span>
+      <p class="t-body" style="font-size: 0.85rem; max-width: 250px;">A private institution engineering physical sovereignty through systematic martial arts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE MANIFESTO -->
+<section class="section">
+  <div class="container manifest-grid">
+    <div>
+      <span class="t-label reveal-text">Das Manifest</span>
+      <h2 class="t-h2 fade-up" style="margin-bottom: 2rem;">Form follows<br><span class="t-accent">Function.</span></h2>
+      <p class="t-body fade-up">
+        Wir lehnen die Ästhetik herkömmlicher Fitnessstudios ab. Die Hutton Academy ist ein hochspezialisiertes Umfeld, entworfen für eine einzige Metrik: Absolute Wirksamkeit. Wer Hebel, Position und Timing auf atomarer Ebene versteht, macht rohe Kraft obsolet.
+      </p>
       
-      <div class="phil-stats">
+      <div class="stat-grid fade-up">
         <div>
-          <div class="stat-num counter" data-target="24">0</div>
-          <div class="stat-lbl">Jahre Expertise</div>
+          <div class="stat-num">24</div>
+          <span class="t-label" style="margin-top: 0.5rem;">Jahre Expertise</span>
         </div>
         <div>
-          <div class="stat-num counter" data-target="4">0</div>
-          <div class="stat-lbl">Premium Hubs</div>
+          <div class="stat-num">04</div>
+          <span class="t-label" style="margin-top: 0.5rem;">Premium Hubs</span>
         </div>
       </div>
     </div>
-    <div class="phil-image-wrap">
-      <img src="https://hutton-academy.com/wp-content/uploads/2020/06/Academy_2-e1648135126640.jpg" alt="Academy Focus" class="phil-image" id="parallaxImage">
+    
+    <div class="manifest-img-wrap io-reveal">
+      <img src="https://hutton-academy.com/wp-content/uploads/2020/06/Academy_2-e1648135126640.jpg" alt="Academy Floor" class="manifest-img parallax-img">
     </div>
   </div>
 </section>
 
-<section class="section relative" id="disciplines" style="padding-top: 0; background: var(--color-base);">
-  <div class="disciplines-grid">
-    
-    <a href="#booking" class="disc-card" data-cursor="hover">
-      <img src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-22-scaled-e1648134994912.jpg" alt="BJJ" class="disc-bg">
-      <div class="disc-overlay"></div>
-      <div class="disc-content">
-        <div class="disc-num">01</div>
-        <h3 class="h-display h-sm">Brazilian<br>Jiu-Jitsu</h3>
-        <p class="disc-desc">Das Schachspiel der Kampfkunst. Volle Kontrolle am Boden durch Hebel- und Würgetechniken. Unser absolutes Kernfach.</p>
-      </div>
-    </a>
-    
-    <a href="#booking" class="disc-card" data-cursor="hover">
-      <img src="https://hutton-academy.com/wp-content/uploads/2022/03/Krav-Maga-2-e1648135007138.jpg" alt="Krav Maga" class="disc-bg">
-      <div class="disc-overlay"></div>
-      <div class="disc-content">
-        <div class="disc-num">02</div>
-        <h3 class="h-display h-sm">Krav<br>Maga</h3>
-        <p class="disc-desc">Asymmetrische Verteidigung. Entworfen für die Realität außerhalb der Matte. Kompromissloser Schutz ohne Regeln.</p>
-      </div>
-    </a>
-
-    <a href="#booking" class="disc-card" data-cursor="hover">
-      <img src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton-Academy_6-e1648135080729.jpg" alt="Kickboxen" class="disc-bg">
-      <div class="disc-overlay"></div>
-      <div class="disc-content">
-        <div class="disc-num">03</div>
-        <h3 class="h-display h-sm">Kickboxen<br>& MMA</h3>
-        <p class="disc-desc">Standup-Dominanz. Schlagen, treten, bewegen. Das intensivste Ganzkörper-Conditioning im Arsenal.</p>
-      </div>
-    </a>
-
-    <a href="#booking" class="disc-card" data-cursor="hover">
-      <img src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton_Academy_M%C3%BCnchen-1024x576.jpg" alt="Hero Kids" class="disc-bg">
-      <div class="disc-overlay"></div>
-      <div class="disc-content">
-        <div class="disc-num">04</div>
-        <h3 class="h-display h-sm">Hero<br>Kids</h3>
-        <p class="disc-desc">Die nächste Generation. Wertevermittlung, Resilienz und Selbstbehauptung für Kinder ab 3 Jahren.</p>
-      </div>
-    </a>
-
-  </div>
-</section>
-
-<section class="section booking-section" id="booking">
-  <div class="booking-bg-glow"></div>
-  <div class="container relative">
-    
-    <div class="wizard-container gs-reveal">
-      <div class="wizard-header">
-        <div>
-          <span class="text-overline">The Concierge</span>
-          <h2 class="h-display h-md">Secure Your Slot.</h2>
-        </div>
-        <div class="wizard-progress">
-          <div class="progress-dot active" id="dot1"></div>
-          <div class="progress-dot" id="dot2"></div>
-          <div class="progress-dot" id="dot3"></div>
-          <div class="progress-dot" id="dot4"></div>
-        </div>
+<!-- HORIZONTAL SCROLL: The Service Standards -->
+<section class="horizontal-track" id="h-track">
+  <div class="horizontal-camera">
+    <div class="horizontal-film" id="h-film">
+      
+      <div class="h-card">
+        <span class="t-label">The Standard</span>
+        <h2 class="t-h2">Uncompromising<br>Excellence.</h2>
+        <p class="t-body" style="margin-top: 2rem;">Unsere Preise reflektieren unser Umfeld. Wir bieten keine Mitgliedschaften an, wir vergeben Zugänge zu einer Infrastruktur der Spitzenklasse.</p>
       </div>
 
-      <div class="wizard-steps-wrapper" id="wizardWrapper">
-        
-        <!-- STEP 1: Location -->
-        <div class="wizard-step active" id="step1">
-          <h3 class="h-display h-sm mb-4" style="margin-bottom: 2rem;">01. Wähle deinen Hub</h3>
-          <div class="sel-grid">
-            <div class="sel-card" data-step="1" data-val="muc" data-cursor="hover">
-              <h4>Schwabing</h4><p>Headquarters, Full Stack</p>
-            </div>
-            <div class="sel-card" data-step="1" data-val="mona" data-cursor="hover">
-              <h4>Moosach</h4><p>MONA Complex</p>
-            </div>
-            <div class="sel-card" data-step="1" data-val="aug" data-cursor="hover">
-              <h4>Augsburg</h4><p>West Hub</p>
-            </div>
-            <div class="sel-card" data-step="1" data-val="ger" data-cursor="hover">
-              <h4>Geretsried</h4><p>South Wing</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 2: Discipline -->
-        <div class="wizard-step" id="step2">
-          <h3 class="h-display h-sm mb-4" style="margin-bottom: 2rem;">02. Wähle deine Disziplin</h3>
-          <div class="sel-grid">
-            <div class="sel-card" data-step="2" data-val="BJJ" data-cursor="hover">
-              <h4>Brazilian Jiu-Jitsu</h4><p>Bodenkampf & Hebel</p>
-            </div>
-            <div class="sel-card" data-step="2" data-val="Krav Maga" data-cursor="hover">
-              <h4>Krav Maga</h4><p>Taktische Selbstverteidigung</p>
-            </div>
-            <div class="sel-card" data-step="2" data-val="Kickboxen" data-cursor="hover">
-              <h4>Kickboxen / MMA</h4><p>Standup Striking</p>
-            </div>
-            <div class="sel-card" data-step="2" data-val="Kids" data-cursor="hover">
-              <h4>Hero Kids</h4><p>Next Generation</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 3: Time Slot -->
-        <div class="wizard-step" id="step3">
-          <h3 class="h-display h-sm mb-4" style="margin-bottom: 2rem;">03. Allokation (Nächste 14 Tage)</h3>
-          <div class="slot-list" id="slotList">
-            <!-- JS Injected -->
-          </div>
-        </div>
-
-        <!-- STEP 4: Checkout -->
-        <div class="wizard-step" id="step4">
-          <h3 class="h-display h-sm mb-4" style="margin-bottom: 2rem;">04. Identifikation</h3>
-          <form class="app-form" id="checkoutForm">
-            <div class="form-group full">
-              <div style="padding: 1rem; background: rgba(212,175,55,0.1); border: 1px solid var(--color-accent); border-radius: var(--rad-sm);">
-                <span style="font-size: 0.75rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; display:block;">Gewählter Slot:</span>
-                <strong id="finalSlotDisplay" style="font-family: var(--font-display); font-size: 1.1rem;"></strong>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-input" required placeholder="Geben Sie Ihren Namen ein" data-cursor="hover">
-            </div>
-            <div class="form-group">
-              <label class="form-label">E-Mail</label>
-              <input type="email" class="form-input" required placeholder="ihre@email.com" data-cursor="hover">
-            </div>
-            <div class="form-group">
-              <label class="form-label">Telefon (Optional)</label>
-              <input type="tel" class="form-input" placeholder="+49..." data-cursor="hover">
-            </div>
-            <div class="form-group" style="justify-content: center;">
-              <label style="display:flex; gap:10px; align-items:center; cursor:pointer;" data-cursor="hover">
-                <input type="checkbox" required style="width:18px; height:18px; accent-color: var(--color-accent);">
-                <span style="font-size:0.8rem; color:var(--color-text-muted);">Datenschutzerklärung akzeptiert.</span>
-              </label>
-            </div>
-          </form>
-        </div>
-        
-        <!-- STEP 5: Success -->
-        <div class="wizard-step" id="step5">
-          <div class="success-state">
-            <div class="success-icon">✓</div>
-            <h3 class="h-display h-md">Initialisierung Erfolgreich.</h3>
-            <p class="text-lead" style="margin: 1rem auto;">Ihre Anfrage wurde priorisiert ins System übertragen. Sie erhalten in Kürze eine Bestätigung durch den Concierge.</p>
-          </div>
-        </div>
-
+      <div class="h-card">
+        <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=2069&auto=format&fit=crop" alt="Clean Mats" class="h-card-img">
+        <h3 class="h-card-text">Ozon-gereinigte Tatami. Klinische Standards auf der gesamten Fläche.</h3>
       </div>
 
-      <div class="wizard-footer" id="wizardFooter">
-        <button class="btn-text" id="btnPrev" style="visibility: hidden;" data-cursor="hover">← Zurück</button>
-        <button class="btn-primary" id="btnNext" disabled data-cursor="hover">Weiter →</button>
+      <div class="h-card">
+        <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?q=80&w=2070&auto=format&fit=crop" alt="Equipment" class="h-card-img">
+        <h3 class="h-card-text">Concierge Service. Leih-Equipment in Manufaktur-Qualität für das Onboarding.</h3>
+      </div>
+
+      <div class="h-card">
+        <img src="https://images.unsplash.com/photo-1517438476312-10d79c077509?q=80&w=2070&auto=format&fit=crop" alt="Community" class="h-card-img">
+        <h3 class="h-card-text">Limitierte Kohorten. Wir garantieren einen Betreuungsschlüssel, der Progression erzwingt.</h3>
       </div>
 
     </div>
   </div>
 </section>
 
-<section class="section pricing-section relative" id="pricing">
+<!-- THE ARSENAL (Hover Reveals) -->
+<section class="arsenal">
+  <div class="arsenal-bg-container">
+    <img src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-22-scaled-e1648134994912.jpg" class="a-bg active" id="bg-1" alt="BJJ">
+    <img src="https://images.unsplash.com/photo-1613978586566-64e0366b8801?q=80&w=2070&auto=format&fit=crop" class="a-bg" id="bg-2" alt="Grappling">
+    <img src="https://hutton-academy.com/wp-content/uploads/2022/03/BJJ-16-scaled-e1648134979614.jpg" class="a-bg" id="bg-3" alt="MMA">
+    <img src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton-Academy_6-e1648135080729.jpg" class="a-bg" id="bg-4" alt="Kickboxing">
+    <img src="https://hutton-academy.com/wp-content/uploads/2022/03/Krav-Maga-2-e1648135007138.jpg" class="a-bg" id="bg-5" alt="Krav Maga">
+  </div>
+
+  <div class="container" style="width: 100%;">
+    <span class="t-label reveal-text" style="color: #fff;">Das Arsenal // Hierarchie</span>
+    
+    <div class="arsenal-list">
+      
+      <div class="arsenal-item interactable" data-bg="1">
+        <div class="a-title">Brazilian Jiu-Jitsu</div>
+        <div class="a-meta">Das Flaggschiff<br>Gi / Mechanik</div>
+      </div>
+      
+      <div class="arsenal-item interactable" data-bg="2">
+        <div class="a-title">Submission Grappling</div>
+        <div class="a-meta">Performance Upgrade<br>No-Gi / Kinetik</div>
+      </div>
+
+      <div class="arsenal-item interactable" data-bg="3">
+        <div class="a-title">Mixed Martial Arts</div>
+        <div class="a-meta">The Synthesis<br>Stand & Ground</div>
+      </div>
+
+      <div class="arsenal-item interactable" data-bg="4">
+        <div class="a-title">Kickboxen</div>
+        <div class="a-meta">Standup Striking<br>Cardiovascular Limit</div>
+      </div>
+
+      <div class="arsenal-item interactable" data-bg="5">
+        <div class="a-title">Krav Maga</div>
+        <div class="a-meta">Asymmetric Defense<br>Zero Rules</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- KIDS PROGRAM (Editorial Callout) -->
+<section class="kids-program">
   <div class="container">
-    <div style="text-align: center;" class="gs-reveal">
-      <span class="text-overline">Konditionen</span>
-      <h2 class="h-display h-lg">Das Investment.</h2>
-    </div>
+    <span class="t-label fade-up">The Next Generation</span>
+    <h2 class="t-h2 fade-up" style="margin-bottom: 2rem;">The <span class="t-accent">Ivy League</span><br>of Movement.</h2>
+    <p class="t-body fade-up">
+      Unser BJJ-Programm für Kinder (ab 3 Jahren) ist kein reguläres Training. Es ist ein hoch-innovatives Curriculum, entwickelt zur Installation von physischer Resilienz, räumlicher Intelligenz und unerschütterlichem Selbstbewusstsein.
+    </p>
 
-    <div class="pricing-grid">
-      <div class="price-card gs-reveal">
-        <h3 class="price-name">Hero Kids</h3>
-        <div class="price-val">XX€ <span>/ mtl.</span></div>
-        <ul class="price-features">
-          <li>Altersgerechtes Training (3-14 J.)</li>
-          <li>Inkludierte Gürtelprüfungen</li>
-          <li>Charakterbildung & Resilienz</li>
-        </ul>
-        <a href="#booking" class="btn-apex" style="width: 100%; border-color: var(--color-text-muted);" data-cursor="hover">Bewerben</a>
-      </div>
-
-      <div class="price-card elite gs-reveal" style="transition-delay: 0.1s;">
-        <div class="elite-badge">The Executive Access</div>
-        <h3 class="price-name text-accent" style="color: var(--color-accent);">Unlimited</h3>
-        <div class="price-val">XX€ <span>/ mtl.</span></div>
-        <ul class="price-features">
-          <li>Zugriff auf <b>alle Disziplinen</b></li>
-          <li>Zutritt zu <b>allen 4 Hubs</b></li>
-          <li>Exklusive Open Mat Sessions</li>
-          <li>Kostenloser Leih-Gi für Einstieg</li>
-        </ul>
-        <a href="#booking" class="btn-primary" style="width: 100%; justify-content: center;" data-cursor="hover">Priority Access</a>
-      </div>
-
-      <div class="price-card gs-reveal" style="transition-delay: 0.2s;">
-        <h3 class="price-name">Single Focus</h3>
-        <div class="price-val">XX€ <span>/ mtl.</span></div>
-        <ul class="price-features">
-          <li>Eine spezifische Disziplin</li>
-          <li>Ein fester Standort (Hub)</li>
-          <li>Jederzeit Upgrade-fähig</li>
-        </ul>
-        <a href="#booking" class="btn-apex" style="width: 100%; border-color: var(--color-text-muted);" data-cursor="hover">Bewerben</a>
-      </div>
+    <div class="kids-img-grid">
+      <img src="https://hutton-academy.com/wp-content/uploads/2020/06/Hutton_Academy_M%C3%BCnchen-1024x576.jpg" class="k-img fade-up" style="aspect-ratio: 4/5;" alt="Kids 1">
+      <img src="https://images.unsplash.com/photo-1592652431766-fa3d95eb074f?q=80&w=2070&auto=format&fit=crop" class="k-img fade-up" style="aspect-ratio: 16/9;" alt="Kids 2">
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2120&auto=format&fit=crop" class="k-img fade-up" style="aspect-ratio: 4/5;" alt="Kids 3">
     </div>
   </div>
 </section>
 
-<footer class="footer relative" id="locations">
+<!-- THE ALLOCATION & CONCIERGE -->
+<section class="allocation">
   <div class="container">
-    <div class="footer-massive gs-reveal">HUTTON.</div>
-    
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>The Headquarters</h4>
-        <ul class="footer-links">
-          <li>München-Schwabing</li>
-          <li>Hiltenspergerstraße 9</li>
-          <li>80798 München</li>
-          <li style="margin-top: 1rem;"><a href="tel:+4915560292365">Call: +49 155 60292365</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Satellite Hubs</h4>
-        <ul class="footer-links">
-          <li>München-Moosach (MONA)</li>
-          <li>Augsburg / Neusäß</li>
-          <li>Geretsried (South)</li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Disciplines</h4>
-        <ul class="footer-links">
-          <li><a href="#" data-cursor="hover">Brazilian Jiu-Jitsu</a></li>
-          <li><a href="#" data-cursor="hover">Krav Maga</a></li>
-          <li><a href="#" data-cursor="hover">Kickboxen / MMA</a></li>
-          <li><a href="#" data-cursor="hover">Hero Kids</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Legal & Network</h4>
-        <ul class="footer-links">
-          <li><a href="#" data-cursor="hover">Datenschutzerklärung</a></li>
-          <li><a href="#" data-cursor="hover">Impressum</a></li>
-          <li><a href="#" data-cursor="hover">Instagram (Archive)</a></li>
-        </ul>
-      </div>
+    <div style="text-align: center;">
+      <span class="t-label fade-up">Access & Allocation</span>
+      <h2 class="t-h2 fade-up">Request<br><span class="t-accent">Membership.</span></h2>
     </div>
-    
-    <div class="footer-bottom">
-      <span>© 2002–2026 Hutton Academy. Private Institution.</span>
-      <span>Designed for Performance.</span>
+
+    <div class="alloc-grid">
+      
+      <!-- Pricing Cards -->
+      <div class="tier-box flagship fade-up">
+        <span class="t-label">The Executive Pass</span>
+        <h3 class="t-h3">All Access</h3>
+        <div class="price-val">XX€ <span>/ mtl.</span></div>
+        <p class="t-body" style="margin-bottom: 2rem; font-size: 0.85rem;">Uneingeschränkter Zugang zum gesamten Ökosystem der Hutton Academy.</p>
+        <ul class="feature-list">
+          <li>Zugriff auf BJJ, Grappling, MMA, Kickboxen <span>Inkludiert</span></li>
+          <li>Zutritt zu allen 4 Hubs (MUC, AUG, GER) <span>Global</span></li>
+          <li>Open Mat Privileges <span>Unlimitiert</span></li>
+          <li>Bespoke Gi Fitting im Onboarding <span>Complimentary</span></li>
+        </ul>
+        <div style="font-size: 0.7rem; color: var(--c-muted); text-transform: uppercase; letter-spacing: 0.1em;">* Einzel-Disziplin Tarife auf Anfrage beim Concierge.</div>
+      </div>
+
+      <!-- Application Form -->
+      <div class="tier-box fade-up" style="background: transparent; border-color: transparent; padding: 0;">
+        <span class="t-label">The Concierge Desk</span>
+        <h3 class="t-h3" style="margin-bottom: 3rem;">Initiate<br>Probetraining.</h3>
+        
+        <form class="concierge-form" onsubmit="event.preventDefault(); alert('Transmission via Concierge successful. We will contact you.');">
+          
+          <div class="input-row">
+            <input type="text" class="lux-input interactable" id="f_name" placeholder=" " required>
+            <label class="lux-label" for="f_name">Vollständiger Name</label>
+          </div>
+
+          <div class="input-row">
+            <input type="email" class="lux-input interactable" id="f_mail" placeholder=" " required>
+            <label class="lux-label" for="f_mail">Priorisierte E-Mail Adresse</label>
+          </div>
+
+          <div class="input-row">
+            <input type="tel" class="lux-input interactable" id="f_tel" placeholder=" " required>
+            <label class="lux-label" for="f_tel">Mobilnummer (Für Concierge Callback)</label>
+          </div>
+
+          <div class="input-row">
+            <select class="lux-input interactable" id="f_disc" required style="appearance: none; border-radius: 0;">
+              <option value="" disabled selected></option>
+              <option value="bjj">BJJ (The Flagship)</option>
+              <option value="grappling">Submission Grappling</option>
+              <option value="mma">Mixed Martial Arts</option>
+              <option value="kickboxen">Kickboxen / Krav Maga</option>
+              <option value="kids">The Ivy League (Kids BJJ)</option>
+            </select>
+            <label class="lux-label" for="f_disc">Präferierte Disziplin</label>
+          </div>
+
+          <div style="margin-top: 2rem;">
+            <button type="submit" class="btn-exclusive interactable">Application Senden</button>
+          </div>
+
+        </form>
+      </div>
+
     </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="f-logo">HUTTON.</div>
+    <div style="display: flex; justify-content: center; gap: 3rem; margin: 3rem 0;">
+      <a href="#" class="t-label interactable">Imprint</a>
+      <a href="#" class="t-label interactable">Privacy Policy</a>
+      <a href="#" class="t-label interactable">Instagram Archive</a>
+    </div>
+    <p class="t-body" style="font-size: 0.75rem; margin: 0 auto;">© 2002 - 2026. Designed for absolute physical supremacy. All rights reserved.</p>
   </div>
 </footer>
 
 <script>
-// 1. Data Store for Scheduling
-const DATA = {
-  hubs: { muc: "Schwabing", mona: "Moosach", aug: "Augsburg", ger: "Geretsried" },
-  schedule: {
-    muc: [
-      { d:1, t:"18:00", e:"19:15", n:"BJJ Foundation", cat:"BJJ" },
-      { d:2, t:"18:00", e:"19:15", n:"Krav Maga Protocol", cat:"Krav Maga" },
-      { d:3, t:"19:30", e:"21:00", n:"MMA Advanced", cat:"Kickboxen" },
-      { d:3, t:"17:00", e:"17:45", n:"Hero Kids", cat:"Kids" },
-      { d:4, t:"19:30", e:"20:45", n:"BJJ Foundation", cat:"BJJ" }
-    ],
-    mona: [
-      { d:1, t:"18:30", e:"19:45", n:"BJJ Foundation", cat:"BJJ" },
-      { d:3, t:"19:00", e:"20:15", n:"Striking Clinic", cat:"Kickboxen" },
-      { d:5, t:"18:30", e:"19:45", n:"Krav Maga Protocol", cat:"Krav Maga" }
-    ],
-    aug: [
-      { d:2, t:"18:30", e:"19:45", n:"BJJ Foundation", cat:"BJJ" },
-      { d:4, t:"20:00", e:"21:15", n:"Krav Maga Protocol", cat:"Krav Maga" }
-    ],
-    ger: [
-      { d:1, t:"19:00", e:"20:15", n:"BJJ Foundation", cat:"BJJ" },
-      { d:3, t:"19:00", e:"20:15", n:"Striking Clinic", cat:"Kickboxen" }
-    ]
-  }
-};
-const DAYS = ["", "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
-const MONTHS = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+/* ==========================================================================
+   APEX JAVASCRIPT ARCHITECTURE
+   Handling Preloader, Custom Cursor, Cinematic Scroll & Horizontal Scroll
+   ========================================================================== */
 
-window.addEventListener('load', () => {
-  let progress = 0;
-  const bar = document.getElementById('loaderBar');
-  const preloader = document.getElementById('preloader');
+document.addEventListener('DOMContentLoaded', () => {
   
-  // Fake progress for visual effect
+  // 1. PRELOADER SEQUENCE
+  const loaderCount = document.getElementById('loaderCount');
+  const loaderLine = document.getElementById('loaderLine');
+  const preloader = document.getElementById('preloader');
+  const hero = document.getElementById('hero');
+  
+  let progress = 0;
   const interval = setInterval(() => {
-    progress += Math.random() * 15;
-    if(progress > 100) progress = 100;
-    bar.style.width = progress + '%';
-    
-    if(progress === 100) {
+    progress += Math.floor(Math.random() * 10) + 1;
+    if (progress >= 100) {
+      progress = 100;
       clearInterval(interval);
       setTimeout(() => {
-        preloader.classList.add('hidden');
-        // Trigger initial hero animations
-        document.querySelectorAll('.hero-title').forEach((el, i) => {
-          el.style.transition = `transform 1s ${0.2 + (i*0.1)}s cubic-bezier(0.16, 1, 0.3, 1)`;
-          el.style.transform = 'translateY(0)';
-        });
-        document.querySelector('.hero-sub').style.transition = 'all 1s 0.6s';
-        document.querySelector('.hero-sub').style.opacity = '1';
-        document.querySelector('.hero-sub').style.transform = 'translateY(0)';
-        document.querySelector('.hero-actions').style.transition = 'all 1s 0.8s';
-        document.querySelector('.hero-actions').style.opacity = '1';
-        document.querySelector('.hero-actions').style.transform = 'translateY(0)';
-        document.querySelector('.scroll-indicator').style.transition = 'opacity 1s 1.5s';
-        document.querySelector('.scroll-indicator').style.opacity = '1';
-      }, 400);
+        preloader.classList.add('done');
+        setTimeout(() => {
+          hero.classList.add('is-loaded');
+        }, 400); // Wait for preloader to slide up
+      }, 500);
     }
-  }, 100);
-});
+    loaderCount.innerText = progress.toString().padStart(2, '0');
+    loaderLine.style.width = progress + '%';
+  }, 80);
 
-const cursorDot = document.getElementById('cursorDot');
-const cursorOutline = document.getElementById('cursorOutline');
-let mouseX = 0, mouseY = 0, outlineX = 0, outlineY = 0;
-
-window.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  cursorDot.style.left = `${mouseX}px`; cursorDot.style.top = `${mouseY}px`;
-});
-
-// Lerp for smooth trailing outline
-function animateCursor() {
-  let dx = mouseX - outlineX;
-  let dy = mouseY - outlineY;
-  outlineX += dx * 0.15;
-  outlineY += dy * 0.15;
-  cursorOutline.style.left = `${outlineX}px`;
-  cursorOutline.style.top = `${outlineY}px`;
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-// Add hover states to interactable elements
-document.querySelectorAll('[data-cursor="hover"]').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-});
-
-// Header Scroll Logic
-window.addEventListener('scroll', () => {
-  const header = document.getElementById('header');
-  if(window.scrollY > 50) header.classList.add('scrolled');
-  else header.classList.remove('scrolled');
-});
-
-function initThreeJS() {
-  const canvas = document.getElementById('webgl-canvas');
-  if(!canvas) return;
-
-  const scene = new THREE.Scene();
-  // Very subtle fog to blend into the dark background
-  scene.fog = new THREE.FogExp2(0x030303, 0.0015);
-
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 100;
-  camera.position.y = 20;
-
-  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)); // Performance opt
-
-  // Create a slow moving particle field (Golden Dust)
-  const particlesGeometry = new THREE.BufferGeometry();
-  const particlesCount = window.innerWidth < 768 ? 400 : 1200; // Responsive density
-  const posArray = new Float32Array(particlesCount * 3);
-
-  for(let i = 0; i < particlesCount * 3; i++) {
-    posArray[i] = (Math.random() - 0.5) * 400; // Spread x,y,z
-  }
-  particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-
-  const material = new THREE.PointsMaterial({
-    size: 1.5,
-    color: 0xD4AF37, // Hutton Gold
-    transparent: true,
-    opacity: 0.6,
-    blending: THREE.AdditiveBlending
+  // 2. CUSTOM CURSOR
+  const cursor = document.getElementById('cursor');
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let cursorX = mouseX;
+  let cursorY = mouseY;
+  
+  // Update mouse coordinates
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
   });
 
-  const particlesMesh = new THREE.Points(particlesGeometry, material);
-  scene.add(particlesMesh);
+  // Lerp function for smooth cursor movement
+  const lerp = (start, end, factor) => start + (end - start) * factor;
 
-  // Mouse interactivity for 3D scene
-  let sceneMouseX = 0; let sceneMouseY = 0;
-  window.addEventListener('mousemove', (event) => {
-    sceneMouseX = (event.clientX / window.innerWidth) - 0.5;
-    sceneMouseY = (event.clientY / window.innerHeight) - 0.5;
-  });
-
-  const clock = new THREE.Clock();
-
-  function animate3D() {
-    requestAnimationFrame(animate3D);
-    const elapsedTime = clock.getElapsedTime();
-
-    // Slow rotation
-    particlesMesh.rotation.y = elapsedTime * 0.02;
-    particlesMesh.rotation.x = elapsedTime * 0.01;
-
-    // Subtle parallax reaction to mouse
-    camera.position.x += (sceneMouseX * 20 - camera.position.x) * 0.05;
-    camera.position.y += (-sceneMouseY * 20 - camera.position.y) * 0.05;
-    camera.lookAt(scene.position);
-
-    renderer.render(scene, camera);
-  }
-  animate3D();
-
-  // Handle Resize
-  window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
-}
-initThreeJS();
-
-const revealObserver = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) {
-      if(entry.target.classList.contains('phil-text-reveal')) {
-        entry.target.style.backgroundPosition = '0 0';
-        entry.target.style.transition = 'background-position 2s cubic-bezier(0.16, 1, 0.3, 1)';
-      } else if (entry.target.classList.contains('counter')) {
-        runCounter(entry.target);
-      } else {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-      }
-      obs.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.gs-reveal').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(40px)';
-  el.style.transition = 'all 1s cubic-bezier(0.16, 1, 0.3, 1)';
-  revealObserver.observe(el);
-});
-revealObserver.observe(document.getElementById('textReveal'));
-
-document.querySelectorAll('.counter').forEach(el => revealObserver.observe(el));
-
-function runCounter(el) {
-  const target = +el.getAttribute('data-target');
-  let count = 0;
-  const speed = target / 60; // 60fps roughly
-  const update = () => {
-    count += speed;
-    if(count < target) {
-      el.innerText = Math.ceil(count);
-      requestAnimationFrame(update);
-    } else {
-      el.innerText = target;
-    }
+  const animateCursor = () => {
+    cursorX = lerp(cursorX, mouseX, 0.15);
+    cursorY = lerp(cursorY, mouseY, 0.15);
+    cursor.style.transform = `translate(calc(-50% + ${cursorX}px), calc(-50% + ${cursorY}px))`;
+    requestAnimationFrame(animateCursor);
   };
-  update();
-}
+  animateCursor();
 
-// Simple Image Parallax
-window.addEventListener('scroll', () => {
-  const img = document.getElementById('parallaxImage');
-  if(!img) return;
-  const rect = img.parentElement.getBoundingClientRect();
-  if(rect.top < window.innerHeight && rect.bottom > 0) {
-    const scrollPerc = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-    // Move from -10% to 10%
-    const yMove = -10 + (scrollPerc * 20);
-    img.style.transform = `translateY(${yMove}%)`;
-  }
-});
-
-let wState = { step: 1, loc: null, dis: null, slot: null };
-const btnPrev = document.getElementById('btnPrev');
-const btnNext = document.getElementById('btnNext');
-const dots = [document.getElementById('dot1'), document.getElementById('dot2'), document.getElementById('dot3'), document.getElementById('dot4')];
-
-// Step 1 & 2 Selection Logic
-document.querySelectorAll('.sel-card').forEach(card => {
-  card.addEventListener('click', function() {
-    const step = parseInt(this.getAttribute('data-step'));
-    const val = this.getAttribute('data-val');
-    
-    // UI update
-    document.querySelectorAll(`.sel-card[data-step="${step}"]`).forEach(c => c.classList.remove('selected'));
-    this.classList.add('selected');
-    
-    // State update
-    if(step === 1) wState.loc = val;
-    if(step === 2) wState.dis = val;
-    
-    // Auto-advance or enable next
-    btnNext.disabled = false;
-    setTimeout(() => { goNext(); }, 400); // Auto-advance for slick feel
+  // Hover states for cursor
+  document.querySelectorAll('a, button, .interactable').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
   });
-});
 
-function getSlots() {
-  const today = new Date();
-  let compile = [];
-  for(let i=0; i<14; i++) {
-    let d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i);
-    let wd = d.getDay() === 0 ? 7 : d.getDay();
-    
-    if(!DATA.schedule[wState.loc]) continue;
-    
-    DATA.schedule[wState.loc].forEach(s => {
-      if(s.d !== wd || s.cat !== wState.dis) return;
-      let h = parseInt(s.t.split(':')[0]);
-      let m = parseInt(s.t.split(':')[1]);
-      let exact = new Date(d); exact.setHours(h, m, 0, 0);
-      if(exact > today) compile.push({ exact, ...s });
+  // 3. HORIZONTAL SCROLL BINDING
+  const hTrack = document.getElementById('h-track');
+  const hFilm = document.getElementById('h-film');
+  
+  if(hTrack && window.innerWidth > 1024) {
+    window.addEventListener('scroll', () => {
+      const trackRect = hTrack.getBoundingClientRect();
+      const trackTop = trackRect.top;
+      const trackHeight = trackRect.height - window.innerHeight; // Scrollable area
+      
+      if (trackTop <= 0 && trackTop >= -trackHeight) {
+        // Element is currently pinned and user is scrolling through it
+        const scrollPercentage = Math.abs(trackTop) / trackHeight;
+        // The film width is 300vw, viewport is 100vw, so we need to move it -200vw
+        const moveAmount = scrollPercentage * -200; 
+        hFilm.style.transform = `translateX(${moveAmount}vw)`;
+      } else if (trackTop > 0) {
+        hFilm.style.transform = `translateX(0vw)`;
+      } else if (trackTop < -trackHeight) {
+        hFilm.style.transform = `translateX(-200vw)`;
+      }
     });
   }
-  return compile.sort((a,b) => a.exact - b.exact).slice(0, 10);
-}
 
-function renderSlots() {
-  const list = document.getElementById('slotList');
-  const slots = getSlots();
+  // 4. ARSENAL HOVER REVEAL
+  const arsenalItems = document.querySelectorAll('.arsenal-item');
+  const arsenalBgs = document.querySelectorAll('.a-bg');
   
-  if(slots.length === 0) {
-    list.innerHTML = `<div style="padding:2rem; text-align:center; color:var(--color-text-muted);">Keine Termine in den nächsten 14 Tagen für diese Kombination verfügbar. Bitte passen Sie Ihre Wahl an.</div>`;
-    btnNext.disabled = true;
-    return;
-  }
-  
-  let html = '';
-  slots.forEach((s, i) => {
-    let dName = DAYS[s.exact.getDay() === 0 ? 7 : s.exact.getDay()];
-    let dNum = String(s.exact.getDate()).padStart(2, '0');
-    let mName = MONTHS[s.exact.getMonth()];
-    let textObj = `${s.n} | ${dName}, ${dNum}. ${mName} | ${s.t} - ${s.e} Uhr`;
-    
-    html += `
-      <div class="slot-row" data-idx="${i}" data-text="${textObj}" data-cursor="hover">
-        <div class="slot-date">
-          <span class="slot-day">${dName}, ${dNum}. ${mName}</span>
-          <span class="slot-meta">${s.n} @ ${DATA.hubs[wState.loc]}</span>
-        </div>
-        <div class="slot-time">${s.t}</div>
-      </div>
-    `;
-  });
-  list.innerHTML = html;
-  
-  // Attach listeners
-  list.querySelectorAll('.slot-row').forEach(row => {
-    row.addEventListener('click', function() {
-      list.querySelectorAll('.slot-row').forEach(r => {
-        r.style.borderColor = 'var(--border-subtle)';
-        r.style.background = 'var(--color-surface)';
-      });
-      this.style.borderColor = 'var(--color-accent)';
-      this.style.background = 'var(--color-base)';
-      wState.slot = this.getAttribute('data-text');
-      btnNext.disabled = false;
+  arsenalItems.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      const targetId = this.getAttribute('data-bg');
+      // Hide all
+      arsenalBgs.forEach(bg => bg.classList.remove('active'));
+      // Show target
+      document.getElementById('bg-' + targetId).classList.add('active');
     });
   });
-}
 
-function updateUI() {
-  // Handle Steps Visibility
-  document.querySelectorAll('.wizard-step').forEach((el, i) => {
-    const stepNum = i + 1;
-    el.classList.remove('active', 'prev');
-    if(stepNum < wState.step) el.classList.add('prev');
-    if(stepNum === wState.step) el.classList.add('active');
+  // 5. CINEMATIC SCROLL OBSERVER (Fade-Up, Reveal-Text)
+  const revealElements = document.querySelectorAll('.fade-up, .reveal-text, .io-reveal');
+  
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in', 'is-revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    threshold: 0.15,
+    rootMargin: "0px 0px -10% 0px"
   });
-  
-  // Handle Dots
-  dots.forEach((dot, i) => {
-    dot.classList.remove('active', 'done');
-    if(i + 1 < wState.step) dot.classList.add('done');
-    if(i + 1 === wState.step) dot.classList.add('active');
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // 6. SIMPLE PARALLAX FOR IMAGES
+  const parallaxImgs = document.querySelectorAll('.parallax-img, .hero-bg');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    parallaxImgs.forEach(img => {
+      const rate = img.classList.contains('hero-bg') ? 0.4 : 0.1;
+      const yPos = scrolled * rate;
+      img.style.transform = `translateY(${yPos}px)`;
+    });
   });
-  
-  // Handle Buttons
-  btnPrev.style.visibility = wState.step === 1 || wState.step === 5 ? 'hidden' : 'visible';
-  if(wState.step === 5) {
-    document.getElementById('wizardFooter').style.display = 'none';
-  } else if (wState.step === 4) {
-    btnNext.innerText = 'Bewerbung Senden ✓';
-    btnNext.disabled = false;
-  } else {
-    btnNext.innerText = 'Weiter →';
-    // Logic to disable next if nothing selected
-    if(wState.step === 1 && !wState.loc) btnNext.disabled = true;
-    else if(wState.step === 2 && !wState.dis) btnNext.disabled = true;
-    else if(wState.step === 3 && !wState.slot) btnNext.disabled = true;
-    else btnNext.disabled = false;
-  }
-}
 
-function goNext() {
-  if(wState.step === 2) { renderSlots(); btnNext.disabled = true; } // Need to select slot in step 3
-  if(wState.step === 3) { document.getElementById('finalSlotDisplay').innerText = wState.slot; }
-  
-  if(wState.step === 4) {
-    // Validate form
-    const form = document.getElementById('checkoutForm');
-    if(!form.checkValidity()) { form.reportValidity(); return; }
-    // Fake submit
-    btnNext.innerHTML = 'Wird verarbeitet...';
-    setTimeout(() => { wState.step++; updateUI(); }, 1200);
-    return;
-  }
-  
-  if(wState.step < 5) wState.step++;
-  updateUI();
-}
+  // Header blend mode adjustment on scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 100) {
+      navbar.style.padding = '1.5rem 4rem';
+    } else {
+      navbar.style.padding = '2rem 4rem';
+    }
+  });
 
-function goPrev() {
-  if(wState.step > 1) wState.step--;
-  updateUI();
-}
-
-btnNext.addEventListener('click', goNext);
-btnPrev.addEventListener('click', goPrev);
-
+});
 </script>
 </body>
 </html>
