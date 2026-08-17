@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="description" content="Hutton Academy – Brazilian Jiu-Jitsu, MMA, Kickboxen, Krav Maga und Hero Kids. Trainiere mit System.">
+<title>HUTTON ACADEMY — Train with purpose.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --black:#080808;
+  --ink:#111;
+  --paper:#f2f0eb;
+  --muted:#a7a39b;
+  --line:rgba(255,255,255,.13);
+  --line-dark:rgba(0,0,0,.12);
+  --white:#fff;
+  --accent:#c9ad73;
+  --accent-soft:#e1d2b2;
+  --red:#9d332c;
+  --radius:22px;
+  --max:1440px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--white);
+  font-family:Inter,system-ui,sans-serif;
+  overflow-x:hidden;
+}
+body.menu-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+::selection{background:var(--accent);color:#000}
+
+.container{width:min(calc(100% - 48px),var(--max));margin:auto}
+.mono{
+  font-family:"DM Mono",monospace;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-size:11px;
+}
+.eyebrow{color:var(--accent);margin-bottom:18px}
+.display{
+  font-size:clamp(58px,8vw,132px);
+  line-height:.88;
+  letter-spacing:-.075em;
+  font-weight:900;
+  margin:0;
+}
+h2{
+  font-size:clamp(42px,6vw,88px);
+  line-height:.92;
+  letter-spacing:-.06em;
+  margin:0;
+}
+h3{margin:0;letter-spacing:-.035em}
+p{line-height:1.65}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  min-height:52px;
+  padding:0 22px;
+  border:1px solid rgba(255,255,255,.24);
+  border-radius:999px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font:500 11px "DM Mono",monospace;
+  transition:.3s ease;
+}
+.btn:hover{transform:translateY(-2px);background:#fff;color:#000;border-color:#fff}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#080808}
+.btn.primary:hover{background:#e0c48d}
+.btn.dark{background:#111;color:#fff;border-color:#111}
+.btn .arrow{font-size:16px;transition:.3s}
+.btn:hover .arrow{transform:translateX(4px)}
+
+header{
+  position:fixed;z-index:50;top:0;left:0;right:0;
+  transition:.35s ease;
+  border-bottom:1px solid transparent;
+}
+header.scrolled{
+  background:rgba(8,8,8,.88);
+  backdrop-filter:blur(18px);
+  border-color:var(--line);
+}
+.nav{
+  height:86px;display:flex;align-items:center;justify-content:space-between;
+}
+.logo{
+  font-size:20px;font-weight:900;letter-spacing:-.08em;
+}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{
+  font:500 11px "DM Mono",monospace;text-transform:uppercase;
+  letter-spacing:.1em;color:#d2d0cb;transition:.2s
+}
+.nav-links a:hover{color:#fff}
+.menu-toggle{
+  display:none;border:0;background:none;color:#fff;width:46px;height:46px;
+  border-radius:50%;border:1px solid var(--line)
+}
+.hero{
+  min-height:100svh;
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  isolation:isolate;
+  background:#151515;
+}
+.hero-media{
+  position:absolute;inset:0;z-index:-2;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.38) 52%,rgba(0,0,0,.18) 100%),
+    linear-gradient(0deg,rgba(0,0,0,.86),transparent 58%),
+    url("https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=2200&q=85") center/cover;
+  transform:scale(1.04);
+  animation:heroZoom 14s ease-out forwards;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle at 70% 30%,transparent 0,rgba(0,0,0,.22) 65%,rgba(0,0,0,.55) 100%);
+}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-content{padding:150px 0 58px;width:100%}
+.hero-kicker{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.hero-kicker::before{content:"";width:36px;height:1px;background:var(--accent)}
+.hero h1{max-width:950px}
+.hero h1 em{font-style:normal;color:var(--accent-soft)}
+.hero-bottom{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:40px;margin-top:52px;
+}
+.hero-copy{max-width:490px;color:#c7c4bd;font-size:15px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.hero-stamp{
+  width:88px;height:88px;border:1px solid rgba(255,255,255,.4);
+  border-radius:50%;display:grid;place-items:center;text-align:center;
+  flex:none;transform:rotate(-12deg);font-size:9px;line-height:1.5;
+}
+.marquee{
+  overflow:hidden;border-block:1px solid var(--line);white-space:nowrap;
+  background:#0d0d0d;
+}
+.marquee-track{
+  display:inline-flex;min-width:max-content;animation:marquee 26s linear infinite;
+}
+.marquee span{
+  padding:18px 28px;font:500 11px "DM Mono",monospace;
+  letter-spacing:.16em;text-transform:uppercase;color:#aaa;
+}
+.marquee b{color:var(--accent);font-weight:400}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+.section{padding:125px 0}
+.section.paper{background:var(--paper);color:var(--ink)}
+.section-head{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;
+  align-items:end;margin-bottom:62px;
+}
+.section-head p{max-width:510px;color:#79766f;margin:0}
+.intro{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:start;
+}
+.intro-big{font-size:clamp(28px,3.7vw,54px);line-height:1.05;letter-spacing:-.045em;margin:0}
+.intro-side{padding-top:8px;color:#777}
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line-dark);margin-top:75px
+}
+.stat{padding:26px 18px 0 0;border-right:1px solid var(--line-dark)}
+.stat:not(:first-child){padding-left:24px}
+.stat:last-child{border:0}
+.stat strong{display:block;font-size:42px;letter-spacing:-.06em}
+.stat span{color:#777;font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em}
+
+.disciplines{background:#0c0c0c}
+.discipline-grid{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:14px;
+}
+.discipline{
+  position:relative;min-height:500px;overflow:hidden;border-radius:var(--radius);
+  background:#1a1a1a;display:flex;align-items:flex-end;
+  grid-column:span 4;
+}
+.discipline:nth-child(4),.discipline:nth-child(5){grid-column:span 6;min-height:420px}
+.discipline::before{
+  content:"";position:absolute;inset:0;
+  background:var(--image) center/cover;
+  transition:transform .8s cubic-bezier(.2,.8,.2,1),filter .6s;
+  filter:saturate(.7);
+}
+.discipline::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.05) 70%);
+}
+.discipline:hover::before{transform:scale(1.06);filter:saturate(1)}
+.discipline-info{position:relative;z-index:2;padding:30px;width:100%}
+.discipline-no{color:var(--accent);margin-bottom:10px}
+.discipline h3{font-size:clamp(30px,4vw,55px)}
+.discipline p{margin:9px 0 18px;color:#c6c4be;max-width:400px;font-size:13px}
+.text-link{
+  display:inline-flex;align-items:center;gap:9px;
+  font:500 10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em;
+}
+.text-link span{color:var(--accent);font-size:16px}
+
+.finder{background:var(--paper);color:var(--ink)}
+.finder-shell{
+  background:#0d0d0d;color:#fff;border-radius:30px;padding:48px;
+}
+.finder-top{
+  display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px;
+}
+.finder-top p{color:#999;max-width:440px;margin:0}
+.filters{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px;
+}
+.field label{display:block;color:#888;margin:0 0 8px}
+.field select{
+  width:100%;height:58px;background:#171717;border:1px solid #292929;color:#fff;
+  padding:0 16px;border-radius:12px;outline:0;
+}
+.schedule{display:grid;gap:9px}
+.class-card{
+  display:grid;grid-template-columns:100px 1fr auto;gap:20px;align-items:center;
+  border:1px solid #242424;border-radius:15px;padding:18px 20px;
+  transition:.25s;background:#111;
+}
+.class-card:hover{border-color:#595959;transform:translateX(3px)}
+.time{font-size:22px;font-weight:800;letter-spacing:-.05em}
+.class-name{font-weight:700}
+.class-meta{font:10px "DM Mono",monospace;text-transform:uppercase;color:#777;margin-top:5px}
+.badge{font:10px "DM Mono",monospace;text-transform:uppercase;color:var(--accent)}
+
+.story{
+  display:grid;grid-template-columns:1fr 1fr;min-height:680px;
+}
+.story-image{
+  background:
+    linear-gradient(0deg,rgba(0,0,0,.15),rgba(0,0,0,.15)),
+    url("https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1500&q=85") center/cover;
+}
+.story-content{padding:100px 9vw;background:#151515;display:flex;flex-direction:column;justify-content:center}
+.story-content p{color:#aaa;max-width:520px}
+.story-list{margin:32px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.story-list li{
+  padding:17px 0;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:20px;
+  font-size:13px
+}
+.story-list span{color:var(--accent);font-family:"DM Mono",monospace;font-size:10px}
+
+.testimonials{background:#111}
+.quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.quote{
+  background:#181818;border:1px solid #242424;border-radius:20px;padding:30px;
+  min-height:280px;display:flex;flex-direction:column;justify-content:space-between;
+}
+.quote-mark{font-size:40px;color:var(--accent);line-height:1}
+.quote p{font-size:18px;line-height:1.35;letter-spacing:-.02em}
+.quote cite{font-style:normal;color:#888;font:10px "DM Mono",monospace;text-transform:uppercase;letter-spacing:.1em}
+
+.locations{background:var(--paper);color:var(--ink)}
+.location-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.location{
+  border:1px solid var(--line-dark);border-radius:20px;padding:28px;
+  min-height:270px;display:flex;flex-direction:column;justify-content:space-between;
+  transition:.25s;background:#f5f3ef;
+}
+.location:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(0,0,0,.08)}
+.location-top{display:flex;justify-content:space-between;gap:20px}
+.location h3{font-size:34px}
+.location-number{color:#9a978f}
+.location address{font-style:normal;color:#777;line-height:1.6;font-size:13px}
+.location-bottom{display:flex;justify-content:space-between;align-items:center;gap:15px}
+.location-next{font:10px "DM Mono",monospace;text-transform:uppercase;color:#777}
+
+.pricing{background:#dcd9d2;color:#0d0d0d}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.price-card{
+  background:#f4f2ed;border:1px solid rgba(0,0,0,.1);border-radius:22px;padding:32px;
+  min-height:360px;display:flex;flex-direction:column;
+}
+.price-card.featured{background:#0d0d0d;color:#fff;transform:translateY(-14px)}
+.price-label{font:10px "DM Mono",monospace;text-transform:uppercase;color:#8c887f}
+.price-card.featured .price-label{color:var(--accent)}
+.price-card h3{font-size:34px;margin-top:35px}
+.price{font-size:50px;font-weight:900;letter-spacing:-.07em;margin:16px 0 8px}
+.price small{font:10px "DM Mono",monospace;letter-spacing:.08em;color:#888}
+.price-card ul{padding:0;margin:22px 0;list-style:none;color:#777;font-size:13px;line-height:2}
+.price-card.featured ul{color:#aaa}
+.price-card .btn{margin-top:auto;align-self:flex-start}
+
+.faq{background:#0b0b0b}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:90px}
+.faq-list{border-top:1px solid var(--line)}
+details{border-bottom:1px solid var(--line)}
+summary{
+  list-style:none;cursor:pointer;padding:24px 0;
+  display:flex;justify-content:space-between;gap:20px;font-size:17px;font-weight:600;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:24px;font-weight:300;color:var(--accent)}
+details[open] summary::after{content:"−"}
+details p{color:#999;max-width:700px;margin:0 0 25px;font-size:14px}
+
+.cta{
+  min-height:680px;display:flex;align-items:center;position:relative;overflow:hidden;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.94),rgba(0,0,0,.48)),
+    url("https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=2200&q=85") center/cover;
+}
+.cta-content{max-width:850px}
+.cta h2{font-size:clamp(52px,8vw,112px)}
+.cta h2 span{color:var(--accent)}
+.cta p{color:#bbb;max-width:530px}
+.cta-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+
+footer{background:#070707;border-top:1px solid var(--line);padding:60px 0 28px}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:50px;padding-bottom:65px}
+.footer-brand .logo{font-size:30px}
+.footer-brand p{color:#777;max-width:300px;font-size:13px}
+.footer-col h4{font:10px "DM Mono",monospace;text-transform:uppercase;color:#777;letter-spacing:.12em;margin:0 0 20px}
+.footer-col a{display:block;margin:11px 0;font-size:13px;color:#bbb}
+.footer-bottom{
+  border-top:1px solid var(--line);padding-top:22px;
+  display:flex;justify-content:space-between;gap:20px;color:#666;font:9px "DM Mono",monospace;
+  text-transform:uppercase;letter-spacing:.08em;
+}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+
+.mobile-cta{
+  display:none;position:fixed;z-index:40;bottom:14px;left:14px;right:14px;
+}
+.mobile-cta .btn{width:100%;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+
+@media(max-width:1000px){
+  .nav-links{display:none}
+  .menu-toggle{display:block}
+  .nav.open .nav-links{
+    display:flex;position:fixed;inset:86px 0 0;background:#080808;
+    flex-direction:column;align-items:flex-start;padding:50px 24px;gap:25px
+  }
+  .nav.open .nav-links a{font-size:20px}
+  .section{padding:90px 0}
+  .section-head,.intro,.faq-grid{grid-template-columns:1fr;gap:30px}
+  .discipline{grid-column:span 6}
+  .discipline:nth-child(4),.discipline:nth-child(5){grid-column:span 6}
+  .story{grid-template-columns:1fr}
+  .story-image{min-height:500px}
+  .story-content{padding:80px 24px}
+  .quote-grid{grid-template-columns:1fr}
+  .location-grid,.price-grid{grid-template-columns:1fr}
+  .price-card.featured{transform:none}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:650px){
+  .container{width:min(calc(100% - 32px),var(--max))}
+  .nav{height:72px}
+  .hero-content{padding:120px 0 38px}
+  .hero-bottom{flex-direction:column;align-items:flex-start;margin-top:35px}
+  .hero-stamp{display:none}
+  .hero-copy{font-size:14px}
+  .hero-actions{width:100%}
+  .hero-actions .btn{flex:1}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){padding-left:0;border-top:1px solid var(--line-dark);padding-top:22px}
+  .stat:nth-child(4){border-top:1px solid var(--line-dark);padding-top:22px}
+  .discipline,.discipline:nth-child(4),.discipline:nth-child(5){grid-column:span 12;min-height:420px}
+  .finder-shell{padding:25px 18px;border-radius:22px}
+  .finder-top{display:block}
+  .filters{grid-template-columns:1fr}
+  .class-card{grid-template-columns:72px 1fr}
+  .class-card .btn{grid-column:2;justify-self:start}
+  .class-card .badge{display:none}
+  .story-image{min-height:380px}
+  .location-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column}
+  .mobile-cta{display:block}
+  body{padding-bottom:78px}
+}
+</style>
+</head>
+
+<body>
+
+<header id="header">
+  <div class="container nav" id="nav">
+    <a href="#" class="logo">HUTTON<span>®</span></a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <a href="#academy">Academy</a>
+      <a href="#disciplines">Disziplinen</a>
+      <a href="#finder">Kurse</a>
+      <a href="#locations">Standorte</a>
+      <a href="#pricing">Preise</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="#trial" class="btn primary">Probetraining <span class="arrow">↗</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-media"></div>
+  <div class="container hero-content">
+    <div class="hero-kicker mono">Martial Arts Academy · Munich</div>
+    <h1 class="display">TRAIN<br>WITH <em>PURPOSE.</em></h1>
+    <div class="hero-bottom">
+      <p class="hero-copy">Kampfsport ist mehr als Technik. Lerne zu kämpfen, zu denken und über dich hinauszuwachsen – mit einem klaren System und einer starken Community.</p>
+      <div class="hero-actions">
+        <a href="#trial" class="btn primary">Kostenloses Probetraining <span class="arrow">↗</span></a>
+        <a href="#finder" class="btn">Kurs finden <span class="arrow">↓</span></a>
+      </div>
+      <div class="hero-stamp mono">SINCE<br>2002<br>·<br>HUTTON</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Brazilian Jiu-Jitsu <b>·</b></span><span>Kickboxen <b>·</b></span><span>MMA <b>·</b></span><span>Krav Maga <b>·</b></span><span>Hero Kids <b>·</b></span>
+    <span>Brazilian Jiu-Jitsu <b>·</b></span><span>Kickboxen <b>·</b></span><span>MMA <b>·</b></span><span>Krav Maga <b>·</b></span><span>Hero Kids <b>·</b></span>
+  </div>
+</div>
+
+<section class="section paper" id="academy">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow mono">01 — The Academy</div>
+        <h2>NICHT NUR<br>TRAINIEREN.</h2>
+      </div>
+      <p>Bei Hutton geht es um nachhaltige Entwicklung. Ein strukturierter Lehrplan, starke Coaches und eine Umgebung, in der Anfänger genauso willkommen sind wie erfahrene Athleten.</p>
+    </div>
+
+    <div class="intro reveal">
+      <p class="intro-big">Wir verbinden <strong>traditionelle Kampfsportwerte</strong> mit einem modernen Trainingssystem. Technik. Disziplin. Selbstvertrauen.</p>
+      <div class="intro-side">
+        <p>Du brauchst keine Vorerfahrung. Du musst nicht fit sein. Du musst nur anfangen.</p>
+        <a href="#trial" class="btn dark">Deine erste Einheit <span class="arrow">↗</span></a>
+      </div>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><strong>20+</strong><span>Jahre Erfahrung</span></div>
+      <div class="stat"><strong>5</strong><span>Disziplinen</span></div>
+      <div class="stat"><strong>4</strong><span>Standorte</span></div>
+      <div class="stat"><strong>∞</strong><span>Potenzial</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section disciplines" id="disciplines">
+  <div class="container">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow mono">02 — Disciplines</div>
+        <h2>FIND YOUR<br>GAME.</h2>
+      </div>
+      <p>Wähle deinen Stil. Jede Disziplin hat ihre eigene Sprache – aber alle führen zu demselben Ziel: besser werden.</p>
+    </div>
+
+    <div class="discipline-grid">
+      <a class="discipline reveal" style="--image:url('https://images.unsplash.com/photo-1552072092-7f9b8d63f4c8?auto=format&fit=crop&w=1200&q=85')" href="#finder">
+        <div class="discipline-info"><div class="discipline-no mono">01</div><h3>Brazilian<br>Jiu-Jitsu</h3><p>Position, Kontrolle, Submission. Technik gewinnt, wenn Kraft nicht reicht.</p><span class="text-link">Kurse entdecken <span>↗</span></span></div>
+      </a>
+      <a class="discipline reveal" style="--image:url('https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?auto=format&fit=crop&w=1200&q=85')" href="#finder">
+        <div class="discipline-info"><div class="discipline-no mono">02</div><h3>Kickboxen</h3><p>Striking, Conditioning und Timing – intensiv, direkt und technisch.</p><span class="text-link">Kurse entdecken <span>↗</span></span></div>
+      </a>
+      <a class="discipline reveal" style="--image:url('https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1200&q=85')" href="#finder">
+        <div class="discipline-info"><div class="discipline-no mono">03</div><h3>Krav Maga</h3><p>Praktische Selbstverteidigung mit Fokus auf klare Entscheidungen unter Druck.</p><span class="text-link">Kurse entdecken <span>↗</span></span></div>
+      </a>
+      <a class="discipline reveal" style="--image:url('https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&w=1400&q=85')" href="#finder">
+        <div class="discipline-info"><div class="discipline-no mono">04</div><h3>MMA</h3><p>Striking trifft Grappling. Das komplette Kampfsportsystem in einer Einheit.</p><span class="text-link">Kurse entdecken <span>↗</span></span></div>
+      </a>
+      <a class="discipline reveal" style="--image:url('https://images.unsplash.com/photo-1517963879433-6ad2b056d712?auto=format&fit=crop&w=1400&q=85')" href="#finder">
+        <div class="discipline-info"><div class="discipline-no mono">05</div><h3>Hero Kids</h3><p>Bewegung, Selbstvertrauen und Disziplin – altersgerecht und mit Spaß.</p><span class="text-link">Kurse entdecken <span>↗</span></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section finder" id="finder">
+  <div class="container">
+    <div class="finder-shell reveal">
+      <div class="finder-top">
+        <div>
+          <div class="eyebrow mono">03 — Class Finder</div>
+          <h2>WHEN CAN<br>YOU TRAIN?</h2>
+        </div>
+        <p>Finde die passende Einheit nach Standort, Disziplin und Tag. Die Demo-Daten unten können direkt durch euren echten Kursplan ersetzt werden.</p>
+      </div>
+
+      <div class="filters">
+        <div class="field">
+          <label class="mono">Standort</label>
+          <select id="locationFilter"><option value="all">Alle Standorte</option><option>Schwabing</option><option>Haidhausen</option><option>Sendling</option><option>Freising</option></select>
+        </div>
+        <div class="field">
+          <label class="mono">Disziplin</label>
+          <select id="disciplineFilter"><option value="all">Alle Disziplinen</option><option>Brazilian Jiu-Jitsu</option><option>Kickboxen</option><option>MMA</option><option>Krav Maga</option><option>Hero Kids</option></select>
+        </div>
+        <div class="field">
+          <label class="mono">Tag</label>
+          <select id="dayFilter"><option value="all">Alle Tage</option><option>Montag</option><option>Dienstag</option><option>Mittwoch</option><option>Donnerstag</option><option>Freitag</option><option>Samstag</option></select>
+        </div>
+      </div>
+      <div class="schedule" id="schedule"></div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="story">
+  <div class="story-image"></div>
+  <div class="story-content reveal">
+    <div class="eyebrow mono">04 — The Hutton Method</div>
+    <h2>LEARN.<br>ADAPT.<br>LEAD.</h2>
+    <p>Unser Anspruch ist nicht, möglichst viele Menschen durch die Tür zu bekommen. Unser Anspruch ist, Menschen besser zu machen – auf der Matte und darüber hinaus.</p>
+    <ul class="story-list">
+      <li><strong>Strukturiertes Curriculum</strong><span>01</span></li>
+      <li><strong>Ausgebildete Coaches</strong><span>02</span></li>
+      <li><strong>Training für jedes Level</strong><span>03</span></li>
+      <li><strong>Community statt Ego</strong><span>04</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow mono">05 — Community</div><h2>THE MAT<br>DOESN'T LIE.</h2></div>
+      <p>Menschen kommen aus unterschiedlichen Gründen zu Hutton. Was sie verbindet, ist der Wunsch, sich zu entwickeln.</p>
+    </div>
+    <div class="quote-grid">
+      <article class="quote reveal"><div class="quote-mark">“</div><p>Ich habe selten eine Community erlebt, in der Anfänger so schnell aufgenommen werden.</p><cite>Hutton Member · Google Review</cite></article>
+      <article class="quote reveal"><div class="quote-mark">“</div><p>Das Training ist technisch anspruchsvoll, aber gleichzeitig unglaublich motivierend.</p><cite>Hutton Member · Google Review</cite></article>
+      <article class="quote reveal"><div class="quote-mark">“</div><p>Nach der ersten Probestunde wusste ich sofort: Hier will ich bleiben.</p><cite>Hutton Member · Google Review</cite></article>
+    </div>
+  </div>
+</section>
+
+<section class="section locations" id="locations">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow mono">06 — Locations</div><h2>FIND YOUR<br>ACADEMY.</h2></div>
+      <p>Vier Standorte. Eine Community. Wähle den Club, der am besten in deinen Alltag passt.</p>
+    </div>
+    <div class="location-grid">
+      <article class="location reveal"><div class="location-top"><h3>Schwabing</h3><span class="location-number mono">01</span></div><address>Hutton Academy Schwabing<br>München</address><div class="location-bottom"><span class="location-next">Nächster Kurs · BJJ · 19:30</span><a class="btn dark" href="#finder">Kurse</a></div></article>
+      <article class="location reveal"><div class="location-top"><h3>Haidhausen</h3><span class="location-number mono">02</span></div><address>Hutton Academy Haidhausen<br>München</address><div class="location-bottom"><span class="location-next">Nächster Kurs · MMA · 19:00</span><a class="btn dark" href="#finder">Kurse</a></div></article>
+      <article class="location reveal"><div class="location-top"><h3>Sendling</h3><span class="location-number mono">03</span></div><address>Hutton Academy Sendling<br>München</address><div class="location-bottom"><span class="location-next">Nächster Kurs · Kickboxen · 18:30</span><a class="btn dark" href="#finder">Kurse</a></div></article>
+      <article class="location reveal"><div class="location-top"><h3>Freising</h3><span class="location-number mono">04</span></div><address>Hutton Academy Freising<br>Freising</address><div class="location-bottom"><span class="location-next">Nächster Kurs · BJJ · 18:00</span><a class="btn dark" href="#finder">Kurse</a></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="section pricing" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div><div class="eyebrow mono">07 — Membership</div><h2>MAKE IT<br>A HABIT.</h2></div>
+      <p>Klare Mitgliedschaften ohne unnötige Komplexität. Die Beispielpreise können mit euren echten Angeboten ersetzt werden.</p>
+    </div>
+    <div class="price-grid">
+      <article class="price-card reveal"><span class="price-label">Flexible</span><h3>Basic</h3><div class="price">XX € <small>/ MONAT</small></div><ul><li>✓ Zugang zu ausgewählten Kursen</li><li>✓ Community Events</li><li>✓ Kein langfristiger Overhead</li></ul><a href="#trial" class="btn dark">Mehr erfahren ↗</a></article>
+      <article class="price-card featured reveal"><span class="price-label">Most Popular</span><h3>Unlimited</h3><div class="price">XX € <small>/ MONAT</small></div><ul><li>✓ Alle regulären Kurse</li><li>✓ Alle Disziplinen</li><li>✓ Maximale Trainingsfreiheit</li></ul><a href="#trial" class="btn primary">Probetraining ↗</a></article>
+      <article class="price-card reveal"><span class="price-label">Performance</span><h3>Pro</h3><div class="price">XX € <small>/ MONAT</small></div><ul><li>✓ Unlimited Training</li><li>✓ Performance Sessions</li><li>✓ Zusätzliche Vorteile</li></ul><a href="#trial" class="btn dark">Mehr erfahren ↗</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="section faq" id="faq">
+  <div class="container">
+    <div class="faq-grid">
+      <div class="reveal"><div class="eyebrow mono">08 — FAQ</div><h2>START<br>HERE.</h2><p style="color:#777;max-width:420px">Noch unsicher? Hier findest du die wichtigsten Antworten. Oder komm direkt zu einem Probetraining.</p><a href="#trial" class="btn primary">Probetraining <span class="arrow">↗</span></a></div>
+      <div class="faq-list reveal">
+        <details open><summary>Brauche ich Vorerfahrung?</summary><p>Nein. Die Einheiten sind so aufgebaut, dass du unabhängig von deinem aktuellen Level einsteigen kannst.</p></details>
+        <details><summary>Was soll ich zum Probetraining mitbringen?</summary><p>Bequeme Sportkleidung, etwas zu trinken und die Bereitschaft, Neues zu lernen. Für einzelne Disziplinen können spezielle Ausrüstungsanforderungen gelten.</p></details>
+        <details><summary>Kann ich mehrere Disziplinen trainieren?</summary><p>Ja. Je nach Mitgliedschaft kannst du verschiedene Disziplinen kombinieren. Im Kursfinder kannst du direkt nach deinem gewünschten Training suchen.</p></details>
+        <details><summary>Ist Kampfsport auch für Kinder geeignet?</summary><p>Mit Hero Kids gibt es ein altersgerechtes Angebot mit Fokus auf Bewegung, Selbstvertrauen, Disziplin und Spaß.</p></details>
+        <details><summary>Wie funktioniert das Probetraining?</summary><p>Wähle einen Standort und hinterlasse deine Kontaktdaten. Das Team meldet sich mit den verfügbaren Möglichkeiten bei dir.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="trial">
+  <div class="container">
+    <div class="cta-content reveal">
+      <div class="eyebrow mono">09 — Your first round</div>
+      <h2>READY TO<br><span>START?</span></h2>
+      <p>Keine Vorerfahrung. Kein Druck. Nur eine erste Einheit, in der du herausfindest, was in dir steckt.</p>
+      <div class="cta-actions">
+        <a href="mailto:hello@hutton-academy.de?subject=Probetraining" class="btn primary">Probetraining anfragen <span class="arrow">↗</span></a>
+        <a href="tel:+498912345678" class="btn">Anrufen <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="logo">HUTTON<span>®</span></div><p>Martial Arts Academy. Train with purpose.</p></div>
+      <div class="footer-col"><h4>Academy</h4><a href="#academy">Über Hutton</a><a href="#disciplines">Disziplinen</a><a href="#finder">Kursplan</a><a href="#pricing">Mitgliedschaft</a></div>
+      <div class="footer-col"><h4>Kontakt</h4><a href="#locations">Standorte</a><a href="mailto:hello@hutton-academy.de">E-Mail</a><a href="tel:+498912345678">Telefon</a></div>
+      <div class="footer-col"><h4>Social</h4><a href="#">Instagram ↗</a><a href="#">Facebook ↗</a><a href="#">Google ↗</a></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Hutton Academy</span><span>Impressum · Datenschutz</span><span>Made for the mat.</span></div>
+  </div>
+</footer>
+
+<div class="mobile-cta"><a href="#trial" class="btn primary">Kostenloses Probetraining <span class="arrow">↗</span></a></div>
+
+<script>
+const classes = [
+  {day:"Montag",time:"18:00",name:"Brazilian Jiu-Jitsu",level:"All Levels",location:"Schwabing"},
+  {day:"Montag",time:"19:30",name:"Kickboxen",level:"All Levels",location:"Haidhausen"},
+  {day:"Dienstag",time:"18:00",name:"Hero Kids",level:"Kids",location:"Sendling"},
+  {day:"Dienstag",time:"19:00",name:"MMA",level:"All Levels",location:"Schwabing"},
+  {day:"Mittwoch",time:"18:30",name:"Krav Maga",level:"All Levels",location:"Freising"},
+  {day:"Mittwoch",time:"19:30",name:"Brazilian Jiu-Jitsu",level:"Advanced",location:"Haidhausen"},
+  {day:"Donnerstag",time:"18:00",name:"Kickboxen",level:"All Levels",location:"Sendling"},
+  {day:"Donnerstag",time:"19:00",name:"MMA",level:"Advanced",location:"Schwabing"},
+  {day:"Freitag",time:"18:00",name:"Brazilian Jiu-Jitsu",level:"All Levels",location:"Freising"},
+  {day:"Freitag",time:"19:30",name:"Krav Maga",level:"All Levels",location:"Haidhausen"},
+  {day:"Samstag",time:"11:00",name:"Hero Kids",level:"Kids",location:"Schwabing"},
+  {day:"Samstag",time:"12:30",name:"Brazilian Jiu-Jitsu",level:"Open Mat",location:"Schwabing"}
+];
+
+const schedule = document.getElementById("schedule");
+const locationFilter = document.getElementById("locationFilter");
+const disciplineFilter = document.getElementById("disciplineFilter");
+const dayFilter = document.getElementById("dayFilter");
+
+function renderClasses(){
+  const location = locationFilter.value;
+  const discipline = disciplineFilter.value;
+  const day = dayFilter.value;
+  const filtered = classes.filter(c =>
+    (location==="all" || c.location===location) &&
+    (discipline==="all" || c.name===discipline) &&
+    (day==="all" || c.day===day)
+  );
+  schedule.innerHTML = filtered.length ? filtered.map(c => `
+    <div class="class-card">
+      <div class="time">${c.time}</div>
+      <div><div class="class-name">${c.name}</div><div class="class-meta">${c.day} · ${c.location} · ${c.level}</div></div>
+      <div class="badge">${c.level}</div>
+      <a href="#trial" class="btn">Details <span class="arrow">↗</span></a>
+    </div>`).join("") :
+    `<div style="padding:35px 10px;color:#777;text-align:center">Keine Kurse mit diesen Filtern gefunden.</div>`;
+}
+[locationFilter,disciplineFilter,dayFilter].forEach(el=>el.addEventListener("change",renderClasses));
+renderClasses();
+
+const header = document.getElementById("header");
+window.addEventListener("scroll",()=>header.classList.toggle("scrolled",window.scrollY>30),{passive:true});
+
+const nav = document.getElementById("nav");
+const toggle = document.getElementById("menuToggle");
+toggle.addEventListener("click",()=>{
+  nav.classList.toggle("open");
+  toggle.textContent = nav.classList.contains("open") ? "×" : "☰";
+});
+document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>{
+  nav.classList.remove("open");toggle.textContent="☰";
+}));
+
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("visible")});
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
