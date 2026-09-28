@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Grappling Intelligence – App laden</title>
+  <style>
+    :root {
+      --bg: #0e0f13;
+      --ink: #f2f2f0;
+      --muted: #9a9ca3;
+      --line: #2a2c33;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font: 17px/1.5 -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      display: grid;
+      place-items: center;
+      padding: 32px 20px;
+    }
+    main { width: 100%; max-width: 420px; text-align: center; }
+    h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.01em; margin: 0 0 12px; }
+    p { color: var(--muted); margin: 0 0 32px; }
+    a.btn {
+      display: block;
+      padding: 16px 20px;
+      margin: 12px 0;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    a.btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+    small { display: block; color: var(--muted); margin-top: 28px; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Grappling Intelligence</h1>
+    <p>Lade die App und melde dich mit deinem Zugangs-Key an.</p>
+    <a class="btn primary" id="ios" href="#">Für iPhone laden</a>
+    <a class="btn" id="android" href="#">Für Android laden</a>
+    <small>Du wirst auf einem Handy automatisch in den passenden Store weitergeleitet.</small>
+  </main>
+  <script>
+    // Beide Links aus der bestehenden /download-Seite eintragen:
+    var APP_STORE_URL  = "HIER_APP_STORE_LINK";
+    var PLAY_STORE_URL = "HIER_PLAY_STORE_LINK";
+
+    document.getElementById("ios").href = APP_STORE_URL;
+    document.getElementById("android").href = PLAY_STORE_URL;
+
+    var ua = navigator.userAgent || "";
+    var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    var isAndroid = /Android/.test(ua);
+
+    if (isIOS)          { location.replace(APP_STORE_URL); }
+    else if (isAndroid) { location.replace(PLAY_STORE_URL); }
+    // Desktop: Seite bleibt stehen, beide Knöpfe sichtbar.
+  </script>
+</body>
+</html>
